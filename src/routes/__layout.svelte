@@ -19,8 +19,8 @@
 </script>
 
 <div style="display: flex; justify-content: space-between;">
-	<div class="container"><slot /></div>
-	<div class="container">
+	<div><slot /></div>
+	<div>
 		<Button on:click={switchTheme}>
 			<Label>{lightTheme ? 'Lights off' : 'Lights on'}</Label>
 		</Button>

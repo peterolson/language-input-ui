@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Button, { Label, Icon } from '@smui/button';
+	import { LanguageCode } from '../types/dictionary.types';
+	import LookupWord from '../ui/dictionary/lookupWord.svelte';
 
 	let clicked = 0;
 
@@ -26,8 +28,12 @@
 	{/if}
 </p>
 
+<div class="dictionary">
+	<LookupWord word="朋友" fromLang={LanguageCode.Chinese} toLang={LanguageCode.English} />
+</div>
+
 <style>
-	.grayed {
-		opacity: 0.6;
+	.dictionary {
+		padding: 16px;
 	}
 </style>
