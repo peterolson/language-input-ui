@@ -5,26 +5,44 @@
 	import { onMount } from 'svelte';
 	import WordTranslation from './wordTranslation.svelte';
 	import type { Token } from '../../types/parse.types';
-	import { text } from 'svelte/internal';
+	import IconButton from '@smui/icon-button/IconButton.svelte';
+	import { createEventDispatcher } from 'svelte';
+	const dispatch = createEventDispatcher();
 
 	export let token: Token;
 	export let fromLang: LanguageCode;
 	export let toLang: LanguageCode;
+	export let fullScreen: boolean;
 
 	let lookupResult: DictionaryLookup;
 
 	onMount(async () => {
 		lookupResult = await lookupWord(token.text, fromLang, toLang);
 	});
+
+	function onClose() {
+		dispatch('close');
+	}
+	function onFold() {
+		dispatch('fold');
+	}
 </script>
 
-<div class="container">
-	<h1 class="mdc-typography--headline6">
-		{token.text}
-		{#if token.lemma.toLowerCase() !== token.text.toLowerCase()}
-			({token.lemma})
-		{/if}
-	</h1>
+<div class="container" in:fade out:fade>
+	<div class="header">
+		<h1 class="mdc-typography--headline6">
+			{token.text}
+			{#if token.lemma.toLowerCase() !== token.text.toLowerCase()}
+				({token.lemma})
+			{/if}
+		</h1>
+		<div>
+			<IconButton class="material-icons" on:click={onFold}>
+				{fullScreen ? 'unfold_less' : 'unfold_more'}
+			</IconButton>
+			<IconButton class="material-icons" on:click={onClose}>close</IconButton>
+		</div>
+	</div>
 	{#if lookupResult?.translations}
 		<div class="results" in:fade|local>
 			{#each lookupResult.translations as translation}
@@ -40,11 +58,24 @@
 	h1 {
 		margin: 0;
 	}
+	.results {
+		flex: 1;
+		overflow: auto;
+	}
+
 	.result {
 		padding: 0px 8px;
-		width: 300px;
 	}
 	.container {
-		padding: 8px;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+	.header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-left: 8px;
+		border-bottom: 1px solid var(--border-color);
 	}
 </style>

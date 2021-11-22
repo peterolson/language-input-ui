@@ -11,6 +11,7 @@
 
 <div class="container">
 	<div class="topBar">
+		<div class="mdc-typography--headline6">Language Input</div>
 		<IconButton class="material-icons" on:click={toggleSettings}>settings</IconButton>
 	</div>
 	<div class="content"><slot /></div>
@@ -21,7 +22,9 @@
 <style>
 	.topBar {
 		display: flex;
-		justify-content: flex-end;
+		justify-content: space-between;
+		align-items: center;
+		padding-left: 8px;
 		border-bottom: 1px solid var(--border-color);
 	}
 	.container {

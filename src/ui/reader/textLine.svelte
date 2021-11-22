@@ -5,16 +5,15 @@
 	const dispatch = createEventDispatcher();
 
 	export let line: TextLine;
-	export let lang: LanguageCode;
 	export let selectedToken: Token | null;
 
 	function lineSpacingStyle(token: Token) {
 		return `padding-bottom: ${[...token.text].filter((x) => x === '\n').length * 8}px`;
 	}
 
-	function lookupWord(token: Token) {
+	function lookupWord(token: Token, e: MouseEvent) {
 		if (!token.isWord) return;
-		dispatch('lookup', token);
+		dispatch('lookup', { token, target: e.target });
 	}
 </script>
 
@@ -22,8 +21,8 @@
 	{#each line.tokens as token}
 		<span
 			class:word={token.isWord}
-			class:selected={selectedToken?.text === token.text}
-			on:click={() => lookupWord(token)}>{token.text}</span
+			class:selected={selectedToken === token}
+			on:click={(e) => lookupWord(token, e)}>{token.text}</span
 		>{token.suffix}{#if token.text.includes('\n')}
 			<div style={lineSpacingStyle(token)} />
 		{/if}

@@ -32,6 +32,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@material/elevation": "^11.0.0",
 		"@smui/button": "^5.0.1",
 		"@smui/dialog": "^5.0.1",
 		"@smui/icon-button": "^5.0.1",
