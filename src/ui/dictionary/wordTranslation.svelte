@@ -1,5 +1,5 @@
 <script lang="ts">
-	import IconButton from '@smui/icon-button';
+	import IconButton, { Icon } from '@smui/icon-button';
 	import { getExamples } from '../../data/dictionary';
 
 	import type {
@@ -11,18 +11,29 @@
 	import { onMount } from 'svelte';
 	import ExampleSentence from './exampleSentence.svelte';
 	import Button from '@smui/button/Button.svelte';
+	import { Label } from '@smui/common';
 
 	export let word: string;
 	export let translation: DictionaryTranslation;
 	export let fromLang: LanguageCode;
 	export let toLang: LanguageCode;
+	export let loadExamples: boolean;
+
+	const DEFAULT_EXAMPLE_COUNT = 1;
 
 	let examples: DictionaryExample[] = [];
 	let limitExamples = true;
 	let currentWord = word;
+	let hasLoaded = false;
 
-	onMount(async () => {
+	async function populateExamples() {
 		examples = await getExamples(word, translation.normalizedTarget, fromLang, toLang);
+		hasLoaded = true;
+	}
+
+	onMount(() => {
+		if (!loadExamples) return;
+		populateExamples();
 	});
 
 	function toggleExampleLimit() {
@@ -32,7 +43,7 @@
 	async function changeCurrentWord(newWord: string) {
 		currentWord = newWord;
 		examples = [];
-		examples = await getExamples(currentWord, translation.normalizedTarget, fromLang, toLang);
+		populateExamples();
 	}
 
 	function isCurrentWord(backtranslation: BackTranslation, currentWord: string) {
@@ -40,6 +51,16 @@
 			backtranslation.displayText.toLowerCase() === currentWord.toLowerCase() ||
 			backtranslation.normalizedText.toLowerCase() === currentWord.toLowerCase()
 		);
+	}
+
+	function getExampleNum(currentWord: string, translation: DictionaryTranslation) {
+		let count = translation?.backTranslations.find((backtranslation) =>
+			isCurrentWord(backtranslation, currentWord)
+		)?.numExamples;
+		if (count) {
+			return count;
+		}
+		return '';
 	}
 </script>
 
@@ -64,13 +85,24 @@
 		{' '}
 	{/each}
 </div>
-{#each examples.slice(0, limitExamples ? 2 : examples.length) as example}
+{#if !loadExamples && !hasLoaded && getExampleNum(currentWord, translation) > 0}
+	<Button color="secondary" on:click={populateExamples}>
+		<Icon class="material-icons">unfold_more</Icon>
+		<Label>{getExampleNum(currentWord, translation)}</Label>
+	</Button>
+{/if}
+{#each examples.slice(0, limitExamples ? DEFAULT_EXAMPLE_COUNT : examples.length) as example}
 	<ExampleSentence {example} />
 {/each}
-{#if examples.length > 2}
-	<IconButton class="material-icons" on:click={toggleExampleLimit}>
-		{limitExamples ? 'expand_more' : 'expand_less'}
-	</IconButton>
+{#if examples.length > DEFAULT_EXAMPLE_COUNT}
+	<Button color="secondary" on:click={toggleExampleLimit}>
+		<Icon class="material-icons">
+			{limitExamples ? 'expand_more' : 'expand_less'}
+		</Icon>
+		{#if limitExamples}
+			<Label>{examples.length - DEFAULT_EXAMPLE_COUNT}</Label>
+		{/if}
+	</Button>
 {/if}
 <hr />
 

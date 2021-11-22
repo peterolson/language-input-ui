@@ -15,3 +15,7 @@ export type Media =
 	| {
 			type: 'none';
 	  };
+
+export type MediaControls = {
+	pause: () => void;
+};

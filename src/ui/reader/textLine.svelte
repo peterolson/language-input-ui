@@ -18,14 +18,18 @@
 </script>
 
 <div class="mdc-typography--body1 line">
-	{#each line.tokens as token}
-		<span
-			class:word={token.isWord}
-			class:selected={selectedToken === token}
-			on:click={(e) => lookupWord(token, e)}>{token.text}</span
-		>{token.suffix}{#if token.text.includes('\n')}
-			<div style={lineSpacingStyle(token)} />
-		{/if}
+	{#each line.sentences as sentence}
+		<div>
+			{#each sentence.tokens as token}
+				<span
+					class:word={token.isWord}
+					class:selected={selectedToken === token}
+					on:click={(e) => lookupWord(token, e)}>{token.text}</span
+				>{token.suffix}{#if token.text.includes('\n')}
+					<div style={lineSpacingStyle(token)} />
+				{/if}
+			{/each}
+		</div>
 	{/each}
 </div>
 

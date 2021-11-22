@@ -2,13 +2,22 @@
 	import IconButton from '@smui/icon-button/IconButton.svelte';
 	import CircularProgress from '@smui/circular-progress';
 	import LinearProgress from '@smui/linear-progress';
+	import type { MediaControls } from '../../../types/media.types';
+	import { onMount } from 'svelte';
 
 	export let url: string;
+	export let controls: MediaControls;
 	let duration: number;
 	let currentTime: number;
 	let isPaused: boolean = true;
 
 	let audio: HTMLAudioElement;
+
+	onMount(() => {
+		controls.pause = () => {
+			audio.pause();
+		};
+	});
 
 	function formatTime(currentTime: number, duration: number) {
 		let c = currentTime || 0;

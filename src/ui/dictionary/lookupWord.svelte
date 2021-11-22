@@ -49,15 +49,28 @@
 			<IconButton class="material-icons" on:click={onClose}>close</IconButton>
 		</div>
 	</div>
-	{#if lookupResult?.translations}
-		<div class="results" in:fade|local>
-			{#each lookupResult.translations as translation}
-				<div class="result">
-					<WordTranslation {translation} word={token.text} {fromLang} {toLang} />
+	<div class="results">
+		{#if lookupResult?.translations}
+			{#each lookupResult.translations as translation, i}
+				<div class="result" in:fade>
+					<WordTranslation
+						{translation}
+						word={token.text}
+						{fromLang}
+						{toLang}
+						loadExamples={i === 0}
+					/>
 				</div>
 			{/each}
+		{/if}
+		<div class="mdc-typography--caption result">
+			{token.pos}
+			{token.tag === token.pos ? '' : token.tag}
+			{#each token.morph.split('|') as morph}
+				<div>{morph}</div>
+			{/each}
 		</div>
-	{/if}
+	</div>
 </div>
 
 <style>
@@ -87,6 +100,7 @@
 
 	.buttons {
 		width: 116px;
+		flex-shrink: 0;
 	}
 
 	.hidden {

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import IconButton from '@smui/icon-button/IconButton.svelte';
-	import { onMount } from 'svelte';
 	import type { LanguageCode } from '../../types/dictionary.types';
 	import type { Media } from '../../types/media.types';
 	import type { ParsedText, Token } from '../../types/parse.types';
@@ -20,6 +19,7 @@
 	let maxWidth = 640;
 	let progressCurrentPercent = 0;
 	let displayDictionaryAtTop = true;
+	let mediaView: MediaView;
 
 	$: {
 		maxWidth = Math.min(640, innerWidth);
@@ -116,6 +116,9 @@
 		const target = e.detail.target;
 		const position = target.offsetTop / window.innerHeight;
 		displayDictionaryAtTop = position >= 0.5;
+		if (mediaView) {
+			mediaView.controls.pause();
+		}
 	}
 </script>
 
@@ -131,7 +134,7 @@
 	<div class="leftPanel" />
 	<div class="contentContainer">
 		<div class="media">
-			<MediaView {media} />
+			<MediaView {media} bind:this={mediaView} />
 		</div>
 		<div
 			class="content"

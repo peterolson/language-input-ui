@@ -1,19 +1,19 @@
 <script lang="ts">
 	import { LanguageCode } from '../types/dictionary.types';
-	import { spanish1 } from '../data/playground';
+	import { parsedText } from '../data/playground';
 	import Reader from '../ui/reader/reader.svelte';
 	import { settings } from '../data/settings';
 	import type { Media } from '../types/media.types';
 
 	const { userLanguage } = settings;
 	const media: Media = {
-		type: 'video',
-		url: 'https://data.dong-chinese.com/partner/coolpanda/107.mp4'
+		type: 'youtube',
+		youtubeId: 'GdHfcFXKWlY'
 	};
 </script>
 
 <div class="container">
-	<Reader text={spanish1} lang={LanguageCode.Spanish} userLang={$userLanguage} {media} />
+	<Reader text={parsedText} lang={LanguageCode.Russian} userLang={$userLanguage} {media} />
 </div>
 
 <style>

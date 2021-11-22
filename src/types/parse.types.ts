@@ -1,9 +1,13 @@
 export type ParsedText = {
+	rawText: string;
 	lines: TextLine[];
 };
 
 export type TextLine = {
-	text: string;
+	sentences: Sentence[];
+};
+
+export type Sentence = {
 	tokens: Token[];
 };
 
@@ -15,4 +19,6 @@ export type Token = {
 	morph: string;
 	lemma: string;
 	isWord: boolean;
+	start: number;
+	end: number;
 };

@@ -1,15 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-
+	import type { MediaControls } from '../../../types/media.types';
 	import YouTubePlayer from 'yt-player';
-	// const player = new YouTubePlayer();
-	// console.log(YouTubePlayer);
+
 	export let youtubeId: string;
+	export let controls: MediaControls;
+
 	let playerContainer: HTMLDivElement;
 	let player: YouTubePlayer;
 	onMount(() => {
 		player = new YouTubePlayer(playerContainer);
 		player.load(youtubeId);
+		controls.pause = () => player.pause();
 	});
 </script>
 
