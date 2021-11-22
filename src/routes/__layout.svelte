@@ -1,28 +1,37 @@
 <script lang="ts">
 	import Button, { Label } from '@smui/button';
+	import IconButton from '@smui/icon-button/IconButton.svelte';
+	import SettingsDialog from '../ui/settings/settingsDialog.svelte';
 
-	let lightTheme =
-		typeof window === 'undefined' || window.matchMedia('(prefers-color-scheme: light)').matches;
-	function switchTheme() {
-		lightTheme = !lightTheme;
-		let themeLink = document.head.querySelector<HTMLLinkElement>('#theme');
-		if (!themeLink) {
-			themeLink = document.createElement('link');
-			themeLink.rel = 'stylesheet';
-			themeLink.id = 'theme';
-		}
-		themeLink.href = `/smui${lightTheme ? '' : '-dark'}.css`;
-		document.head
-			.querySelector<HTMLLinkElement>('link[href="/smui-dark.css"]')
-			?.insertAdjacentElement('afterend', themeLink);
+	let isSettingsOpen = false;
+	function toggleSettings() {
+		isSettingsOpen = !isSettingsOpen;
 	}
 </script>
 
-<div style="display: flex; justify-content: space-between;">
-	<div><slot /></div>
-	<div>
-		<Button on:click={switchTheme}>
-			<Label>{lightTheme ? 'Lights off' : 'Lights on'}</Label>
-		</Button>
+<div class="container">
+	<div class="topBar">
+		<IconButton class="material-icons" on:click={toggleSettings}>settings</IconButton>
 	</div>
+	<div class="content"><slot /></div>
 </div>
+
+<SettingsDialog bind:open={isSettingsOpen} />
+
+<style>
+	.topBar {
+		display: flex;
+		justify-content: flex-end;
+		border-bottom: 1px solid var(--border-color);
+	}
+	.container {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+
+	.content {
+		display: flex;
+		overflow: auto;
+	}
+</style>

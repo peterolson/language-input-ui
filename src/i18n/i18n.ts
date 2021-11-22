@@ -1,8 +1,11 @@
-import { LanguageCode } from 'src/types/dictionary.types';
-import { derived, Writable, writable } from 'svelte/store';
+import type { LanguageCode } from '../types/dictionary.types';
+import { derived } from 'svelte/store';
 import translations from './translations';
 
-export const locale: Writable<LanguageCode> = writable(LanguageCode.English);
+import { settings } from '../data/settings';
+
+const { userLanguage } = settings;
+
 export const locales = Object.keys(translations);
 
 function translate(locale: LanguageCode, key: string, vars: Record<string, string> = {}) {
@@ -26,7 +29,7 @@ function translate(locale: LanguageCode, key: string, vars: Record<string, strin
 }
 
 export const t = derived(
-	locale,
+	userLanguage,
 	($locale) =>
 		(key: string, vars = {}) =>
 			translate($locale, key, vars)

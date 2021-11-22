@@ -1,0 +1,46 @@
+<script lang="ts">
+	import type { LanguageCode } from 'src/types/dictionary.types';
+	import type { TextLine, Token } from 'src/types/parse.types';
+	import { createEventDispatcher } from 'svelte';
+	const dispatch = createEventDispatcher();
+
+	export let line: TextLine;
+	export let lang: LanguageCode;
+	export let selectedToken: Token | null;
+
+	function lineSpacingStyle(token: Token) {
+		return `padding-bottom: ${[...token.text].filter((x) => x === '\n').length * 8}px`;
+	}
+
+	function lookupWord(token: Token) {
+		if (!token.isWord) return;
+		dispatch('lookup', token);
+	}
+</script>
+
+<div class="mdc-typography--body1 line">
+	{#each line.tokens as token}
+		<span
+			class:word={token.isWord}
+			class:selected={selectedToken?.text === token.text}
+			on:click={() => lookupWord(token)}>{token.text}</span
+		>{token.suffix}{#if token.text.includes('\n')}
+			<div style={lineSpacingStyle(token)} />
+		{/if}
+	{/each}
+</div>
+
+<style>
+	.line {
+		font-size: 115%;
+		line-height: 32px;
+		padding: 8px;
+	}
+	.word {
+		cursor: pointer;
+		display: inline-block;
+	}
+	.selected {
+		text-decoration: underline;
+	}
+</style>

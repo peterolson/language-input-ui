@@ -3,12 +3,14 @@
 	import { getExamples } from '../../data/dictionary';
 
 	import type {
+		BackTranslation,
 		DictionaryExample,
 		DictionaryTranslation,
 		LanguageCode
-	} from 'src/types/dictionary.types';
+	} from '../../types/dictionary.types';
 	import { onMount } from 'svelte';
 	import ExampleSentence from './exampleSentence.svelte';
+	import Button from '@smui/button/Button.svelte';
 
 	export let word: string;
 	export let translation: DictionaryTranslation;
@@ -17,14 +19,27 @@
 
 	let examples: DictionaryExample[] = [];
 	let limitExamples = true;
+	let currentWord = word;
 
 	onMount(async () => {
 		examples = await getExamples(word, translation.normalizedTarget, fromLang, toLang);
-		console.log(examples);
 	});
 
 	function toggleExampleLimit() {
 		limitExamples = !limitExamples;
+	}
+
+	async function changeCurrentWord(newWord: string) {
+		currentWord = newWord;
+		examples = [];
+		examples = await getExamples(currentWord, translation.normalizedTarget, fromLang, toLang);
+	}
+
+	function isCurrentWord(backtranslation: BackTranslation, currentWord: string) {
+		return (
+			backtranslation.displayText.toLowerCase() === currentWord.toLowerCase() ||
+			backtranslation.normalizedText.toLowerCase() === currentWord.toLowerCase()
+		);
 	}
 </script>
 
@@ -33,12 +48,20 @@
 </div>
 <div class="mdc-typography--body1 grayed backTranslation">
 	{#each translation.backTranslations as backtranslation}
-		<span
-			class:currentWord={backtranslation.displayText === word ||
-				backtranslation.normalizedText === word}
-		>
-			{backtranslation.displayText}
-		</span>{' '}
+		{#if isCurrentWord(backtranslation, currentWord)}
+			<span class:currentWord={isCurrentWord(backtranslation, currentWord)}>
+				{backtranslation.displayText}
+			</span>
+		{:else}
+			<Button
+				color="secondary"
+				on:click={() => changeCurrentWord(backtranslation.displayText)}
+				style="min-width:0;text-transform:none;height:unset"
+			>
+				{backtranslation.displayText}
+			</Button>
+		{/if}
+		{' '}
 	{/each}
 </div>
 {#each examples.slice(0, limitExamples ? 2 : examples.length) as example}

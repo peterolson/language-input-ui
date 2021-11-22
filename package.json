@@ -33,7 +33,10 @@
 	"type": "module",
 	"dependencies": {
 		"@smui/button": "^5.0.1",
+		"@smui/dialog": "^5.0.1",
 		"@smui/icon-button": "^5.0.1",
+		"@smui/paper": "^5.0.1",
+		"@smui/select": "^5.0.1",
 		"smui-theme": "^5.0.0"
 	}
 }

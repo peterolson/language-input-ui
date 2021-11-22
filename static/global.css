@@ -1,3 +1,10 @@
 .grayed {
 	opacity: 0.7;
 }
+html,
+body,
+#svelte {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}

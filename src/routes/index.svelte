@@ -1,39 +1,21 @@
 <script lang="ts">
-	import Button, { Label, Icon } from '@smui/button';
 	import { LanguageCode } from '../types/dictionary.types';
-	import LookupWord from '../ui/dictionary/lookupWord.svelte';
+	import { spanish1 } from '../data/playground';
+	import Reader from '../ui/reader/reader.svelte';
+	import { settings } from '../data/settings';
 
-	let clicked = 0;
-
-	function handleClick(event: CustomEvent | MouseEvent) {
-		event = event as MouseEvent;
-		if (event.button === 0) {
-			clicked++;
-		} else if (event.button === 1) {
-			clicked = 0;
-		}
-	}
+	const { userLanguage } = settings;
 </script>
 
-<Button on:mousedown={handleClick}>
-	<Icon class="material-icons">thumb_up</Icon>
-	<Label>Click Me</Label>
-</Button>
-<p class="mdc-typography--body1">
-	{#if clicked}
-		You've clicked the button {clicked} time{clicked === 1 ? '' : 's'}. Middle click the button to
-		reset.
-	{:else}
-		<span class="grayed">You haven't clicked the button.</span>
-	{/if}
-</p>
-
-<div class="dictionary">
-	<LookupWord word="朋友" fromLang={LanguageCode.Chinese} toLang={LanguageCode.English} />
+<div class="container">
+	<Reader text={spanish1} lang={LanguageCode.Spanish} userLang={$userLanguage} />
 </div>
 
 <style>
-	.dictionary {
-		padding: 16px;
+	.container {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		width: 100%;
 	}
 </style>

@@ -11,13 +11,34 @@ export enum LanguageCode {
 	Japanese = 'ja',
 	Lithuanian = 'lt',
 	Macedonain = 'mk',
-	NorweiganBokmål = 'nb',
+	Norweigan = 'nb',
 	Polish = 'pl',
 	Portuguese = 'pt',
 	Romanian = 'ro',
 	Russian = 'ru',
 	Spanish = 'es'
 }
+
+export const languageNames: { [key in LanguageCode]: string } = {
+	zh: '中文',
+	ca: 'Català',
+	da: 'Dansk',
+	nl: 'Nederlands',
+	en: 'English',
+	fr: 'Français',
+	de: 'Deutsch',
+	el: 'Ελληνικά',
+	it: 'Italiano',
+	ja: '日本語',
+	lt: 'Lietuvių',
+	mk: 'Македонски',
+	nb: 'Norsk Bokmål',
+	pl: 'Polski',
+	pt: 'Português',
+	ro: 'Română',
+	ru: 'Русский',
+	es: 'Español'
+};
 
 export type DictionaryLookup = {
 	normalizedSource: string;
