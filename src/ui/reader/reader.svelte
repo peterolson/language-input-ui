@@ -1,16 +1,20 @@
 <script lang="ts">
 	import IconButton from '@smui/icon-button/IconButton.svelte';
-	import type { LanguageCode } from 'src/types/dictionary.types';
-	import type { ParsedText, Token } from 'src/types/parse.types';
+	import { onMount } from 'svelte';
+	import type { LanguageCode } from '../../types/dictionary.types';
+	import type { Media } from '../../types/media.types';
+	import type { ParsedText, Token } from '../../types/parse.types';
 	import LookupWord from '../dictionary/lookupWord.svelte';
+	import MediaView from './media/mediaView.svelte';
 	import TextLine from './textLine.svelte';
 
 	export let text: ParsedText;
 	export let lang: LanguageCode;
 	export let userLang: LanguageCode;
+	export let media: Media;
 
 	let contentDiv: HTMLDivElement;
-	let pages = 1;
+	let pages = 10;
 	let currentPage = 1;
 	let innerWidth = 640;
 	let maxWidth = 640;
@@ -126,6 +130,9 @@
 >
 	<div class="leftPanel" />
 	<div class="contentContainer">
+		<div class="media">
+			<MediaView {media} />
+		</div>
 		<div
 			class="content"
 			bind:this={contentDiv}
@@ -192,8 +199,9 @@
 		margin: 0 auto;
 		height: 100%;
 		overflow: hidden;
-		width: 640px;
-		column-width: 640px;
+		width: 100vw;
+		max-width: 640px;
+		column-width: 100vw;
 		column-gap: 0px;
 	}
 	.dictionary {

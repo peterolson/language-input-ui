@@ -36,10 +36,16 @@
 				({token.lemma})
 			{/if}
 		</h1>
-		<div>
-			<IconButton class="material-icons" on:click={onFold}>
-				{fullScreen ? 'unfold_less' : 'unfold_more'}
-			</IconButton>
+		<div class="buttons">
+			<span
+				class="fold"
+				class:hidden={lookupResult?.translations?.length < 2 &&
+					!lookupResult?.translations?.[0].backTranslations?.length}
+			>
+				<IconButton class="material-icons" on:click={onFold}>
+					{fullScreen ? 'unfold_less' : 'unfold_more'}
+				</IconButton>
+			</span>
 			<IconButton class="material-icons" on:click={onClose}>close</IconButton>
 		</div>
 	</div>
@@ -77,5 +83,25 @@
 		justify-content: space-between;
 		padding-left: 8px;
 		border-bottom: 1px solid var(--border-color);
+	}
+
+	.buttons {
+		width: 116px;
+	}
+
+	.hidden {
+		visibility: hidden;
+	}
+
+	.fold {
+		visibility: hidden;
+	}
+	@media screen and (max-width: 875px) {
+		.fold {
+			visibility: visible;
+		}
+		.fold.hidden {
+			visibility: hidden;
+		}
 	}
 </style>

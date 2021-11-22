@@ -17,6 +17,8 @@
 		"@material/theme": "^11.0.0",
 		"@material/typography": "^11.0.0",
 		"@sveltejs/kit": "next",
+		"@types/events": "^3.0.0",
+		"@types/yt-player": "^3.5.1",
 		"@typescript-eslint/eslint-plugin": "^5.3.1",
 		"@typescript-eslint/parser": "^5.3.1",
 		"eslint": "^8.2.0",
@@ -34,10 +36,15 @@
 	"dependencies": {
 		"@material/elevation": "^11.0.0",
 		"@smui/button": "^5.0.1",
+		"@smui/circular-progress": "^5.0.1",
 		"@smui/dialog": "^5.0.1",
 		"@smui/icon-button": "^5.0.1",
+		"@smui/linear-progress": "^5.0.1",
 		"@smui/paper": "^5.0.1",
 		"@smui/select": "^5.0.1",
-		"smui-theme": "^5.0.0"
+		"events": "^3.3.0",
+		"load-script2": "^2.0.6",
+		"smui-theme": "^5.0.0",
+		"yt-player": "^3.5.0"
 	}
 }
