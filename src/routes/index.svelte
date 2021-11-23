@@ -1,15 +1,24 @@
-<script lang="ts">
-	import { settings } from '../data/settings';
-	import type { Media } from '../types/media.types';
+<script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
+	import { endpoint } from '../data/endpoint';
+	import type { ContentItemSummary } from '../types/content.types';
+
+	export const load: Load = async function ({ page, fetch }) {
+		const response: ContentItemSummary[] = await fetch(`${endpoint}/content/newest`).then((x) =>
+			x.json()
+		);
+		return {
+			props: {
+				contentList: response
+			}
+		};
+	};
 </script>
 
-<div class="container">Home page</div>
+<script lang="ts">
+	import ContentList from '../ui/content/ContentList.svelte';
 
-<style>
-	.container {
-		display: flex;
-		flex-direction: column;
-		height: 100%;
-		width: 100%;
-	}
-</style>
+	export let contentList: ContentItemSummary[];
+</script>
+
+<ContentList {contentList} />

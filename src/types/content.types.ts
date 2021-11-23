@@ -17,3 +17,16 @@ export type ContentItem = {
 	channel: string;
 	duration: number;
 };
+
+export type ContentItemSummary = {
+	_id: string;
+	lang: string;
+	title: string;
+	thumb: string;
+	words: string[];
+	lemmas: string[];
+	wordCount: number;
+	channel: string;
+	duration: number;
+	publishedDate: Date;
+};

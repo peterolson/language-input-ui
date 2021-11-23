@@ -110,7 +110,7 @@
 	.fold {
 		visibility: hidden;
 	}
-	@media screen and (max-width: 875px) {
+	@media (max-width: 875px) {
 		.fold {
 			visibility: visible;
 		}

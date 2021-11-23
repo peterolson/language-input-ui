@@ -7,7 +7,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'I want to learn',
 		'settings.lightMode': 'Light mode',
 		'settings.darkMode': 'Dark mode',
-		'settings.close': 'Close'
+		'settings.close': 'Close',
+		'card.words': 'Words'
 	},
 	es: {
 		'settings.title': 'Preferencias',
@@ -15,7 +16,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Yo quiero aprender',
 		'settings.lightMode': 'Modo claro',
 		'settings.darkMode': 'Modo oscuro',
-		'settings.close': 'Cerrar'
+		'settings.close': 'Cerrar',
+		'card.words': 'Palabras'
 	},
 	zh: {
 		'settings.title': '设置',
@@ -23,7 +25,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': '我想学习',
 		'settings.lightMode': '浅色模式',
 		'settings.darkMode': '深色模式',
-		'settings.close': '关闭'
+		'settings.close': '关闭',
+		'card.words': '单词'
 	},
 	ca: {
 		'settings.title': 'Preferències',
@@ -31,7 +34,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Estic interessat a aprendre',
 		'settings.lightMode': 'Mode clar',
 		'settings.darkMode': 'Mode fosc',
-		'settings.close': 'Tancar'
+		'settings.close': 'Tancar',
+		'card.words': 'Paraules'
 	},
 	fr: {
 		'settings.title': 'Paramètres',
@@ -39,7 +43,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Je veux apprendre',
 		'settings.lightMode': 'Mode clair',
 		'settings.darkMode': 'Mode sombre',
-		'settings.close': 'Fermer'
+		'settings.close': 'Fermer',
+		'card.words': 'Mots'
 	},
 	de: {
 		'settings.title': 'Einstellungen',
@@ -47,7 +52,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Ich möchte lernen',
 		'settings.lightMode': 'Helles Modus',
 		'settings.darkMode': 'Dunkles Modus',
-		'settings.close': 'Schließen'
+		'settings.close': 'Schließen',
+		'card.words': 'Wörter'
 	},
 	el: {
 		'settings.title': 'Ρυθμίσεις',
@@ -55,7 +61,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Για να μάθω',
 		'settings.lightMode': 'Λειτουργία φωτεινής οθόνης',
 		'settings.darkMode': 'Λειτουργία μπάρας σκούρου',
-		'settings.close': 'Κλείσιμο'
+		'settings.close': 'Κλείσιμο',
+		'card.words': 'Λέξεις'
 	},
 	it: {
 		'settings.title': 'Impostazioni',
@@ -63,7 +70,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Voglio imparare',
 		'settings.lightMode': 'Modalità chiara',
 		'settings.darkMode': 'Modalità scura',
-		'settings.close': 'Chiudi'
+		'settings.close': 'Chiudi',
+		'card.words': 'Parole'
 	},
 	ja: {
 		'settings.title': '設定',
@@ -71,7 +79,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': '私は学ぶ',
 		'settings.lightMode': 'ライトモード',
 		'settings.darkMode': 'ダークモード',
-		'settings.close': '閉じる'
+		'settings.close': '閉じる',
+		'card.words': '単語'
 	},
 	lt: {
 		'settings.title': 'Nustatymai',
@@ -79,7 +88,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Aš noriu mokytis',
 		'settings.lightMode': 'Šviesos režimas',
 		'settings.darkMode': 'Tamsos režimas',
-		'settings.close': 'Uždaryti'
+		'settings.close': 'Uždaryti',
+		'card.words': 'Žodžiai'
 	},
 	mk: {
 		'settings.title': 'Поставки',
@@ -87,7 +97,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Ме сакам да учувам',
 		'settings.lightMode': 'Слепа мода',
 		'settings.darkMode': 'Темна мода',
-		'settings.close': 'Затвори'
+		'settings.close': 'Затвори',
+		'card.words': 'Речи'
 	},
 	nb: {
 		'settings.title': 'Innstillinger',
@@ -95,7 +106,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Jeg ønsker å lære',
 		'settings.lightMode': 'Lyst modus',
 		'settings.darkMode': 'Mørk modus',
-		'settings.close': 'Lukk'
+		'settings.close': 'Lukk',
+		'card.words': 'Ord'
 	},
 	pl: {
 		'settings.title': 'Ustawienia',
@@ -103,7 +115,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Chcę nauczyć się',
 		'settings.lightMode': 'Tryb jasny',
 		'settings.darkMode': 'Tryb ciemny',
-		'settings.close': 'Zamknij'
+		'settings.close': 'Zamknij',
+		'card.words': 'Słowa'
 	},
 	pt: {
 		'settings.title': 'Configurações',
@@ -111,7 +124,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Eu quero aprender',
 		'settings.lightMode': 'Modo claro',
 		'settings.darkMode': 'Modo escuro',
-		'settings.close': 'Fechar'
+		'settings.close': 'Fechar',
+		'card.words': 'Palavras'
 	},
 	ro: {
 		'settings.title': 'Setări',
@@ -119,7 +133,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Vreau să înveț',
 		'settings.lightMode': 'Modul luminoasă',
 		'settings.darkMode': 'Modul întunecat',
-		'settings.close': 'Închide'
+		'settings.close': 'Închide',
+		'card.words': 'Cuvinte'
 	},
 	ru: {
 		'settings.title': 'Настройки',
@@ -127,7 +142,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Я хочу изучать',
 		'settings.lightMode': 'Светлый режим',
 		'settings.darkMode': 'Темный режим',
-		'settings.close': 'Закрыть'
+		'settings.close': 'Закрыть',
+		'card.words': 'Слова'
 	},
 	da: {
 		'settings.title': 'Indstillinger',
@@ -135,7 +151,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Jeg ønsker at lære',
 		'settings.lightMode': 'Lyst tilstand',
 		'settings.darkMode': 'Mørkt tilstand',
-		'settings.close': 'Luk'
+		'settings.close': 'Luk',
+		'card.words': 'Ord'
 	},
 	nl: {
 		'settings.title': 'Instellingen',
@@ -143,7 +160,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.targetLanguagesTitle': 'Ik wil leren',
 		'settings.lightMode': 'Lichte modus',
 		'settings.darkMode': 'Donkere modus',
-		'settings.close': 'Sluiten'
+		'settings.close': 'Sluiten',
+		'card.words': 'Woorden'
 	}
 };
 

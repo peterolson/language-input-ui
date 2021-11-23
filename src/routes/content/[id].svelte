@@ -15,14 +15,19 @@
 </script>
 
 <script lang="ts">
+	import Error404 from '../../ui/error/Error404.svelte';
 	import Reader from '../../ui/reader/reader.svelte';
 
-	export let content: ContentItem;
+	export let content: ContentItem | { statusCode: number; message: string };
 </script>
 
-<div class="container">
-	<Reader {content} />
-</div>
+{#if 'statusCode' in content}
+	<Error404 message={content.message} />
+{:else}
+	<div class="container">
+		<Reader {content} />
+	</div>
+{/if}
 
 <style>
 	.container {

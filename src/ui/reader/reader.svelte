@@ -255,14 +255,18 @@
 		flex: 1;
 	}
 
-	@media screen and (max-width: 1200px) {
+	@media (max-width: 1200px) {
 		.leftPanel {
 			flex: 0;
 			display: none;
 		}
 	}
 
-	@media screen and (max-width: 875px) {
+	@media (max-width: 875px) {
+		.container {
+			margin: auto;
+		}
+
 		.dictionary {
 			position: absolute;
 			bottom: 0;

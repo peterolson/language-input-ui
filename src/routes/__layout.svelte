@@ -11,7 +11,7 @@
 <div class="container">
 	<div class="topBar">
 		<div class="mdc-typography--headline6">
-			<a sveltekit:prefetch href="/" style="text-decoration: none;">Language Input</a>
+			<a sveltekit:prefetch href="/" style="text-decoration: none;color:unset">Language Input</a>
 		</div>
 		<IconButton class="material-icons" on:click={toggleSettings}>settings</IconButton>
 	</div>
