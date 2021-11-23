@@ -1,8 +1,9 @@
-import type { LanguageCode } from 'src/types/dictionary.types';
-import type { ParsedText } from 'src/types/parse.types';
+import type { LanguageCode } from '../types/dictionary.types';
+import type { ParsedText } from '../types/parse.types';
+import { endpoint } from './endpoint';
 
 export async function parseText(text: string, lang: LanguageCode): Promise<ParsedText> {
-	const response: ParsedText = await fetch('http://localhost:3000/parse', {
+	const response: ParsedText = await fetch(`${endpoint}/parse`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'

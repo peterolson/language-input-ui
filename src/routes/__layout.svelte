@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Button, { Label } from '@smui/button';
 	import IconButton from '@smui/icon-button/IconButton.svelte';
 	import SettingsDialog from '../ui/settings/settingsDialog.svelte';
 
@@ -11,7 +10,9 @@
 
 <div class="container">
 	<div class="topBar">
-		<div class="mdc-typography--headline6">Language Input</div>
+		<div class="mdc-typography--headline6">
+			<a sveltekit:prefetch href="/" style="text-decoration: none;">Language Input</a>
+		</div>
 		<IconButton class="material-icons" on:click={toggleSettings}>settings</IconButton>
 	</div>
 	<div class="content"><slot /></div>

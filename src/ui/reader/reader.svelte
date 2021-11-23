@@ -1,16 +1,15 @@
 <script lang="ts">
 	import IconButton from '@smui/icon-button/IconButton.svelte';
-	import type { LanguageCode } from '../../types/dictionary.types';
-	import type { Media } from '../../types/media.types';
-	import type { ParsedText, Token } from '../../types/parse.types';
+	import { settings } from '../../data/settings';
+	import type { ContentItem } from '../../types/content.types';
+	import type { Token } from '../../types/parse.types';
 	import LookupWord from '../dictionary/lookupWord.svelte';
 	import MediaView from './media/mediaView.svelte';
 	import TextLine from './textLine.svelte';
 
-	export let text: ParsedText;
-	export let lang: LanguageCode;
-	export let userLang: LanguageCode;
-	export let media: Media;
+	export let content: ContentItem;
+	const { media, parsedText, lang, timings } = content;
+	const { userLanguage } = settings;
 
 	let contentDiv: HTMLDivElement;
 	let pages = 10;
@@ -20,6 +19,7 @@
 	let progressCurrentPercent = 0;
 	let displayDictionaryAtTop = true;
 	let mediaView: MediaView;
+	let currentTime: number = 0;
 
 	$: {
 		maxWidth = Math.min(640, innerWidth);
@@ -120,6 +120,13 @@
 			mediaView.controls.pause();
 		}
 	}
+
+	function onSeek(e: CustomEvent<{ time: number }>) {
+		if (mediaView) {
+			mediaView.controls.seek(e.detail.time);
+			mediaView.controls.play();
+		}
+	}
 </script>
 
 <svelte:window bind:innerWidth />
@@ -134,7 +141,7 @@
 	<div class="leftPanel" />
 	<div class="contentContainer">
 		<div class="media">
-			<MediaView {media} bind:this={mediaView} />
+			<MediaView {media} bind:this={mediaView} bind:currentTime />
 		</div>
 		<div
 			class="content"
@@ -142,9 +149,18 @@
 			on:touchstart={onTouchStart}
 			on:mousedown={onMouseDown}
 		>
-			{#each text.lines as line}
-				<TextLine {line} {selectedToken} on:lookup={onLookup} />
-			{/each}
+			<div style="padding:8px;">
+				{#each parsedText.lines as line, i}
+					<TextLine
+						{line}
+						{selectedToken}
+						on:lookup={onLookup}
+						{currentTime}
+						timing={timings[i]}
+						on:seek={onSeek}
+					/>
+				{/each}
+			</div>
 		</div>
 		<div class="progressContainer">
 			<div class:hidden={currentPage === 1}>
@@ -167,11 +183,11 @@
 		class:fullScreen={fullScreenLookup}
 	>
 		{#if selectedToken}
-			{#key `${userLang} ${selectedToken.text}`}
+			{#key `${$userLanguage} ${selectedToken.text}`}
 				<LookupWord
 					token={selectedToken}
 					fromLang={lang}
-					toLang={userLang}
+					toLang={$userLanguage}
 					fullScreen={fullScreenLookup}
 					on:close={() => {
 						selectedToken = null;

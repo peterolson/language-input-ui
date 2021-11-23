@@ -7,8 +7,9 @@
 
 	export let url: string;
 	export let controls: MediaControls;
+	export let currentTime: number;
 	let duration: number;
-	let currentTime: number;
+
 	let isPaused: boolean = true;
 
 	let audio: HTMLAudioElement;
@@ -16,6 +17,12 @@
 	onMount(() => {
 		controls.pause = () => {
 			audio.pause();
+		};
+		controls.seek = (time: number) => {
+			audio.currentTime = time;
+		};
+		controls.play = () => {
+			audio.play();
 		};
 	});
 

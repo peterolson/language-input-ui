@@ -4,16 +4,20 @@
 	import Video from './video.svelte';
 	import Youtube from './youtube.svelte';
 
+	export let currentTime: number = 0;
+
 	export let media: Media;
 	export const controls: MediaControls = {
-		pause: () => {}
+		pause: () => {},
+		seek: () => {},
+		play: () => {}
 	};
 </script>
 
 {#if media.type === 'audio'}
-	<Audio url={media.url} {controls} />
+	<Audio url={media.url} {controls} bind:currentTime />
 {:else if media.type === 'video'}
-	<Video url={media.url} {controls} />
+	<Video url={media.url} {controls} bind:currentTime />
 {:else if media.type === 'youtube'}
-	<Youtube youtubeId={media.youtubeId} {controls} />
+	<Youtube youtubeId={media.youtubeId} {controls} bind:currentTime />
 {/if}

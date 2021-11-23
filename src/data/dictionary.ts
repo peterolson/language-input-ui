@@ -1,11 +1,12 @@
 import type { DictionaryExample, DictionaryLookup, LanguageCode } from '../types/dictionary.types';
+import { endpoint } from './endpoint';
 
 export async function lookupWord(
 	word: string,
 	from: LanguageCode,
 	to: LanguageCode
 ): Promise<DictionaryLookup> {
-	const response: DictionaryLookup = await fetch('http://localhost:3000/dictionary', {
+	const response: DictionaryLookup = await fetch(`${endpoint}/dictionary`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -25,7 +26,7 @@ export async function getExamples(
 	from: LanguageCode,
 	to: LanguageCode
 ): Promise<DictionaryExample[]> {
-	const response: DictionaryExample[] = await fetch('http://localhost:3000/dictionary/examples', {
+	const response: DictionaryExample[] = await fetch(`${endpoint}/dictionary/examples`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
