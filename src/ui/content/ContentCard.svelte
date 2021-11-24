@@ -6,6 +6,7 @@
 	import { SkeletonBlock, SkeletonText } from 'skeleton-elements/svelte';
 	import { getKnownPercent, knowledgeStore } from '../../data/knowledge';
 	import { settings } from '../../data/settings';
+	import { Icon } from '@smui/common';
 
 	const { darkMode } = settings;
 
@@ -60,6 +61,28 @@
 				{b('This is a very long dummy video title. It should occupy two full lines. Like this.')}
 			</SkeletonText>
 		</div>
+		<div class="mdc-typography--body2 captionLine">
+			<div class="iconNumber">
+				<SkeletonText effect="wave">
+					{b('Views')}
+				</SkeletonText>
+			</div>
+			<div class="iconNumber">
+				<SkeletonText effect="wave">
+					{b('Downs')}
+				</SkeletonText>
+			</div>
+			<div class="iconNumber">
+				<SkeletonText effect="wave">
+					{b('Mehs')}
+				</SkeletonText>
+			</div>
+			<div class="iconNumber">
+				<SkeletonText effect="wave">
+					{b('Likes')}
+				</SkeletonText>
+			</div>
+		</div>
 	{:else}
 		<a href={`content/${content._id}`} sveltekit:prefetch>
 			<div class="imageContainer">
@@ -80,6 +103,32 @@
 			</div>
 			<div class="mdc-typography--body2 noWrapText">
 				{title}
+			</div>
+			<div class="mdc-typography--body2 captionLine">
+				<div class="iconNumber">
+					{#if content.views}
+						<Icon class="material-icons" style="font-size:unset">visibility</Icon>
+						<span>{content.views}</span>
+					{/if}
+				</div>
+				<div class="iconNumber">
+					{#if content.dislikes}
+						<Icon class="material-icons" style="font-size:unset">thumb_down</Icon>
+						<span>{content.dislikes}</span>
+					{/if}
+				</div>
+				<div class="iconNumber">
+					{#if content.neutral}
+						<Icon class="material-icons" style="font-size:unset">sentiment_neutral</Icon>
+						<span>{content.neutral}</span>
+					{/if}
+				</div>
+				<div class="iconNumber">
+					{#if content.likes}
+						<Icon class="material-icons" style="font-size:unset">thumb_up</Icon>
+						<span>{content.likes}</span>
+					{/if}
+				</div>
 			</div>
 		</a>
 	{/if}
@@ -166,5 +215,15 @@
 	}
 	.secondary {
 		opacity: 0.7;
+	}
+
+	.iconNumber {
+		display: flex;
+		align-items: center;
+	}
+
+	.iconNumber span {
+		margin-left: 4px;
+		margin-top: 2px;
 	}
 </style>

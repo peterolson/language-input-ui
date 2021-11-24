@@ -1,5 +1,7 @@
 <script lang="ts">
 	import IconButton from '@smui/icon-button';
+	import { viewContent } from '../../data/content';
+	import { onMount } from 'svelte';
 	import { knowledgeStore, markKnown, markUnknown } from '../../data/knowledge';
 	import { settings } from '../../data/settings';
 	import type { ContentItem } from '../../types/content.types';
@@ -7,6 +9,7 @@
 	import LookupWord from '../dictionary/lookupWord.svelte';
 	import Finished from './finished.svelte';
 	import MediaView from './media/mediaView.svelte';
+	import RatingDialog from './ratingDialog.svelte';
 	import SidePanel from './sidePanel.svelte';
 	import TextLine from './textLine.svelte';
 
@@ -36,6 +39,10 @@
 			updateProgress();
 		}
 	}
+
+	onMount(() => {
+		viewContent(content._id);
+	});
 
 	let isSwiping = false;
 	let startX = 0;
@@ -113,9 +120,15 @@
 		}
 	}
 
+	let dialogOpen = false;
 	function onFinish() {
 		markWordsOnCurrentPage();
 		selectedToken = null;
+		dialogOpen = true;
+	}
+
+	function onDialogClose() {
+		dialogOpen = false;
 		isFinished = true;
 	}
 
@@ -229,6 +242,7 @@
 					{currentPage === pages ? 'check_circle' : 'navigate_next'}
 				</IconButton>
 			</div>
+			<RatingDialog open={dialogOpen} on:close={onDialogClose} id={content._id} />
 		{/if}
 	</div>
 	<div

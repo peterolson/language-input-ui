@@ -3,6 +3,7 @@ import type { Media } from './media.types';
 import type { ParsedText } from './parse.types';
 
 export type ContentItem = {
+	_id: string;
 	lang: LanguageCode;
 	title: string;
 	thumb: string;
@@ -15,6 +16,10 @@ export type ContentItem = {
 	publishedDate: Date;
 	channel: string;
 	duration: number;
+	likes: number;
+	dislikes: number;
+	neutral: number;
+	views: number;
 };
 
 export type ContentItemSummary = {
@@ -27,6 +32,10 @@ export type ContentItemSummary = {
 	channel: string;
 	duration: number;
 	publishedDate: Date;
+	likes: number;
+	dislikes: number;
+	neutral: number;
+	views: number;
 };
 
 export type SkeletonItem = {

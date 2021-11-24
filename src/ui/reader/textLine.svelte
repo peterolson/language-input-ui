@@ -67,7 +67,7 @@
 		transition: background-color 0.5s ease-in-out;
 	}
 	.word.lemmaUnknown {
-		background-color: rgba(0, 0, 255, 0.3);
+		background-color: rgba(0, 0, 255, 0.2);
 	}
 	.word.wordUnknown {
 		border-color: rgba(0, 0, 255, 0.5);
