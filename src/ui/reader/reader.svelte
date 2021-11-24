@@ -1,10 +1,12 @@
 <script lang="ts">
 	import IconButton from '@smui/icon-button';
+	import { knowledgeStore, markKnown, markUnknown } from '../../data/knowledge';
 	import { settings } from '../../data/settings';
 	import type { ContentItem } from '../../types/content.types';
 	import type { Token } from '../../types/parse.types';
 	import LookupWord from '../dictionary/lookupWord.svelte';
 	import MediaView from './media/mediaView.svelte';
+	import SidePanel from './sidePanel.svelte';
 	import TextLine from './textLine.svelte';
 
 	export let content: ContentItem;
@@ -20,6 +22,7 @@
 	let displayDictionaryAtTop = true;
 	let mediaView: MediaView;
 	let currentTime: number = 0;
+	let lookedUpWords = new Set<string>();
 
 	$: {
 		maxWidth = Math.min(640, innerWidth);
@@ -94,6 +97,7 @@
 
 	function movePage(n: number) {
 		if (1 <= currentPage + n && currentPage + n <= pages) {
+			if (n > 0) markWordsOnCurrentPage();
 			contentDiv.scrollTo({
 				left: contentDiv.clientWidth * (currentPage - 1 + n),
 				behavior: 'smooth'
@@ -101,6 +105,27 @@
 			currentPage += n;
 			updateProgress();
 		}
+	}
+
+	function markWordsOnCurrentPage() {
+		if (!contentDiv) return;
+		const left = contentDiv.offsetLeft + contentDiv.scrollLeft;
+		const right = left + contentDiv.clientWidth;
+		const wordSet = new Set<string>();
+		Array.from(contentDiv.querySelectorAll('span.word'))
+			.filter((el) => {
+				const span = el as HTMLSpanElement;
+				return span.offsetLeft >= left && span.offsetLeft + span.offsetWidth <= right;
+			})
+			.forEach((el) => {
+				const span = el as HTMLSpanElement;
+				const lemma = span.dataset.lemma;
+				const word = span.textContent;
+				if (lemma) wordSet.add(lemma.toLowerCase());
+				if (word) wordSet.add(word.toLowerCase());
+			});
+		const words = Array.from(wordSet).filter((word) => !lookedUpWords.has(word));
+		markKnown(words, content.lang);
 	}
 
 	function updateProgress() {
@@ -119,6 +144,9 @@
 		if (mediaView) {
 			mediaView.controls.pause();
 		}
+		lookedUpWords.add(selectedToken.text.toLowerCase());
+		lookedUpWords = new Set(lookedUpWords);
+		markUnknown([selectedToken.text, selectedToken.lemma], content.lang);
 	}
 
 	function onSeek(e: CustomEvent<{ time: number }>) {
@@ -129,6 +157,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>{content.channel} - {content.title}</title>
+</svelte:head>
+
 <svelte:window bind:innerWidth />
 
 <div
@@ -138,7 +170,9 @@
 	on:touchend={onTouchEnd}
 	on:mouseup={onMouseUp}
 >
-	<div class="leftPanel" />
+	<div class="leftPanel">
+		<SidePanel {content} />
+	</div>
 	<div class="contentContainer">
 		<div class="media">
 			<MediaView {media} bind:this={mediaView} bind:currentTime />
@@ -157,6 +191,9 @@
 						on:lookup={onLookup}
 						{currentTime}
 						timing={timings[i]}
+						knowledge={$knowledgeStore}
+						lang={content.lang}
+						{lookedUpWords}
 						on:seek={onSeek}
 					/>
 				{/each}

@@ -1,22 +1,46 @@
 <script lang="ts">
-	import { languageNames } from '../../types/dictionary.types';
+	import { LanguageCode, languageNames } from '../../types/dictionary.types';
 	import type { ContentItemSummary, SkeletonItem } from '../../types/content.types';
 	import Duration from './Duration.svelte';
 	import { t } from '../../i18n/i18n';
 	import { SkeletonBlock, SkeletonText } from 'skeleton-elements/svelte';
+	import { getKnownPercent, knowledgeStore } from '../../data/knowledge';
+	import { settings } from '../../data/settings';
+
+	const { darkMode } = settings;
 
 	export let content: ContentItemSummary | SkeletonItem;
 	let languageName: string = '';
 	let title: string = '';
-	if ('lang' in content) {
-		languageName = languageNames[content.lang as keyof typeof languageNames];
-		title = content.title;
+	let percent = 0;
+	let color = 'unset';
+
+	$: {
+		if ('lang' in content) {
+			languageName = languageNames[content.lang as keyof typeof languageNames];
+			title = content.title;
+			percent = getKnownPercent($knowledgeStore, content.lang as LanguageCode, content.lemmas);
+			const luminosity = $darkMode ? '75%' : '40%';
+			const hue = (Math.max(percent * 100 - 70, 0) / 30) * 120;
+			color = `hsl(${hue},100%,${luminosity})`;
+		}
+	}
+
+	function formatPercent(r: number): string {
+		return `${(r * 100).toFixed(3)}%`;
+	}
+
+	function b(s: string): string {
+		return [...s]
+			.map((c, i) => {
+				if (i % 2 === 0) {
+					return ' ';
+				}
+				return ' ';
+			})
+			.join('');
 	}
 </script>
-
-<svelte:head>
-	<link rel="stylesheet" href="/skeleton-elements.css" />
-</svelte:head>
 
 <div class="card" {title}>
 	{#if 'skeleton' in content}
@@ -24,16 +48,17 @@
 			<SkeletonBlock width="100%" height="100%" effect="wave" borderRadius="5px" />
 		</div>
 		<div class="mdc-typography--caption captionLine">
-			<div><SkeletonText effect="wave">Dummy channel name</SkeletonText></div>
-			<div><SkeletonText effect="wave">Russian</SkeletonText></div>
+			<div><SkeletonText effect="wave">{b('English')}</SkeletonText></div>
+			<SkeletonText effect="wave">{b('13.000%')}</SkeletonText>
+		</div>
+		<div class="mdc-typography--caption captionLine">
+			<div><SkeletonText effect="wave">{b('Russian with Max')}</SkeletonText></div>
+			<SkeletonText effect="wave">{b('Words: 1207')}</SkeletonText>
 		</div>
 		<div class="mdc-typography--body2 noWrapText">
 			<SkeletonText effect="wave">
-				This is a very long dummy video title. It should occupy two full lines. Like this.
+				{b('This is a very long dummy video title. It should occupy two full lines. Like this.')}
 			</SkeletonText>
-		</div>
-		<div class="mdc-typography--caption captionLine">
-			<SkeletonText effect="wave">1000 words</SkeletonText>
 		</div>
 	{:else}
 		<a href={`content/${content._id}`} sveltekit:prefetch>
@@ -42,14 +67,19 @@
 				<Duration duration={content.duration} />
 			</div>
 			<div class="mdc-typography--caption captionLine">
-				<div>{content.channel}</div>
-				<div>{languageName}</div>
+				<div class="secondary">{languageName}</div>
+				<div style={`color:${color};font-weight:bold;`}>
+					{formatPercent(percent)}
+				</div>
+			</div>
+			<div class="mdc-typography--caption captionLine">
+				<div class="secondary">{content.channel}</div>
+				<div class="secondary">
+					{$t('card.words')}: {content.wordCount}
+				</div>
 			</div>
 			<div class="mdc-typography--body2 noWrapText">
 				{title}
-			</div>
-			<div class="mdc-typography--caption captionLine">
-				{$t('card.words')}: {content.wordCount}
 			</div>
 		</a>
 	{/if}
@@ -133,6 +163,8 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+	}
+	.secondary {
 		opacity: 0.7;
 	}
 </style>

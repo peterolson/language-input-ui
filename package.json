@@ -44,7 +44,9 @@
 		"@smui/paper": "^5.0.1",
 		"@smui/select": "^5.0.1",
 		"events": "^3.3.0",
+		"knowledge-score": "^1.0.1",
 		"load-script2": "^2.0.6",
+		"localforage": "^1.10.0",
 		"skeleton-elements": "^4.0.0",
 		"smui-theme": "^5.0.0",
 		"yt-player": "^3.5.0"

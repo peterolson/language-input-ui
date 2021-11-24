@@ -64,6 +64,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Language input</title>
+</svelte:head>
+
 <div class="container" bind:this={container} on:scroll={onScroll}>
 	{#if contentList.length}
 		{#each contentList as content}

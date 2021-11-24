@@ -6,24 +6,12 @@
 	import TargetLanguageSelector from './targetLanguageSelector.svelte';
 	import { settings } from '../../data/settings';
 	import { languageNames } from '../../types/dictionary.types';
+
 	export let open: boolean;
 
-	const { targetLanguages } = settings;
-
-	let lightTheme =
-		typeof window === 'undefined' || window.matchMedia('(prefers-color-scheme: light)').matches;
-	function switchTheme() {
-		lightTheme = !lightTheme;
-		let themeLink = document.head.querySelector<HTMLLinkElement>('#theme');
-		if (!themeLink) {
-			themeLink = document.createElement('link');
-			themeLink.rel = 'stylesheet';
-			themeLink.id = 'theme';
-		}
-		themeLink.href = `/smui${lightTheme ? '' : '-dark'}.css`;
-		document.head
-			.querySelector<HTMLLinkElement>('link[href="/smui-dark.css"]')
-			?.insertAdjacentElement('afterend', themeLink);
+	const { targetLanguages, darkMode } = settings;
+	function onSwitch() {
+		darkMode.set(!$darkMode);
 	}
 </script>
 
@@ -35,9 +23,9 @@
 	>
 	<Content>
 		<div class="opposite">
-			<Label>{lightTheme ? $t('settings.darkMode') : $t('settings.lightMode')}&nbsp;</Label>
-			<Button on:click={switchTheme}>
-				<Icon class="material-icons">{lightTheme ? 'dark_mode' : 'light_mode'}</Icon>
+			<Label>{!$darkMode ? $t('settings.darkMode') : $t('settings.lightMode')}&nbsp;</Label>
+			<Button on:click={onSwitch}>
+				<Icon class="material-icons">{!$darkMode ? 'dark_mode' : 'light_mode'}</Icon>
 			</Button>
 		</div>
 		<div class="opposite">

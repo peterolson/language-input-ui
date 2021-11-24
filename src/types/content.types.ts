@@ -9,7 +9,6 @@ export type ContentItem = {
 	parsedText: ParsedText;
 	timings: [number, number][];
 	media: Media;
-	words: string[];
 	lemmas: string[];
 	wordCount: number;
 	url: string;
@@ -23,7 +22,6 @@ export type ContentItemSummary = {
 	lang: string;
 	title: string;
 	thumb: string;
-	words: string[];
 	lemmas: string[];
 	wordCount: number;
 	channel: string;

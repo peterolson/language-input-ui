@@ -2,9 +2,17 @@ import { LanguageCode } from '../types/dictionary.types';
 import { writable } from 'svelte/store';
 import { browser } from '$app/env';
 
+const isDarkMode = (): boolean => {
+	if (typeof window === 'undefined') {
+		return false;
+	}
+	return !window.matchMedia('(prefers-color-scheme: light)').matches;
+};
+
 const defaultSettings = {
 	userLanguage: LanguageCode.English,
-	targetLanguages: [] as LanguageCode[]
+	targetLanguages: [] as LanguageCode[],
+	darkMode: isDarkMode()
 };
 
 if (browser) {
@@ -40,5 +48,24 @@ function getWritable<T>(key: string, defaultValue: T) {
 
 export const settings = {
 	userLanguage: getWritable('userLanguage', defaultSettings.userLanguage),
-	targetLanguages: getWritable('targetLanguages', defaultSettings.targetLanguages)
+	targetLanguages: getWritable('targetLanguages', defaultSettings.targetLanguages),
+	darkMode: getWritable('darkMode', defaultSettings.darkMode)
 };
+
+function switchTheme(isDark: boolean) {
+	let themeLink = document.head.querySelector<HTMLLinkElement>('#theme');
+	if (!themeLink) {
+		themeLink = document.createElement('link');
+		themeLink.rel = 'stylesheet';
+		themeLink.id = 'theme';
+	}
+	themeLink.href = `/smui${isDark ? '-dark' : ''}.css`;
+	document.head
+		.querySelector<HTMLLinkElement>('link[href="/smui-dark.css"]')
+		?.insertAdjacentElement('afterend', themeLink);
+}
+if (browser) {
+	settings.darkMode.subscribe((isDark) => {
+		switchTheme(isDark);
+	});
+}
