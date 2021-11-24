@@ -5,6 +5,7 @@
 	import type { ContentItem } from '../../types/content.types';
 	import type { Token } from '../../types/parse.types';
 	import LookupWord from '../dictionary/lookupWord.svelte';
+	import Finished from './finished.svelte';
 	import MediaView from './media/mediaView.svelte';
 	import SidePanel from './sidePanel.svelte';
 	import TextLine from './textLine.svelte';
@@ -23,6 +24,7 @@
 	let mediaView: MediaView;
 	let currentTime: number = 0;
 	let lookedUpWords = new Set<string>();
+	let isFinished = false;
 
 	$: {
 		maxWidth = Math.min(640, innerWidth);
@@ -96,7 +98,11 @@
 	}
 
 	function movePage(n: number) {
-		if (1 <= currentPage + n && currentPage + n <= pages) {
+		if (currentPage + n > pages) {
+			onFinish();
+			return;
+		}
+		if (1 <= currentPage + n) {
 			if (n > 0) markWordsOnCurrentPage();
 			contentDiv.scrollTo({
 				left: contentDiv.clientWidth * (currentPage - 1 + n),
@@ -105,6 +111,12 @@
 			currentPage += n;
 			updateProgress();
 		}
+	}
+
+	function onFinish() {
+		markWordsOnCurrentPage();
+		selectedToken = null;
+		isFinished = true;
 	}
 
 	function markWordsOnCurrentPage() {
@@ -174,44 +186,50 @@
 		<SidePanel {content} />
 	</div>
 	<div class="contentContainer">
-		<div class="media">
-			<MediaView {media} bind:this={mediaView} bind:currentTime />
-		</div>
-		<div
-			class="content"
-			bind:this={contentDiv}
-			on:touchstart={onTouchStart}
-			on:mousedown={onMouseDown}
-		>
-			<div style="padding:8px;">
-				{#each parsedText.lines as line, i}
-					<TextLine
-						{line}
-						{selectedToken}
-						on:lookup={onLookup}
-						{currentTime}
-						timing={timings[i]}
-						knowledge={$knowledgeStore}
-						lang={content.lang}
-						{lookedUpWords}
-						on:seek={onSeek}
-					/>
-				{/each}
+		{#if isFinished}
+			<div class="content" bind:this={contentDiv}>
+				<Finished />
 			</div>
-		</div>
-		<div class="progressContainer">
-			<div class:hidden={currentPage === 1}>
-				<IconButton class="material-icons" on:click={() => movePage(-1)}>
-					navigate_before
+		{:else}
+			<div style="width: {maxWidth};">
+				<MediaView {media} bind:this={mediaView} bind:currentTime />
+			</div>
+			<div
+				class="content"
+				bind:this={contentDiv}
+				on:touchstart={onTouchStart}
+				on:mousedown={onMouseDown}
+			>
+				<div style="padding:8px;">
+					{#each parsedText.lines as line, i}
+						<TextLine
+							{line}
+							{selectedToken}
+							on:lookup={onLookup}
+							{currentTime}
+							timing={timings[i]}
+							knowledge={$knowledgeStore}
+							lang={content.lang}
+							{lookedUpWords}
+							on:seek={onSeek}
+						/>
+					{/each}
+				</div>
+			</div>
+			<div class="progressContainer">
+				<div class:hidden={currentPage === 1}>
+					<IconButton class="material-icons" on:click={() => movePage(-1)}>
+						navigate_before
+					</IconButton>
+				</div>
+				<div class="progressBar">
+					<div class="progressCurrent" style={`width:${progressCurrentPercent}%`} />
+				</div>
+				<IconButton class="material-icons" on:click={() => movePage(1)}>
+					{currentPage === pages ? 'check_circle' : 'navigate_next'}
 				</IconButton>
 			</div>
-			<div class="progressBar">
-				<div class="progressCurrent" style={`width:${progressCurrentPercent}%`} />
-			</div>
-			<IconButton class="material-icons" on:click={() => movePage(1)}>
-				{currentPage === pages ? 'check_circle' : 'navigate_next'}
-			</IconButton>
-		</div>
+		{/if}
 	</div>
 	<div
 		class="dictionary mdc-elevation--z6"

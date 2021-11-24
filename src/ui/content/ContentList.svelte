@@ -6,6 +6,7 @@
 	import ContentCard from './ContentCard.svelte';
 	import { t } from '../../i18n/i18n';
 
+	export let requestPath: string;
 	const { targetLanguages } = settings;
 
 	let skip = 0;
@@ -23,21 +24,28 @@
 	function getLimit(container: HTMLDivElement) {
 		if (!container) return 25;
 		// dynamic limit based on screen size
-		return Math.ceil(container.offsetWidth / 350) * (Math.ceil(container.offsetHeight / 275) + 1);
+		return Math.min(
+			50,
+			Math.ceil(container.offsetWidth / 350) * (Math.ceil(container.offsetHeight / 275) + 1)
+		);
 	}
 
 	async function updateContentList() {
-		limit = getLimit(container);
-		const langs = $targetLanguages.join('|');
-		const list = langs.length
-			? await fetch(`${endpoint}/content/newest?langs=${langs}&skip=${skip}&limit=${limit}`).then(
-					(x) => x.json()
-			  )
-			: [];
-		if (!list.length) {
-			reachedEnd = true;
+		try {
+			limit = getLimit(container);
+			const langs = $targetLanguages.join('|');
+			const list = langs.length
+				? await fetch(`${endpoint}${requestPath}langs=${langs}&skip=${skip}&limit=${limit}`).then(
+						(x) => x.json()
+				  )
+				: [];
+			if (!list.length) {
+				reachedEnd = true;
+			}
+			contentList = contentList.filter((x) => !('skeleton' in x)).concat(list);
+		} catch (e) {
+			contentList = [];
 		}
-		contentList = contentList.filter((x) => !('skeleton' in x)).concat(list);
 		isLoadingMore = false;
 	}
 
