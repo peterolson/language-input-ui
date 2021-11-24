@@ -13,7 +13,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Did you like this content?',
 		'rating.yes': 'Yes',
 		'rating.no': 'No',
-		'rating.neutral': 'Meh'
+		'rating.neutral': 'Meh',
+		'progress.empty':
+			"You haven't read anything yet. Read something and come back here to see your progress.",
+		'progress.unknown': 'Unknown',
+		'progress.new': 'New',
+		'progress.familiar': 'Familiar',
+		'progress.known': 'Known',
+		'progress.wellKnown': 'Well-known',
+		'progress.mastered': 'Mastered'
 	},
 	es: {
 		'settings.title': 'Preferencias',
@@ -27,7 +35,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': '¿Te gustó este contenido?',
 		'rating.yes': 'Sí',
 		'rating.no': 'No',
-		'rating.neutral': 'Tal vez'
+		'rating.neutral': 'Tal vez',
+		'progress.empty': 'Aún no has leído nada. Leé algo y vuelve aquí para ver tu progreso.',
+		'progress.unknown': 'Desconocido',
+		'progress.new': 'Nuevo',
+		'progress.familiar': 'Familiar',
+		'progress.known': 'Conocido',
+		'progress.wellKnown': 'Bien conocido',
+		'progress.mastered': 'Dominado'
 	},
 	zh: {
 		'settings.title': '设置',
@@ -41,7 +56,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': '你觉得这个内容有用吗？',
 		'rating.yes': '是',
 		'rating.no': '否',
-		'rating.neutral': '可能'
+		'rating.neutral': '可能',
+		'progress.empty': '你还没有阅读任何内容。阅读一些内容，然后回来看看你的进度。',
+		'progress.unknown': '未知',
+		'progress.new': '新',
+		'progress.familiar': '熟悉',
+		'progress.known': '已知',
+		'progress.wellKnown': '很熟悉',
+		'progress.mastered': '已掌握'
 	},
 	ca: {
 		'settings.title': 'Preferències',
@@ -55,7 +77,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Has agradat aquest contingut?',
 		'rating.yes': 'Sí',
 		'rating.no': 'No',
-		'rating.neutral': 'Potser'
+		'rating.neutral': 'Potser',
+		'progress.empty':
+			'Encara no has llegit res. Llegeix alguna cosa i torna aquí per veure el teu progrés.',
+		'progress.unknown': 'Desconegut',
+		'progress.new': 'Nou',
+		'progress.familiar': 'Familiar',
+		'progress.known': 'Conegut',
+		'progress.wellKnown': 'Bé conegut',
+		'progress.mastered': 'Dominat'
 	},
 	fr: {
 		'settings.title': 'Paramètres',
@@ -69,7 +99,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Aimez-vous ce contenu?',
 		'rating.yes': 'Oui',
 		'rating.no': 'Non',
-		'rating.neutral': 'Peut-être'
+		'rating.neutral': 'Peut-être',
+		'progress.empty':
+			"Vous n'avez pas encore lu de quoi vous êtes entrain de lire. Lisez quelque chose et revenez ici pour voir votre progression.",
+		'progress.unknown': 'Inconnu',
+		'progress.new': 'Nouveau',
+		'progress.familiar': 'Familier',
+		'progress.known': 'Connu',
+		'progress.wellKnown': 'Bien connu',
+		'progress.mastered': 'Maîtrisé'
 	},
 	de: {
 		'settings.title': 'Einstellungen',
@@ -83,7 +121,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Gefällt Ihnen dieser Inhalt?',
 		'rating.yes': 'Ja',
 		'rating.no': 'Nein',
-		'rating.neutral': 'Vielleicht'
+		'rating.neutral': 'Vielleicht',
+		'progress.empty':
+			'Sie haben noch nichts gelesen. Lesen Sie etwas und kommen Sie zurück, um Ihre Fortschritt zu sehen.',
+		'progress.unknown': 'Unbekannt',
+		'progress.new': 'Neu',
+		'progress.familiar': 'Vertraut',
+		'progress.known': 'Bekannt',
+		'progress.wellKnown': 'Sehr bekannt',
+		'progress.mastered': 'Gemeistert'
 	},
 	el: {
 		'settings.title': 'Ρυθμίσεις',
@@ -97,7 +143,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Αρέσει η περιεχόμενος;',
 		'rating.yes': 'Ναι',
 		'rating.no': 'Όχι',
-		'rating.neutral': 'Πιθανό'
+		'rating.neutral': 'Πιθανό',
+		'progress.empty':
+			'Δεν έχετε ακόμα διαβάσει κάτι. Παρακαλώ διαβάστε κάτι και επιστρέψτε εδώ για να δείτε την πρόοδό σας.',
+		'progress.unknown': 'Άγνωστο',
+		'progress.new': 'Νέο',
+		'progress.familiar': 'Εξοικειωμένο',
+		'progress.known': 'Γνωστό',
+		'progress.wellKnown': 'Καλό γνωστό',
+		'progress.mastered': 'Μάθημα'
 	},
 	it: {
 		'settings.title': 'Impostazioni',
@@ -111,7 +165,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Ti piace questo contenuto?',
 		'rating.yes': 'Sì',
 		'rating.no': 'No',
-		'rating.neutral': 'Forse'
+		'rating.neutral': 'Forse',
+		'progress.empty':
+			'Ancora nessun contenuto. Leggi qualcosa e torna qui per vedere il tuo progresso.',
+		'progress.unknown': 'Sconosciuto',
+		'progress.new': 'Nuovo',
+		'progress.familiar': 'Familiare',
+		'progress.known': 'Conosciuto',
+		'progress.wellKnown': 'Bene conosciuto',
+		'progress.mastered': 'Padroneggiato'
 	},
 	ja: {
 		'settings.title': '設定',
@@ -125,7 +187,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'このコンテンツが好きですか？',
 		'rating.yes': 'はい',
 		'rating.no': 'いいえ',
-		'rating.neutral': 'おそらく'
+		'rating.neutral': 'おそらく',
+		'progress.empty':
+			'まだ読んでいません。読んでみてください。そしてここに戻って、あなたの成績を見てください。',
+		'progress.unknown': '不明',
+		'progress.new': '新しい',
+		'progress.familiar': '熟練',
+		'progress.known': '知っている',
+		'progress.wellKnown': 'よく知っている',
+		'progress.mastered': 'マスター'
 	},
 	lt: {
 		'settings.title': 'Nustatymai',
@@ -139,7 +209,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Ar jums patinka šis turinys?',
 		'rating.yes': 'Taip',
 		'rating.no': 'Ne',
-		'rating.neutral': 'Galbūt'
+		'rating.neutral': 'Galbūt',
+		'progress.empty':
+			'Dar neleidžiama nuskaityti. Skaitykite ką nors ir grįžkite čia, kad pamatytumėte savo progresą.',
+		'progress.unknown': 'Nežinomas',
+		'progress.new': 'Naujas',
+		'progress.familiar': 'Šviežas',
+		'progress.known': 'Žinomas',
+		'progress.wellKnown': 'Labai žinomas',
+		'progress.mastered': 'Mokėtas'
 	},
 	mk: {
 		'settings.title': 'Поставки',
@@ -153,7 +231,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Сакате да го оцените овој содржини?',
 		'rating.yes': 'Да',
 		'rating.no': 'Не',
-		'rating.neutral': 'Можеби'
+		'rating.neutral': 'Можеби',
+		'progress.empty':
+			'Сè уште немате ништо прочитано. Прочитајте нешто и вратете се овде за да гледате вашиот прогрес.',
+		'progress.unknown': 'Непознато',
+		'progress.new': 'Ново',
+		'progress.familiar': 'Запомнено',
+		'progress.known': 'Познато',
+		'progress.wellKnown': 'Добро познато',
+		'progress.mastered': 'Освоено'
 	},
 	nb: {
 		'settings.title': 'Innstillinger',
@@ -167,7 +253,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Vil du være en del av denne innholdet?',
 		'rating.yes': 'Ja',
 		'rating.no': 'Nei',
-		'rating.neutral': 'Kanskje'
+		'rating.neutral': 'Kanskje',
+		'progress.empty':
+			'Du har ikke lært noe enda. Les noe og gå tilbake her for å se din fremdrift.',
+		'progress.unknown': 'Ukjent',
+		'progress.new': 'Ny',
+		'progress.familiar': 'Kjent',
+		'progress.known': 'Bekjent',
+		'progress.wellKnown': 'Veldig kjent',
+		'progress.mastered': 'Oppnådd'
 	},
 	pl: {
 		'settings.title': 'Ustawienia',
@@ -181,7 +275,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Czy lubisz ten zawartość?',
 		'rating.yes': 'Tak',
 		'rating.no': 'Nie',
-		'rating.neutral': 'Może'
+		'rating.neutral': 'Może',
+		'progress.empty':
+			'Jeszcze nie przeczytałeś nic. Przeczytaj coś i wróć tutaj, aby zobaczyć swój postęp.',
+		'progress.unknown': 'Nieznany',
+		'progress.new': 'Nowy',
+		'progress.familiar': 'Znany',
+		'progress.known': 'Dobrze znany',
+		'progress.wellKnown': 'Bardzo dobrze znany',
+		'progress.mastered': 'Zapamiętany'
 	},
 	pt: {
 		'settings.title': 'Configurações',
@@ -195,7 +297,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Você gosta deste conteúdo?',
 		'rating.yes': 'Sim',
 		'rating.no': 'Não',
-		'rating.neutral': 'Talvez'
+		'rating.neutral': 'Talvez',
+		'progress.empty': 'Ainda não ler nada. Leia algo e volte aqui para ver seu progresso.',
+		'progress.unknown': 'Desconhecido',
+		'progress.new': 'Novo',
+		'progress.familiar': 'Conhecido',
+		'progress.known': 'Bem conhecido',
+		'progress.wellKnown': 'Muito bem conhecido',
+		'progress.mastered': 'Mestrado'
 	},
 	ro: {
 		'settings.title': 'Setări',
@@ -209,7 +318,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Vreți să fii un parte din acest conținut?',
 		'rating.yes': 'Da',
 		'rating.no': 'Nu',
-		'rating.neutral': 'Poate'
+		'rating.neutral': 'Poate',
+		'progress.empty':
+			'Încă nu ați citi nici un articol. Citiți ceva și reveniți aici pentru a vedea progresul dumneavoastră.',
+		'progress.unknown': 'Necunoscut',
+		'progress.new': 'Nou',
+		'progress.familiar': 'Cunoscut',
+		'progress.known': 'Bine cunoscut',
+		'progress.wellKnown': 'Foarte bine cunoscut',
+		'progress.mastered': 'Maturizat'
 	},
 	ru: {
 		'settings.title': 'Настройки',
@@ -223,7 +340,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Вы любите этот контент?',
 		'rating.yes': 'Да',
 		'rating.no': 'Нет',
-		'rating.neutral': 'Так себе'
+		'rating.neutral': 'Так себе',
+		'progress.empty':
+			'Вы еще ничего не прочитали. Прочитайте что-нибудь и вернитесь сюда, чтобы посмотреть ваш прогресс.',
+		'progress.unknown': 'Неизвестный',
+		'progress.new': 'Новый',
+		'progress.familiar': 'Знакомый',
+		'progress.known': 'Хорошо знакомый',
+		'progress.wellKnown': 'Очень хорошо знакомый',
+		'progress.mastered': 'Освоенный'
 	},
 	da: {
 		'settings.title': 'Indstillinger',
@@ -237,7 +362,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Vil du være en del af dette indhold?',
 		'rating.yes': 'Ja',
 		'rating.no': 'Nej',
-		'rating.neutral': 'Kanskje'
+		'rating.neutral': 'Kanskje',
+		'progress.empty':
+			'Du har endnu ikke læst noget. Læs noget og gå tilbage her for at se din fremdrift.',
+		'progress.unknown': 'Ukendt',
+		'progress.new': 'Ny',
+		'progress.familiar': 'Familiar',
+		'progress.known': 'Kendt',
+		'progress.wellKnown': 'Godt kendt',
+		'progress.mastered': 'Mesteret'
 	},
 	nl: {
 		'settings.title': 'Instellingen',
@@ -251,7 +384,15 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'rating.question': 'Wilt u deel uitmaken van dit inhoud?',
 		'rating.yes': 'Ja',
 		'rating.no': 'Nee',
-		'rating.neutral': 'Misschien'
+		'rating.neutral': 'Misschien',
+		'progress.empty':
+			'Je hebt nog niets gelezen. Lees wat en kom terug hier om je voortgang te zien.',
+		'progress.unknown': 'Onbekend',
+		'progress.new': 'Nieuw',
+		'progress.familiar': 'Familie',
+		'progress.known': 'Kend',
+		'progress.wellKnown': 'Goed kend',
+		'progress.mastered': 'Geleerd'
 	}
 };
 

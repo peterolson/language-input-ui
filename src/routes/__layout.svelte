@@ -11,9 +11,14 @@
 <div class="container">
 	<div class="topBar">
 		<div class="mdc-typography--headline6">
-			<a sveltekit:prefetch href="/" style="text-decoration: none;color:unset">Language Input</a>
+			<a sveltekit:prefetch href="/">Language Input</a>
 		</div>
-		<IconButton class="material-icons" on:click={toggleSettings}>settings</IconButton>
+		<div>
+			<a href="/progress" sveltekit:prefetch>
+				<IconButton class="material-icons" color="secondary">insights</IconButton>
+			</a>
+			<IconButton class="material-icons" on:click={toggleSettings}>settings</IconButton>
+		</div>
 	</div>
 	<div class="content"><slot /></div>
 </div>
@@ -21,6 +26,10 @@
 <SettingsDialog bind:open={isSettingsOpen} />
 
 <style>
+	a {
+		text-decoration: none;
+		color: unset;
+	}
 	.topBar {
 		display: flex;
 		justify-content: space-between;

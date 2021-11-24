@@ -27,7 +27,7 @@
 	let mediaView: MediaView;
 	let currentTime: number = 0;
 	let lookedUpWords = new Set<string>();
-	let isFinished = false;
+	let isFinished = true;
 
 	$: {
 		maxWidth = Math.min(640, innerWidth);
