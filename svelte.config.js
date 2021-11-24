@@ -12,7 +12,8 @@ const config = {
 		vite: {
 			optimizeDeps: {
 				include: ['events'] // 👈
-			}
+			},
+			ssr: {}
 		}
 	}
 };

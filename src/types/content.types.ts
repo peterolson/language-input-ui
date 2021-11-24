@@ -30,3 +30,8 @@ export type ContentItemSummary = {
 	duration: number;
 	publishedDate: Date;
 };
+
+export type SkeletonItem = {
+	_id: string;
+	skeleton: true;
+};

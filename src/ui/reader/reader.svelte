@@ -1,5 +1,5 @@
 <script lang="ts">
-	import IconButton from '@smui/icon-button/IconButton.svelte';
+	import IconButton from '@smui/icon-button';
 	import { settings } from '../../data/settings';
 	import type { ContentItem } from '../../types/content.types';
 	import type { Token } from '../../types/parse.types';

@@ -8,7 +8,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Light mode',
 		'settings.darkMode': 'Dark mode',
 		'settings.close': 'Close',
-		'card.words': 'Words'
+		'card.words': 'Words',
+		'content.empty': 'No content found.'
 	},
 	es: {
 		'settings.title': 'Preferencias',
@@ -17,7 +18,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Modo claro',
 		'settings.darkMode': 'Modo oscuro',
 		'settings.close': 'Cerrar',
-		'card.words': 'Palabras'
+		'card.words': 'Palabras',
+		'content.empty': 'No se encontraron contenidos.'
 	},
 	zh: {
 		'settings.title': '设置',
@@ -26,7 +28,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': '浅色模式',
 		'settings.darkMode': '深色模式',
 		'settings.close': '关闭',
-		'card.words': '单词'
+		'card.words': '单词',
+		'content.empty': '没有找到内容。'
 	},
 	ca: {
 		'settings.title': 'Preferències',
@@ -35,7 +38,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Mode clar',
 		'settings.darkMode': 'Mode fosc',
 		'settings.close': 'Tancar',
-		'card.words': 'Paraules'
+		'card.words': 'Paraules',
+		'content.empty': "No s'ha trobat cap contingut."
 	},
 	fr: {
 		'settings.title': 'Paramètres',
@@ -44,7 +48,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Mode clair',
 		'settings.darkMode': 'Mode sombre',
 		'settings.close': 'Fermer',
-		'card.words': 'Mots'
+		'card.words': 'Mots',
+		'content.empty': 'Aucun contenu trouvé.'
 	},
 	de: {
 		'settings.title': 'Einstellungen',
@@ -53,7 +58,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Helles Modus',
 		'settings.darkMode': 'Dunkles Modus',
 		'settings.close': 'Schließen',
-		'card.words': 'Wörter'
+		'card.words': 'Wörter',
+		'content.empty': 'Kein Inhalt gefunden.'
 	},
 	el: {
 		'settings.title': 'Ρυθμίσεις',
@@ -62,7 +68,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Λειτουργία φωτεινής οθόνης',
 		'settings.darkMode': 'Λειτουργία μπάρας σκούρου',
 		'settings.close': 'Κλείσιμο',
-		'card.words': 'Λέξεις'
+		'card.words': 'Λέξεις',
+		'content.empty': 'Δεν βρέθηκαν περιεχόμενα.'
 	},
 	it: {
 		'settings.title': 'Impostazioni',
@@ -71,7 +78,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Modalità chiara',
 		'settings.darkMode': 'Modalità scura',
 		'settings.close': 'Chiudi',
-		'card.words': 'Parole'
+		'card.words': 'Parole',
+		'content.empty': 'Nessun contenuto trovato.'
 	},
 	ja: {
 		'settings.title': '設定',
@@ -80,7 +88,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'ライトモード',
 		'settings.darkMode': 'ダークモード',
 		'settings.close': '閉じる',
-		'card.words': '単語'
+		'card.words': '単語',
+		'content.empty': 'コンテンツが見つかりませんでした。'
 	},
 	lt: {
 		'settings.title': 'Nustatymai',
@@ -89,7 +98,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Šviesos režimas',
 		'settings.darkMode': 'Tamsos režimas',
 		'settings.close': 'Uždaryti',
-		'card.words': 'Žodžiai'
+		'card.words': 'Žodžiai',
+		'content.empty': 'Nerasta jokių turinio.'
 	},
 	mk: {
 		'settings.title': 'Поставки',
@@ -98,7 +108,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Слепа мода',
 		'settings.darkMode': 'Темна мода',
 		'settings.close': 'Затвори',
-		'card.words': 'Речи'
+		'card.words': 'Речи',
+		'content.empty': 'Не пронајдов ништо.'
 	},
 	nb: {
 		'settings.title': 'Innstillinger',
@@ -107,7 +118,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Lyst modus',
 		'settings.darkMode': 'Mørk modus',
 		'settings.close': 'Lukk',
-		'card.words': 'Ord'
+		'card.words': 'Ord',
+		'content.empty': 'Ingen innhold funnet.'
 	},
 	pl: {
 		'settings.title': 'Ustawienia',
@@ -116,7 +128,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Tryb jasny',
 		'settings.darkMode': 'Tryb ciemny',
 		'settings.close': 'Zamknij',
-		'card.words': 'Słowa'
+		'card.words': 'Słowa',
+		'content.empty': 'Nie znaleziono zawartości.'
 	},
 	pt: {
 		'settings.title': 'Configurações',
@@ -125,7 +138,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Modo claro',
 		'settings.darkMode': 'Modo escuro',
 		'settings.close': 'Fechar',
-		'card.words': 'Palavras'
+		'card.words': 'Palavras',
+		'content.empty': 'Nenhum conteúdo encontrado.'
 	},
 	ro: {
 		'settings.title': 'Setări',
@@ -134,7 +148,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Modul luminoasă',
 		'settings.darkMode': 'Modul întunecat',
 		'settings.close': 'Închide',
-		'card.words': 'Cuvinte'
+		'card.words': 'Cuvinte',
+		'content.empty': 'Nu s-a găsit conținutul.'
 	},
 	ru: {
 		'settings.title': 'Настройки',
@@ -143,7 +158,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Светлый режим',
 		'settings.darkMode': 'Темный режим',
 		'settings.close': 'Закрыть',
-		'card.words': 'Слова'
+		'card.words': 'Слова',
+		'content.empty': 'Не найдено ничего.'
 	},
 	da: {
 		'settings.title': 'Indstillinger',
@@ -152,7 +168,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Lyst tilstand',
 		'settings.darkMode': 'Mørkt tilstand',
 		'settings.close': 'Luk',
-		'card.words': 'Ord'
+		'card.words': 'Ord',
+		'content.empty': 'Ingen indhold fundet.'
 	},
 	nl: {
 		'settings.title': 'Instellingen',
@@ -161,7 +178,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.lightMode': 'Lichte modus',
 		'settings.darkMode': 'Donkere modus',
 		'settings.close': 'Sluiten',
-		'card.words': 'Woorden'
+		'card.words': 'Woorden',
+		'content.empty': 'Geen inhoud gevonden.'
 	}
 };
 

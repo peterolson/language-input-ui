@@ -3,7 +3,12 @@
 	import Button, { Icon, Label } from '@smui/button';
 	import LanguageSelector from './languageSelector.svelte';
 	import { t } from '../../i18n/i18n';
+	import TargetLanguageSelector from './targetLanguageSelector.svelte';
+	import { settings } from '../../data/settings';
+	import { languageNames } from '../../types/dictionary.types';
 	export let open: boolean;
+
+	const { targetLanguages } = settings;
 
 	let lightTheme =
 		typeof window === 'undefined' || window.matchMedia('(prefers-color-scheme: light)').matches;
@@ -22,8 +27,12 @@
 	}
 </script>
 
-<Dialog bind:open aria-labelledby="simple-title" aria-describedby="simple-content">
-	<Title>{$t('settings.title')}</Title>
+<Dialog bind:open fullscreen>
+	<Title
+		><div class="settingsTitle">
+			{$t('settings.title')}
+		</div></Title
+	>
 	<Content>
 		<div class="opposite">
 			<Label>{lightTheme ? $t('settings.darkMode') : $t('settings.lightMode')}&nbsp;</Label>
@@ -35,6 +44,11 @@
 			<Label>{$t('settings.userLanguageTitle')}&nbsp;</Label>
 			<LanguageSelector />
 		</div>
+		<div class="opposite">
+			<Label>{$t('settings.targetLanguagesTitle')}:&nbsp;</Label>
+		</div>
+		<div>{$targetLanguages.map((x) => languageNames[x]).join(', ') || ' '}</div>
+		<TargetLanguageSelector />
 	</Content>
 	<Actions>
 		<Button>
@@ -44,10 +58,15 @@
 </Dialog>
 
 <style>
+	.settingsTitle {
+		margin-top: -32px;
+		margin-left: 16px;
+	}
 	.opposite {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		min-height: 36px;
 	}
 
 	.opposite:first-child {

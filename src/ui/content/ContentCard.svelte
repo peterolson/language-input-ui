@@ -1,29 +1,58 @@
 <script lang="ts">
 	import { languageNames } from '../../types/dictionary.types';
-	import type { ContentItemSummary } from '../../types/content.types';
+	import type { ContentItemSummary, SkeletonItem } from '../../types/content.types';
 	import Duration from './Duration.svelte';
 	import { t } from '../../i18n/i18n';
-	export let content: ContentItemSummary;
-	const languageName = languageNames[content.lang as keyof typeof languageNames];
+	import { SkeletonBlock, SkeletonText } from 'skeleton-elements/svelte';
+
+	export let content: ContentItemSummary | SkeletonItem;
+	let languageName: string = '';
+	let title: string = '';
+	if ('lang' in content) {
+		languageName = languageNames[content.lang as keyof typeof languageNames];
+		title = content.title;
+	}
 </script>
 
-<div class="card" title={content.title}>
-	<a href={`content/${content._id}`} sveltekit:prefetch>
+<svelte:head>
+	<link rel="stylesheet" href="/skeleton-elements.css" />
+</svelte:head>
+
+<div class="card" {title}>
+	{#if 'skeleton' in content}
 		<div class="imageContainer">
-			<img src={content.thumb} alt={content.title} />
-			<Duration duration={content.duration} />
+			<SkeletonBlock width="100%" height="100%" effect="wave" borderRadius="5px" />
 		</div>
 		<div class="mdc-typography--caption captionLine">
-			<div>{content.channel}</div>
-			<div>{languageName}</div>
+			<div><SkeletonText effect="wave">Dummy channel name</SkeletonText></div>
+			<div><SkeletonText effect="wave">Russian</SkeletonText></div>
 		</div>
 		<div class="mdc-typography--body2 noWrapText">
-			{content.title}
+			<SkeletonText effect="wave">
+				This is a very long dummy video title. It should occupy two full lines. Like this.
+			</SkeletonText>
 		</div>
 		<div class="mdc-typography--caption captionLine">
-			<div>{$t('card.words')}: {content.wordCount}</div>
+			<SkeletonText effect="wave">1000 words</SkeletonText>
 		</div>
-	</a>
+	{:else}
+		<a href={`content/${content._id}`} sveltekit:prefetch>
+			<div class="imageContainer">
+				<img src={content.thumb} alt={content.title} />
+				<Duration duration={content.duration} />
+			</div>
+			<div class="mdc-typography--caption captionLine">
+				<div>{content.channel}</div>
+				<div>{languageName}</div>
+			</div>
+			<div class="mdc-typography--body2 noWrapText">
+				{title}
+			</div>
+			<div class="mdc-typography--caption captionLine">
+				{$t('card.words')}: {content.wordCount}
+			</div>
+		</a>
+	{/if}
 </div>
 
 <style>

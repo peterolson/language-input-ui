@@ -1,4 +1,5 @@
 {
+	"extends": "@tsconfig/svelte/tsconfig.json",
 	"compilerOptions": {
 		"moduleResolution": "node",
 		"module": "es2020",
@@ -30,8 +31,8 @@
 		/**
 		  Specific to SMUI. (The settings I like.)
 			*/
-    "noImplicitAny": true,
-    "strict": true
+		"noImplicitAny": true,
+		"strict": true
 	},
 	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte"]
 }

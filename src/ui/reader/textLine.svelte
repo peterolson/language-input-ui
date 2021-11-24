@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Icon } from '@smui/common';
-	import IconButton from '@smui/icon-button/IconButton.svelte';
 	import type { TextLine, Token } from 'src/types/parse.types';
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();

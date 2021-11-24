@@ -10,7 +10,7 @@
 	} from '../../types/dictionary.types';
 	import { onMount } from 'svelte';
 	import ExampleSentence from './exampleSentence.svelte';
-	import Button from '@smui/button/Button.svelte';
+	import Button from '@smui/button';
 	import { Label } from '@smui/common';
 
 	export let word: string;

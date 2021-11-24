@@ -36,6 +36,7 @@
 	"dependencies": {
 		"@material/elevation": "^11.0.0",
 		"@smui/button": "^5.0.1",
+		"@smui/checkbox": "^5.0.1",
 		"@smui/circular-progress": "^5.0.1",
 		"@smui/dialog": "^5.0.1",
 		"@smui/icon-button": "^5.0.1",
@@ -44,6 +45,7 @@
 		"@smui/select": "^5.0.1",
 		"events": "^3.3.0",
 		"load-script2": "^2.0.6",
+		"skeleton-elements": "^4.0.0",
 		"smui-theme": "^5.0.0",
 		"yt-player": "^3.5.0"
 	}

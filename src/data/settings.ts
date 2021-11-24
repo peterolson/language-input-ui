@@ -3,7 +3,8 @@ import { writable } from 'svelte/store';
 import { browser } from '$app/env';
 
 const defaultSettings = {
-	userLanguage: LanguageCode.English
+	userLanguage: LanguageCode.English,
+	targetLanguages: [] as LanguageCode[]
 };
 
 if (browser) {
@@ -38,5 +39,6 @@ function getWritable<T>(key: string, defaultValue: T) {
 }
 
 export const settings = {
-	userLanguage: getWritable('userLanguage', defaultSettings.userLanguage)
+	userLanguage: getWritable('userLanguage', defaultSettings.userLanguage),
+	targetLanguages: getWritable('targetLanguages', defaultSettings.targetLanguages)
 };

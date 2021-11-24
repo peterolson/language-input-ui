@@ -1,5 +1,5 @@
 <script lang="ts">
-	import IconButton from '@smui/icon-button/IconButton.svelte';
+	import IconButton from '@smui/icon-button';
 	import SettingsDialog from '../ui/settings/settingsDialog.svelte';
 
 	let isSettingsOpen = false;
@@ -37,5 +37,6 @@
 	.content {
 		display: flex;
 		overflow: auto;
+		height: 100%;
 	}
 </style>

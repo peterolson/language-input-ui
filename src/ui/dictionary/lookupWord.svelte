@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 	import WordTranslation from './wordTranslation.svelte';
 	import type { Token } from '../../types/parse.types';
-	import IconButton from '@smui/icon-button/IconButton.svelte';
+	import IconButton from '@smui/icon-button';
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 

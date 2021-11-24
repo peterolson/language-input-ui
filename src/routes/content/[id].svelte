@@ -21,8 +21,8 @@
 	export let content: ContentItem | { statusCode: number; message: string };
 </script>
 
-{#if 'statusCode' in content}
-	<Error404 message={content.message} />
+{#if !content || 'statusCode' in content}
+	<Error404 message={content?.message || ''} />
 {:else}
 	<div class="container">
 		<Reader {content} />

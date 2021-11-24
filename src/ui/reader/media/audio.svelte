@@ -1,5 +1,5 @@
 <script lang="ts">
-	import IconButton from '@smui/icon-button/IconButton.svelte';
+	import IconButton from '@smui/icon-button';
 	import CircularProgress from '@smui/circular-progress';
 	import LinearProgress from '@smui/linear-progress';
 	import type { MediaControls } from '../../../types/media.types';
