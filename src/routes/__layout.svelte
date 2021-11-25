@@ -1,5 +1,6 @@
 <script lang="ts">
 	import IconButton from '@smui/icon-button';
+	import { knowledgeStore } from '../data/knowledge';
 	import SettingsDialog from '../ui/settings/settingsDialog.svelte';
 
 	let isSettingsOpen = false;
@@ -14,9 +15,11 @@
 			<a sveltekit:prefetch href="/">Language Input</a>
 		</div>
 		<div>
-			<a href="/progress" sveltekit:prefetch>
-				<IconButton class="material-icons" color="secondary">insights</IconButton>
-			</a>
+			{#if Object.keys($knowledgeStore).length}
+				<a href="/progress" sveltekit:prefetch>
+					<IconButton class="material-icons" color="secondary">insights</IconButton>
+				</a>
+			{/if}
 			<IconButton class="material-icons" on:click={toggleSettings}>settings</IconButton>
 		</div>
 	</div>

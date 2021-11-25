@@ -22,7 +22,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Known',
 		'progress.wellKnown': 'Well-known',
 		'progress.mastered': 'Mastered',
-		'progress.newWords': 'New words'
+		'progress.newWords': 'New words',
+		'progress.totalWordsRead': 'Total words read',
+		'progress.totalTimeRead': 'Total time reading',
+		'progress.day': 'd',
+		'progress.hour': 'h',
+		'progress.minute': 'm',
+		'progress.second': 's'
 	},
 	es: {
 		'settings.title': 'Preferencias',
@@ -44,7 +50,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Conocido',
 		'progress.wellKnown': 'Bien conocido',
 		'progress.mastered': 'Dominado',
-		'progress.newWords': 'Palabras nuevas'
+		'progress.newWords': 'Palabras nuevas',
+		'progress.totalWordsRead': 'Total palabras leídas',
+		'progress.totalTimeRead': 'Total tiempo leído',
+		'progress.day': 'd',
+		'progress.hour': 'h',
+		'progress.minute': 'm',
+		'progress.second': 's'
 	},
 	zh: {
 		'settings.title': '设置',
@@ -66,7 +78,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': '已知',
 		'progress.wellKnown': '很熟悉',
 		'progress.mastered': '已掌握',
-		'progress.newWords': '新词'
+		'progress.newWords': '新词',
+		'progress.totalWordsRead': '总词数',
+		'progress.totalTimeRead': '总时间',
+		'progress.day': '天',
+		'progress.hour': '小时',
+		'progress.minute': '分钟',
+		'progress.second': '秒'
 	},
 	ca: {
 		'settings.title': 'Preferències',
@@ -89,7 +107,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Conegut',
 		'progress.wellKnown': 'Bé conegut',
 		'progress.mastered': 'Dominat',
-		'progress.newWords': 'Paraules noves'
+		'progress.newWords': 'Paraules noves',
+		'progress.totalWordsRead': 'Total paraules llegides',
+		'progress.totalTimeRead': 'Total temps de lectura',
+		'progress.day': 'd',
+		'progress.hour': 'h',
+		'progress.minute': 'm',
+		'progress.second': 's'
 	},
 	fr: {
 		'settings.title': 'Paramètres',
@@ -112,7 +136,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Connu',
 		'progress.wellKnown': 'Bien connu',
 		'progress.mastered': 'Maîtrisé',
-		'progress.newWords': 'Nouveaux mots'
+		'progress.newWords': 'Nouveaux mots',
+		'progress.totalWordsRead': 'Total mots lus',
+		'progress.totalTimeRead': 'Total temps de lecture',
+		'progress.day': 'j',
+		'progress.hour': 'h',
+		'progress.minute': 'm',
+		'progress.second': 's'
 	},
 	de: {
 		'settings.title': 'Einstellungen',
@@ -135,7 +165,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Bekannt',
 		'progress.wellKnown': 'Sehr bekannt',
 		'progress.mastered': 'Gemeistert',
-		'progress.newWords': 'Neue Wörter'
+		'progress.newWords': 'Neue Wörter',
+		'progress.totalWordsRead': 'Gesamt Wörter gelesen',
+		'progress.totalTimeRead': 'Gesamt Zeit gelesen',
+		'progress.day': 'T',
+		'progress.hour': 'h',
+		'progress.minute': 'm',
+		'progress.second': 's'
 	},
 	el: {
 		'settings.title': 'Ρυθμίσεις',
@@ -158,7 +194,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Γνωστό',
 		'progress.wellKnown': 'Καλό γνωστό',
 		'progress.mastered': 'Μάθημα',
-		'progress.newWords': 'Νέες λέξεις'
+		'progress.newWords': 'Νέες λέξεις',
+		'progress.totalWordsRead': 'Συνολικά λέξεις που διαβάστηκαν',
+		'progress.totalTimeRead': 'Συνολικός χρόνος που διαβάστηκε',
+		'progress.day': 'η',
+		'progress.hour': 'ώ',
+		'progress.minute': 'λ',
+		'progress.second': 'δ'
 	},
 	it: {
 		'settings.title': 'Impostazioni',
@@ -181,7 +223,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Conosciuto',
 		'progress.wellKnown': 'Bene conosciuto',
 		'progress.mastered': 'Padroneggiato',
-		'progress.newWords': 'Nuove parole'
+		'progress.newWords': 'Nuove parole',
+		'progress.totalWordsRead': 'Parole totali lette',
+		'progress.totalTimeRead': 'Tempo totale letto',
+		'progress.day': 'g',
+		'progress.hour': 'h',
+		'progress.minute': 'm',
+		'progress.second': 's'
 	},
 	ja: {
 		'settings.title': '設定',
@@ -204,7 +252,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': '知っている',
 		'progress.wellKnown': 'よく知っている',
 		'progress.mastered': 'マスター',
-		'progress.newWords': '新しい単語'
+		'progress.newWords': '新しい単語',
+		'progress.totalWordsRead': '読んだ単語の総数',
+		'progress.totalTimeRead': '読んだ時間の総数',
+		'progress.day': '日',
+		'progress.hour': '時間',
+		'progress.minute': '分',
+		'progress.second': '秒'
 	},
 	lt: {
 		'settings.title': 'Nustatymai',
@@ -227,7 +281,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Žinomas',
 		'progress.wellKnown': 'Labai žinomas',
 		'progress.mastered': 'Mokėtas',
-		'progress.newWords': 'Nauji žodžiai'
+		'progress.newWords': 'Nauji žodžiai',
+		'progress.totalWordsRead': 'Iš viso perskaityta žodžių',
+		'progress.totalTimeRead': 'Iš viso perskaitytas laikas',
+		'progress.day': 'd',
+		'progress.hour': 'v',
+		'progress.minute': 'm',
+		'progress.second': 's'
 	},
 	mk: {
 		'settings.title': 'Поставки',
@@ -250,7 +310,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Познато',
 		'progress.wellKnown': 'Добро познато',
 		'progress.mastered': 'Освоено',
-		'progress.newWords': 'Нови речи'
+		'progress.newWords': 'Нови речи',
+		'progress.totalWordsRead': 'Вкупно речи прочитани',
+		'progress.totalTimeRead': 'Вкупно време прочитано',
+		'progress.day': 'д',
+		'progress.hour': 'ч',
+		'progress.minute': 'м',
+		'progress.second': 'с'
 	},
 	nb: {
 		'settings.title': 'Innstillinger',
@@ -273,7 +339,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Bekjent',
 		'progress.wellKnown': 'Veldig kjent',
 		'progress.mastered': 'Oppnådd',
-		'progress.newWords': 'Nye ord'
+		'progress.newWords': 'Nye ord',
+		'progress.totalWordsRead': 'Totalt ord lest',
+		'progress.totalTimeRead': 'Totalt tid lest',
+		'progress.day': 'd',
+		'progress.hour': 't',
+		'progress.minute': 'm',
+		'progress.second': 's'
 	},
 	pl: {
 		'settings.title': 'Ustawienia',
@@ -296,7 +368,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Dobrze znany',
 		'progress.wellKnown': 'Bardzo dobrze znany',
 		'progress.mastered': 'Zapamiętany',
-		'progress.newWords': 'Nowe słowa'
+		'progress.newWords': 'Nowe słowa',
+		'progress.totalWordsRead': 'Całkowita liczba przeczytanych słów',
+		'progress.totalTimeRead': 'Całkowity czas przeczytania',
+		'progress.day': 'd',
+		'progress.hour': 'g',
+		'progress.minute': 'm',
+		'progress.second': 's'
 	},
 	pt: {
 		'settings.title': 'Configurações',
@@ -318,7 +396,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Bem conhecido',
 		'progress.wellKnown': 'Muito bem conhecido',
 		'progress.mastered': 'Mestrado',
-		'progress.newWords': 'Novas palavras'
+		'progress.newWords': 'Novas palavras',
+		'progress.totalWordsRead': 'Total de palavras lidas',
+		'progress.totalTimeRead': 'Tempo total de leitura',
+		'progress.day': 'd',
+		'progress.hour': 'h',
+		'progress.minute': 'm',
+		'progress.second': 's'
 	},
 	ro: {
 		'settings.title': 'Setări',
@@ -341,7 +425,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Bine cunoscut',
 		'progress.wellKnown': 'Foarte bine cunoscut',
 		'progress.mastered': 'Maturizat',
-		'progress.newWords': 'Cuvinte noi'
+		'progress.newWords': 'Cuvinte noi',
+		'progress.totalWordsRead': 'Total cuvinte citite',
+		'progress.totalTimeRead': 'Timp total citit',
+		'progress.day': 'z',
+		'progress.hour': 'h',
+		'progress.minute': 'm',
+		'progress.second': 's'
 	},
 	ru: {
 		'settings.title': 'Настройки',
@@ -364,7 +454,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Хорошо знакомый',
 		'progress.wellKnown': 'Очень хорошо знакомый',
 		'progress.mastered': 'Освоенный',
-		'progress.newWords': 'Новые слова'
+		'progress.newWords': 'Новые слова',
+		'progress.totalWordsRead': 'Всего слов прочитано',
+		'progress.totalTimeRead': 'Общее время чтения',
+		'progress.day': 'д',
+		'progress.hour': 'ч',
+		'progress.minute': 'м',
+		'progress.second': 'с'
 	},
 	da: {
 		'settings.title': 'Indstillinger',
@@ -387,7 +483,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Kendt',
 		'progress.wellKnown': 'Godt kendt',
 		'progress.mastered': 'Mesteret',
-		'progress.newWords': 'Nye ord'
+		'progress.newWords': 'Nye ord',
+		'progress.totalWordsRead': 'Totalt ord læst',
+		'progress.totalTimeRead': 'Total tid læst',
+		'progress.day': 'd',
+		'progress.hour': 't',
+		'progress.minute': 'm',
+		'progress.second': 's'
 	},
 	nl: {
 		'settings.title': 'Instellingen',
@@ -410,7 +512,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.known': 'Kend',
 		'progress.wellKnown': 'Goed kend',
 		'progress.mastered': 'Geleerd',
-		'progress.newWords': 'Nieuwe woorden'
+		'progress.newWords': 'Nieuwe woorden',
+		'progress.totalWordsRead': 'Totaal aantal woorden gelezen',
+		'progress.totalTimeRead': 'Totale tijd gelezen',
+		'progress.day': 'd',
+		'progress.hour': 'u',
+		'progress.minute': 'm',
+		'progress.second': 's'
 	}
 };
 

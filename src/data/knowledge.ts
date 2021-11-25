@@ -1,10 +1,11 @@
 import localforage from 'localforage';
-import type { Knowledge, KnowledgeScores } from '../types/knowledge.types';
+import type { Knowledge, KnowledgeScores, LanguageKnowledge } from '../types/knowledge.types';
 import { updateScore } from 'knowledge-score';
 import { writable } from 'svelte/store';
 import { LanguageCode } from '../types/dictionary.types';
 import { browser } from '$app/env';
 import { charInCJK } from './util';
+import type { ContentItem } from 'src/types/content.types';
 
 let knowledge: Knowledge = {};
 export const knowledgeStore = writable(knowledge);
@@ -21,30 +22,52 @@ if (browser) {
 	});
 }
 
+function commitKnowledge(knowledge: Knowledge) {
+	const k = { ...knowledge };
+	knowledgeStore.set(k);
+	localforage.setItem('knowledge', k);
+}
+
 const markPoints = (points: number) => (words: string[], language: LanguageCode) => {
-	knowledge[language] = knowledge[language] || {};
-	const LanguageKnowledge = knowledge[language] as KnowledgeScores;
+	knowledge[language] = knowledge[language] || {
+		totalSeconds: 0,
+		totalWords: 0,
+		scores: {}
+	};
+	const languageKnowledge = knowledge[language] as LanguageKnowledge;
+	const scores = languageKnowledge?.scores as KnowledgeScores;
 	const newWords: string[] = [];
 	const ws = language === LanguageCode.Chinese ? chineseWords(words) : words;
 	for (const w of ws) {
 		if (!w) continue;
 		const word = w.toLowerCase();
-		const [oldScore, previousTimestamp] = LanguageKnowledge[word] || [0, +new Date()];
+		const [oldScore, previousTimestamp] = scores[word] || [0, +new Date()];
 		const newScore = updateScore(points, oldScore, new Date(previousTimestamp));
 		const newTimestamp = +new Date();
-		LanguageKnowledge[word] = [newScore, newTimestamp];
+		scores[word] = [newScore, newTimestamp];
 		if (oldScore === 0) {
 			newWords.push(word);
 		}
 	}
-	knowledge = { ...knowledge };
-	knowledgeStore.set(knowledge);
-	localforage.setItem('knowledge', knowledge);
+	commitKnowledge(knowledge);
 	return newWords;
 };
 
 export const markKnown = markPoints(1);
 export const markUnknown = markPoints(0);
+
+export function finishReading(content: ContentItem) {
+	const language = content.lang;
+	knowledge[language] = knowledge[language] || {
+		totalSeconds: 0,
+		totalWords: 0,
+		scores: {}
+	};
+	const languageKnowledge = knowledge[language] as LanguageKnowledge;
+	languageKnowledge.totalSeconds += content.duration || 0;
+	languageKnowledge.totalWords += content.wordCount;
+	commitKnowledge(knowledge);
+}
 
 export function getScore(scores: KnowledgeScores | undefined, w: string) {
 	if (!scores) {
@@ -59,7 +82,7 @@ export function getScore(scores: KnowledgeScores | undefined, w: string) {
 }
 
 export function isKnown(knowledge: Knowledge, language: LanguageCode, word: string) {
-	return getScore(knowledge[language], word) > 0;
+	return getScore(knowledge[language]?.scores, word) > 0;
 }
 
 const masteredScore = 50;
@@ -67,7 +90,7 @@ export function getKnownPercent(knowledge: Knowledge, language: LanguageCode, wo
 	const total = words.length;
 	let distance = total;
 	for (const word of words) {
-		const score = getScore(knowledge[language], word);
+		const score = getScore(knowledge[language]?.scores, word);
 		distance -= Math.min(Math.pow(score / masteredScore, 0.1), 1);
 	}
 	return (total - distance) / total;

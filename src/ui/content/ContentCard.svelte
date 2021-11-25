@@ -88,7 +88,7 @@
 			</div>
 		</div>
 	{:else}
-		<a href={`content/${content._id}`} sveltekit:prefetch>
+		<a href={`/content/${content._id}`} sveltekit:prefetch>
 			<div class="imageContainer">
 				<img src={content.thumb} alt={content.title} />
 				<Duration duration={content.duration} />

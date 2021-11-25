@@ -2,7 +2,7 @@
 	import IconButton from '@smui/icon-button';
 	import { viewContent } from '../../data/content';
 	import { onMount } from 'svelte';
-	import { knowledgeStore, markKnown, markUnknown } from '../../data/knowledge';
+	import { finishReading, knowledgeStore, markKnown, markUnknown } from '../../data/knowledge';
 	import { settings } from '../../data/settings';
 	import type { ContentItem } from '../../types/content.types';
 	import type { Token } from '../../types/parse.types';
@@ -128,6 +128,7 @@
 		selectedToken = null;
 		dialogOpen = true;
 		addViewToHistory(content._id);
+		finishReading(content);
 	}
 
 	function onDialogClose() {
