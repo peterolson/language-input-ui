@@ -21,7 +21,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Familiar',
 		'progress.known': 'Known',
 		'progress.wellKnown': 'Well-known',
-		'progress.mastered': 'Mastered'
+		'progress.mastered': 'Mastered',
+		'progress.newWords': 'New words'
 	},
 	es: {
 		'settings.title': 'Preferencias',
@@ -42,7 +43,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Familiar',
 		'progress.known': 'Conocido',
 		'progress.wellKnown': 'Bien conocido',
-		'progress.mastered': 'Dominado'
+		'progress.mastered': 'Dominado',
+		'progress.newWords': 'Palabras nuevas'
 	},
 	zh: {
 		'settings.title': '设置',
@@ -63,7 +65,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': '熟悉',
 		'progress.known': '已知',
 		'progress.wellKnown': '很熟悉',
-		'progress.mastered': '已掌握'
+		'progress.mastered': '已掌握',
+		'progress.newWords': '新词'
 	},
 	ca: {
 		'settings.title': 'Preferències',
@@ -85,7 +88,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Familiar',
 		'progress.known': 'Conegut',
 		'progress.wellKnown': 'Bé conegut',
-		'progress.mastered': 'Dominat'
+		'progress.mastered': 'Dominat',
+		'progress.newWords': 'Paraules noves'
 	},
 	fr: {
 		'settings.title': 'Paramètres',
@@ -107,7 +111,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Familier',
 		'progress.known': 'Connu',
 		'progress.wellKnown': 'Bien connu',
-		'progress.mastered': 'Maîtrisé'
+		'progress.mastered': 'Maîtrisé',
+		'progress.newWords': 'Nouveaux mots'
 	},
 	de: {
 		'settings.title': 'Einstellungen',
@@ -129,7 +134,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Vertraut',
 		'progress.known': 'Bekannt',
 		'progress.wellKnown': 'Sehr bekannt',
-		'progress.mastered': 'Gemeistert'
+		'progress.mastered': 'Gemeistert',
+		'progress.newWords': 'Neue Wörter'
 	},
 	el: {
 		'settings.title': 'Ρυθμίσεις',
@@ -151,7 +157,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Εξοικειωμένο',
 		'progress.known': 'Γνωστό',
 		'progress.wellKnown': 'Καλό γνωστό',
-		'progress.mastered': 'Μάθημα'
+		'progress.mastered': 'Μάθημα',
+		'progress.newWords': 'Νέες λέξεις'
 	},
 	it: {
 		'settings.title': 'Impostazioni',
@@ -173,7 +180,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Familiare',
 		'progress.known': 'Conosciuto',
 		'progress.wellKnown': 'Bene conosciuto',
-		'progress.mastered': 'Padroneggiato'
+		'progress.mastered': 'Padroneggiato',
+		'progress.newWords': 'Nuove parole'
 	},
 	ja: {
 		'settings.title': '設定',
@@ -195,7 +203,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': '熟練',
 		'progress.known': '知っている',
 		'progress.wellKnown': 'よく知っている',
-		'progress.mastered': 'マスター'
+		'progress.mastered': 'マスター',
+		'progress.newWords': '新しい単語'
 	},
 	lt: {
 		'settings.title': 'Nustatymai',
@@ -217,7 +226,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Šviežas',
 		'progress.known': 'Žinomas',
 		'progress.wellKnown': 'Labai žinomas',
-		'progress.mastered': 'Mokėtas'
+		'progress.mastered': 'Mokėtas',
+		'progress.newWords': 'Nauji žodžiai'
 	},
 	mk: {
 		'settings.title': 'Поставки',
@@ -239,7 +249,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Запомнено',
 		'progress.known': 'Познато',
 		'progress.wellKnown': 'Добро познато',
-		'progress.mastered': 'Освоено'
+		'progress.mastered': 'Освоено',
+		'progress.newWords': 'Нови речи'
 	},
 	nb: {
 		'settings.title': 'Innstillinger',
@@ -261,7 +272,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Kjent',
 		'progress.known': 'Bekjent',
 		'progress.wellKnown': 'Veldig kjent',
-		'progress.mastered': 'Oppnådd'
+		'progress.mastered': 'Oppnådd',
+		'progress.newWords': 'Nye ord'
 	},
 	pl: {
 		'settings.title': 'Ustawienia',
@@ -283,7 +295,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Znany',
 		'progress.known': 'Dobrze znany',
 		'progress.wellKnown': 'Bardzo dobrze znany',
-		'progress.mastered': 'Zapamiętany'
+		'progress.mastered': 'Zapamiętany',
+		'progress.newWords': 'Nowe słowa'
 	},
 	pt: {
 		'settings.title': 'Configurações',
@@ -304,7 +317,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Conhecido',
 		'progress.known': 'Bem conhecido',
 		'progress.wellKnown': 'Muito bem conhecido',
-		'progress.mastered': 'Mestrado'
+		'progress.mastered': 'Mestrado',
+		'progress.newWords': 'Novas palavras'
 	},
 	ro: {
 		'settings.title': 'Setări',
@@ -326,7 +340,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Cunoscut',
 		'progress.known': 'Bine cunoscut',
 		'progress.wellKnown': 'Foarte bine cunoscut',
-		'progress.mastered': 'Maturizat'
+		'progress.mastered': 'Maturizat',
+		'progress.newWords': 'Cuvinte noi'
 	},
 	ru: {
 		'settings.title': 'Настройки',
@@ -348,7 +363,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Знакомый',
 		'progress.known': 'Хорошо знакомый',
 		'progress.wellKnown': 'Очень хорошо знакомый',
-		'progress.mastered': 'Освоенный'
+		'progress.mastered': 'Освоенный',
+		'progress.newWords': 'Новые слова'
 	},
 	da: {
 		'settings.title': 'Indstillinger',
@@ -370,7 +386,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Familiar',
 		'progress.known': 'Kendt',
 		'progress.wellKnown': 'Godt kendt',
-		'progress.mastered': 'Mesteret'
+		'progress.mastered': 'Mesteret',
+		'progress.newWords': 'Nye ord'
 	},
 	nl: {
 		'settings.title': 'Instellingen',
@@ -392,7 +409,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.familiar': 'Familie',
 		'progress.known': 'Kend',
 		'progress.wellKnown': 'Goed kend',
-		'progress.mastered': 'Geleerd'
+		'progress.mastered': 'Geleerd',
+		'progress.newWords': 'Nieuwe woorden'
 	}
 };
 

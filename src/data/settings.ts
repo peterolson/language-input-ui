@@ -12,7 +12,8 @@ const isDarkMode = (): boolean => {
 const defaultSettings = {
 	userLanguage: LanguageCode.English,
 	targetLanguages: [] as LanguageCode[],
-	darkMode: isDarkMode()
+	darkMode: isDarkMode(),
+	isTraditional: false
 };
 
 if (browser) {
@@ -49,7 +50,8 @@ function getWritable<T>(key: string, defaultValue: T) {
 export const settings = {
 	userLanguage: getWritable('userLanguage', defaultSettings.userLanguage),
 	targetLanguages: getWritable('targetLanguages', defaultSettings.targetLanguages),
-	darkMode: getWritable('darkMode', defaultSettings.darkMode)
+	darkMode: getWritable('darkMode', defaultSettings.darkMode),
+	isTraditional: getWritable('isTraditional', defaultSettings.isTraditional)
 };
 
 function switchTheme(isDark: boolean) {

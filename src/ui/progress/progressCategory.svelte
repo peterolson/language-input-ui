@@ -1,5 +1,5 @@
 <script lang="ts">
-	import IconButton from '@smui/icon-button/IconButton.svelte';
+	import IconButton from '@smui/icon-button';
 
 	import { t } from '../../i18n/i18n';
 

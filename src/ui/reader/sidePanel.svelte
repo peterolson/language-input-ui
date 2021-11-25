@@ -28,6 +28,9 @@
 		<span>{dateFormat.format(new Date(content.publishedDate))}</span>
 		<span>{$t('card.words')}: {content.wordCount}</span>
 	</div>
+	<div class="mdc-typography--caption">
+		<a href={content.url} target="_blank">{content.url}</a>
+	</div>
 	<div class="mdc-typography--body2 space-between">
 		<div class="iconNumber">
 			{#if content.views}

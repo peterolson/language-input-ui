@@ -5,11 +5,12 @@
 	import { t } from '../../i18n/i18n';
 	import TargetLanguageSelector from './targetLanguageSelector.svelte';
 	import { settings } from '../../data/settings';
-	import { languageNames } from '../../types/dictionary.types';
+	import { LanguageCode, languageNames } from '../../types/dictionary.types';
+	import Switch from '@smui/switch';
 
 	export let open: boolean;
 
-	const { targetLanguages, darkMode } = settings;
+	const { targetLanguages, userLanguage, darkMode, isTraditional } = settings;
 	function onSwitch() {
 		darkMode.set(!$darkMode);
 	}
@@ -32,6 +33,13 @@
 			<Label>{$t('settings.userLanguageTitle')}&nbsp;</Label>
 			<LanguageSelector />
 		</div>
+		{#if $targetLanguages.includes(LanguageCode.Chinese) || $userLanguage === LanguageCode.Chinese}
+			<div class="opposite">
+				<Label>简体</Label>
+				<Switch bind:checked={$isTraditional} />
+				<Label>繁體</Label>
+			</div>
+		{/if}
 		<div class="opposite">
 			<Label>{$t('settings.targetLanguagesTitle')}:&nbsp;</Label>
 		</div>

@@ -12,6 +12,8 @@
 	import ExampleSentence from './exampleSentence.svelte';
 	import Button from '@smui/button';
 	import { Label } from '@smui/common';
+	import { settings } from '../../data/settings';
+	const { isTraditional } = settings;
 
 	export let word: string;
 	export let translation: DictionaryTranslation;
@@ -65,13 +67,17 @@
 </script>
 
 <div class="mdc-typography--subtitle1">
-	{translation.normalizedTarget}
+	{$isTraditional && translation.normalizedTargetTrad
+		? translation.normalizedTargetTrad
+		: translation.normalizedTarget}
 </div>
 <div class="mdc-typography--body1 grayed backTranslation">
 	{#each translation.backTranslations as backtranslation}
 		{#if isCurrentWord(backtranslation, currentWord)}
 			<span class:currentWord={isCurrentWord(backtranslation, currentWord)}>
-				{backtranslation.displayText}
+				{$isTraditional && backtranslation.displayTextTrad
+					? backtranslation.displayTextTrad
+					: backtranslation.displayText}
 			</span>
 		{:else}
 			<Button
@@ -79,7 +85,9 @@
 				on:click={() => changeCurrentWord(backtranslation.displayText)}
 				style="min-width:0;text-transform:none;height:unset"
 			>
-				{backtranslation.displayText}
+				{$isTraditional && backtranslation.displayTextTrad
+					? backtranslation.displayTextTrad
+					: backtranslation.displayText}
 			</Button>
 		{/if}
 		{' '}

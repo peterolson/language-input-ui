@@ -7,7 +7,9 @@
 	import type { Token } from '../../types/parse.types';
 	import IconButton from '@smui/icon-button';
 	import { createEventDispatcher } from 'svelte';
+	import { settings } from '../../data/settings';
 	const dispatch = createEventDispatcher();
+	const { isTraditional } = settings;
 
 	export let token: Token;
 	export let fromLang: LanguageCode;
@@ -31,9 +33,12 @@
 <div class="container" in:fade out:fade>
 	<div class="header">
 		<h1 class="mdc-typography--headline6">
-			{token.text}
-			{#if token.lemma.toLowerCase() !== token.text.toLowerCase()}
+			{$isTraditional && token.tradText ? token.tradText : token.text}
+			{#if token.lemma && token.lemma.toLowerCase() !== token.text.toLowerCase()}
 				({token.lemma})
+			{/if}
+			{#if token.tradText && token.tradText !== token.text}
+				({isTraditional ? token.text : token.tradText})
 			{/if}
 		</h1>
 		<div class="buttons">
@@ -49,6 +54,13 @@
 			<IconButton class="material-icons" on:click={onClose}>close</IconButton>
 		</div>
 	</div>
+	{#if token.transliterations}
+		<div class="transliterations mdc-typography--body2">
+			{#each token.transliterations as transliteration}
+				<div>{transliteration}</div>
+			{/each}
+		</div>
+	{/if}
 	<div class="results">
 		{#if lookupResult?.translations}
 			{#each lookupResult.translations as translation, i}
@@ -77,6 +89,13 @@
 	h1 {
 		margin: 0;
 	}
+
+	.transliterations {
+		display: flex;
+		justify-content: space-between;
+		padding: 8px;
+	}
+
 	.results {
 		flex: 1;
 		overflow: auto;

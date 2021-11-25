@@ -1,11 +1,15 @@
 <script lang="ts">
 	import { Icon } from '@smui/common';
 	import { isKnown } from '../../data/knowledge';
-	import type { LanguageCode } from '../../types/dictionary.types';
+	import { LanguageCode } from '../../types/dictionary.types';
 	import type { Knowledge } from '../../types/knowledge.types';
 	import type { TextLine, Token } from '../../types/parse.types';
 	import { createEventDispatcher } from 'svelte';
+	import { charInCJK } from '../../data/util';
+	import { settings } from '../../data/settings';
 	const dispatch = createEventDispatcher();
+
+	const { isTraditional } = settings;
 
 	export let line: TextLine;
 	export let selectedToken: Token | null;
@@ -27,6 +31,32 @@
 	function seekToLine() {
 		dispatch('seek', { time: timing[0] });
 	}
+
+	function isLemmaUnknown(
+		knowledge: Knowledge,
+		lang: LanguageCode,
+		token: Token,
+		isTraditional: boolean
+	) {
+		if (!token.isWord) return false;
+		if (lang === LanguageCode.Chinese) {
+			const text = isTraditional && token.tradText ? token.tradText : token.text;
+			const chars = [...text].filter(charInCJK);
+			return !chars.every((char) => isKnown(knowledge, lang, char));
+		}
+		return !isKnown(knowledge, lang, token.lemma);
+	}
+
+	function isWordUnknown(
+		knowledge: Knowledge,
+		lang: LanguageCode,
+		token: Token,
+		isTraditional: boolean
+	) {
+		if (!token.isWord) return false;
+		const text = isTraditional && token.tradText ? token.tradText : token.text;
+		return !isKnown(knowledge, lang, text);
+	}
 </script>
 
 <div
@@ -45,10 +75,11 @@
 					data-lemma={token.lemma}
 					class:word={token.isWord}
 					class:selected={selectedToken === token}
-					class:lemmaUnknown={token.isWord && !isKnown(knowledge, lang, token.lemma)}
-					class:wordUnknown={token.isWord && !isKnown(knowledge, lang, token.text)}
+					class:lemmaUnknown={isLemmaUnknown(knowledge, lang, token, $isTraditional)}
+					class:wordUnknown={isWordUnknown(knowledge, lang, token, $isTraditional)}
 					class:lookedUp={lookedUpWords.has(token.text.toLowerCase())}
-					on:click={(e) => lookupWord(token, e)}>{token.text}</span
+					on:click={(e) => lookupWord(token, e)}
+					>{$isTraditional && token.tradText ? token.tradText : token.text}</span
 				>{token.suffix}{#if token.text.includes('\n')}
 					<div style={lineSpacingStyle(token)} />
 				{/if}

@@ -28,6 +28,7 @@ export type ContentItemSummary = {
 	title: string;
 	thumb: string;
 	lemmas: string[];
+	tradLemmas?: string[];
 	wordCount: number;
 	channel: string;
 	duration: number;

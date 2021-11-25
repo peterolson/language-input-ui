@@ -5,6 +5,7 @@
 	import type { ContentItemSummary, SkeletonItem } from '../../types/content.types';
 	import ContentCard from './ContentCard.svelte';
 	import { t } from '../../i18n/i18n';
+	import { getViewedContentIds, historyStore } from '../../data/history';
 
 	export let requestPath: string;
 	const { targetLanguages } = settings;
@@ -34,10 +35,18 @@
 		try {
 			limit = getLimit(container);
 			const langs = $targetLanguages.join('|');
+			const viewedIds = getViewedContentIds($historyStore);
+			console.log(viewedIds);
 			const list = langs.length
-				? await fetch(`${endpoint}${requestPath}langs=${langs}&skip=${skip}&limit=${limit}`).then(
-						(x) => x.json()
-				  )
+				? await fetch(`${endpoint}${requestPath}langs=${langs}&skip=${skip}&limit=${limit}`, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({
+							viewedIds
+						})
+				  }).then((x) => x.json())
 				: [];
 			if (!list.length) {
 				reachedEnd = true;

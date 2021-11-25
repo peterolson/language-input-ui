@@ -12,6 +12,7 @@
 	import RatingDialog from './ratingDialog.svelte';
 	import SidePanel from './sidePanel.svelte';
 	import TextLine from './textLine.svelte';
+	import { addViewToHistory } from '../../data/history';
 
 	export let content: ContentItem;
 	const { media, parsedText, lang, timings } = content;
@@ -27,7 +28,8 @@
 	let mediaView: MediaView;
 	let currentTime: number = 0;
 	let lookedUpWords = new Set<string>();
-	let isFinished = true;
+	let newWordSet = new Set<string>();
+	let isFinished = false;
 
 	$: {
 		maxWidth = Math.min(640, innerWidth);
@@ -125,6 +127,7 @@
 		markWordsOnCurrentPage();
 		selectedToken = null;
 		dialogOpen = true;
+		addViewToHistory(content._id);
 	}
 
 	function onDialogClose() {
@@ -150,7 +153,8 @@
 				if (word) wordSet.add(word.toLowerCase());
 			});
 		const words = Array.from(wordSet).filter((word) => !lookedUpWords.has(word));
-		markKnown(words, content.lang);
+		const newWords = markKnown(words, content.lang);
+		newWordSet = new Set([...Array.from(newWordSet), ...newWords]);
 	}
 
 	function updateProgress() {
@@ -200,8 +204,12 @@
 	</div>
 	<div class="contentContainer">
 		{#if isFinished}
-			<div class="content" bind:this={contentDiv}>
-				<Finished />
+			<div class="content finished" bind:this={contentDiv}>
+				<Finished
+					{content}
+					lookedUp={Array.from(lookedUpWords)}
+					newWords={Array.from(newWordSet)}
+				/>
 			</div>
 		{:else}
 			<div style="width: {maxWidth};">
@@ -292,6 +300,12 @@
 		column-width: 100vw;
 		column-gap: 0px;
 	}
+	.content.finished {
+		overflow: auto;
+		column-width: unset !important;
+		column-gap: unset;
+	}
+
 	.dictionary {
 		flex: 1;
 		height: 100%;

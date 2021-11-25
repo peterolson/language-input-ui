@@ -8,7 +8,7 @@
 	import { settings } from '../../data/settings';
 	import { Icon } from '@smui/common';
 
-	const { darkMode } = settings;
+	const { darkMode, isTraditional } = settings;
 
 	export let content: ContentItemSummary | SkeletonItem;
 	let languageName: string = '';
@@ -20,7 +20,11 @@
 		if ('lang' in content) {
 			languageName = languageNames[content.lang as keyof typeof languageNames];
 			title = content.title;
-			percent = getKnownPercent($knowledgeStore, content.lang as LanguageCode, content.lemmas);
+			let lemmas = content.lemmas;
+			if (content.lang === LanguageCode.Chinese && $isTraditional && content.tradLemmas) {
+				lemmas = content.tradLemmas;
+			}
+			percent = getKnownPercent($knowledgeStore, content.lang as LanguageCode, lemmas);
 			const luminosity = $darkMode ? '75%' : '40%';
 			const hue = (Math.max(percent * 100 - 70, 0) / 30) * 120;
 			color = `hsl(${hue},100%,${luminosity})`;

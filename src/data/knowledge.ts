@@ -2,8 +2,9 @@ import localforage from 'localforage';
 import type { Knowledge, KnowledgeScores } from '../types/knowledge.types';
 import { updateScore } from 'knowledge-score';
 import { writable } from 'svelte/store';
-import type { LanguageCode } from 'src/types/dictionary.types';
+import { LanguageCode } from '../types/dictionary.types';
 import { browser } from '$app/env';
+import { charInCJK } from './util';
 
 let knowledge: Knowledge = {};
 export const knowledgeStore = writable(knowledge);
@@ -23,22 +24,29 @@ if (browser) {
 const markPoints = (points: number) => (words: string[], language: LanguageCode) => {
 	knowledge[language] = knowledge[language] || {};
 	const LanguageKnowledge = knowledge[language] as KnowledgeScores;
-	for (const w of words) {
+	const newWords: string[] = [];
+	const ws = language === LanguageCode.Chinese ? chineseWords(words) : words;
+	for (const w of ws) {
+		if (!w) continue;
 		const word = w.toLowerCase();
 		const [oldScore, previousTimestamp] = LanguageKnowledge[word] || [0, +new Date()];
 		const newScore = updateScore(points, oldScore, new Date(previousTimestamp));
 		const newTimestamp = +new Date();
 		LanguageKnowledge[word] = [newScore, newTimestamp];
+		if (oldScore === 0) {
+			newWords.push(word);
+		}
 	}
 	knowledge = { ...knowledge };
 	knowledgeStore.set(knowledge);
 	localforage.setItem('knowledge', knowledge);
+	return newWords;
 };
 
 export const markKnown = markPoints(1);
 export const markUnknown = markPoints(0);
 
-function getScore(scores: KnowledgeScores | undefined, w: string) {
+export function getScore(scores: KnowledgeScores | undefined, w: string) {
 	if (!scores) {
 		return 0;
 	}
@@ -108,7 +116,7 @@ export function getBreakdownByCategory(scores: KnowledgeScores, isDark: boolean)
 	return out;
 }
 
-function getColor(isDark: boolean, score: number) {
+export function getColor(isDark: boolean, score: number) {
 	const scoreMin = 0;
 	const scoreMax = 100;
 	const MIN_COLOR = isDark ? [0, 0, 0] : [255, 255, 204];
@@ -119,4 +127,17 @@ function getColor(isDark: boolean, score: number) {
 		return Math.round(min + (max - min) * ratio);
 	});
 	return `rgb(${color.join(',')})`;
+}
+
+function chineseWords(words: string[]) {
+	const chars = new Set<string>();
+	for (const word of words) {
+		if (!word) continue;
+		for (const char of word) {
+			if (charInCJK(char)) {
+				chars.add(char);
+			}
+		}
+	}
+	return [...words.filter(Boolean), ...Array.from(chars)];
 }
