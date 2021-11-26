@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import type { MediaControls } from '../../../types/media.types';
 	import YouTubePlayer from 'yt-player';
+	const dispatch = createEventDispatcher();
 
 	export let youtubeId: string;
 	export let controls: MediaControls;
@@ -15,6 +16,12 @@
 	onMount(() => {
 		player = new YouTubePlayer(playerContainer);
 		player.load(youtubeId);
+		let isLoaded = false;
+		player.on('playing', () => {
+			if (isLoaded) return;
+			isLoaded = true;
+			dispatch('load');
+		});
 		player.on('timeupdate', (time) => {
 			currentTime = time;
 		});

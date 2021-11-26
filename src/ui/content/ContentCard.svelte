@@ -7,6 +7,7 @@
 	import { getKnownPercent, knowledgeStore } from '../../data/knowledge';
 	import { settings } from '../../data/settings';
 	import { Icon } from '@smui/common';
+	import ContinueWatching from './ContinueWatching.svelte';
 
 	const { darkMode, isTraditional } = settings;
 
@@ -91,6 +92,7 @@
 		<a href={`/content/${content._id}`} sveltekit:prefetch>
 			<div class="imageContainer">
 				<img src={content.thumb} alt={content.title} />
+				<ContinueWatching id={content._id} />
 				<Duration duration={content.duration} />
 			</div>
 			<div class="mdc-typography--caption captionLine">

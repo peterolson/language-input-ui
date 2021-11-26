@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
+	const dispatch = createEventDispatcher();
 
 	import type { MediaControls } from '../../../types/media.types';
 	export let url: string;
@@ -17,6 +18,13 @@
 		};
 		controls.play = () => {
 			video.play();
+		};
+
+		let isLoaded = false;
+		video.onplay = () => {
+			if (isLoaded) return;
+			isLoaded = true;
+			dispatch('load');
 		};
 	});
 </script>

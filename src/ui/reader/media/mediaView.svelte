@@ -4,20 +4,30 @@
 	import Video from './video.svelte';
 	import Youtube from './youtube.svelte';
 
-	export let currentTime: number = 0;
+	let loadListeners: (() => void)[] = [];
 
+	export let currentTime: number = 0;
 	export let media: Media;
 	export const controls: MediaControls = {
 		pause: () => {},
 		seek: () => {},
-		play: () => {}
+		play: () => {},
+		onLoad: (fn: () => void) => {
+			fn();
+			loadListeners.push(fn);
+		}
 	};
+
+	function onLoad() {
+		loadListeners.forEach((fn) => fn());
+		loadListeners = [];
+	}
 </script>
 
 {#if media.type === 'audio'}
-	<Audio url={media.url} {controls} bind:currentTime />
+	<Audio url={media.url} {controls} bind:currentTime on:load={onLoad} />
 {:else if media.type === 'video'}
-	<Video url={media.url} {controls} bind:currentTime />
+	<Video url={media.url} {controls} bind:currentTime on:load={onLoad} />
 {:else if media.type === 'youtube'}
-	<Youtube youtubeId={media.youtubeId} {controls} bind:currentTime />
+	<Youtube youtubeId={media.youtubeId} {controls} bind:currentTime on:load={onLoad} />
 {/if}

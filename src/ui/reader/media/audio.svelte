@@ -3,7 +3,8 @@
 	import CircularProgress from '@smui/circular-progress';
 	import LinearProgress from '@smui/linear-progress';
 	import type { MediaControls } from '../../../types/media.types';
-	import { onMount } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
+	const dispatch = createEventDispatcher();
 
 	export let url: string;
 	export let controls: MediaControls;
@@ -23,6 +24,13 @@
 		};
 		controls.play = () => {
 			audio.play();
+		};
+
+		let isLoaded = false;
+		audio.onplay = () => {
+			if (isLoaded) return;
+			isLoaded = true;
+			dispatch('load');
 		};
 	});
 

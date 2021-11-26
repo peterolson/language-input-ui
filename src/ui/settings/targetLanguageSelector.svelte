@@ -20,7 +20,7 @@
 </script>
 
 <div>
-	{#each Object.entries(LanguageCode) as [en, code]}
+	{#each Object.entries(LanguageCode).sort( ([_1, a], [_2, b]) => languageNames[a].localeCompare(languageNames[b]) ) as [en, code]}
 		<div>
 			<!-- svelte-ignore a11y-label-has-associated-control -->
 			<label>

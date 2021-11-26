@@ -14,6 +14,12 @@
 	import TextLine from './textLine.svelte';
 	import { addViewToHistory } from '../../data/history';
 	import { fade } from 'svelte/transition';
+	import {
+		addViewProgress,
+		removeViewProgress,
+		ViewProgressItem,
+		viewProgressStore
+	} from '../../data/viewProgress';
 
 	export let content: ContentItem;
 	const { media, parsedText, lang, timings } = content;
@@ -45,6 +51,9 @@
 
 	onMount(() => {
 		viewContent(content._id);
+		setTimeout(() => {
+			restoreViewProgress($viewProgressStore[content._id]);
+		}, 250);
 	});
 
 	let isSwiping = false;
@@ -120,6 +129,7 @@
 			});
 			currentPage += n;
 			updateProgress();
+			saveViewProgress();
 		}
 	}
 
@@ -130,6 +140,7 @@
 		dialogOpen = true;
 		addViewToHistory(content._id);
 		finishReading(content);
+		removeViewProgress(content._id);
 	}
 
 	function onDialogClose() {
@@ -137,23 +148,26 @@
 		isFinished = true;
 	}
 
-	function markWordsOnCurrentPage() {
-		if (!contentDiv) return;
+	function getVisibleTokens(): HTMLSpanElement[] {
+		if (!contentDiv) return [];
 		const left = contentDiv.offsetLeft + contentDiv.scrollLeft;
 		const right = left + contentDiv.clientWidth;
+		return Array.from(contentDiv.querySelectorAll('span.word')).filter((el) => {
+			const span = el as HTMLSpanElement;
+			return span.offsetLeft >= left && span.offsetLeft + span.offsetWidth <= right;
+		}) as HTMLSpanElement[];
+	}
+
+	function markWordsOnCurrentPage() {
+		if (!contentDiv) return;
+		const visibleTokens = getVisibleTokens();
 		const wordSet = new Set<string>();
-		Array.from(contentDiv.querySelectorAll('span.word'))
-			.filter((el) => {
-				const span = el as HTMLSpanElement;
-				return span.offsetLeft >= left && span.offsetLeft + span.offsetWidth <= right;
-			})
-			.forEach((el) => {
-				const span = el as HTMLSpanElement;
-				const lemma = span.dataset.lemma;
-				const word = span.textContent;
-				if (lemma) wordSet.add(lemma.toLowerCase());
-				if (word) wordSet.add(word.toLowerCase());
-			});
+		visibleTokens.forEach((span) => {
+			const lemma = span.dataset.lemma;
+			const word = span.textContent;
+			if (lemma) wordSet.add(lemma.toLowerCase());
+			if (word) wordSet.add(word.toLowerCase());
+		});
 		const words = Array.from(wordSet).filter((word) => !lookedUpWords.has(word));
 		const newWords = markKnown(words, content.lang);
 		newWordSet = new Set([...Array.from(newWordSet), ...newWords]);
@@ -201,6 +215,45 @@
 			mediaView.controls.play();
 		}
 	}
+
+	function saveViewProgress() {
+		const firstVisibleToken = getVisibleTokens()[0];
+		const index = Array.from(contentDiv.querySelectorAll('span.word')).indexOf(firstVisibleToken);
+		addViewProgress(content._id, {
+			currentTime: Math.max(0, currentTime - 10),
+			lookedUpWords: Array.from(lookedUpWords),
+			topTokenIndex: index
+		});
+	}
+
+	function restoreViewProgress(progress: ViewProgressItem) {
+		console.log(progress);
+		if (!progress) return;
+		mediaView.controls.onLoad(() => {
+			mediaView.controls.seek(progress.currentTime);
+			mediaView.controls.play();
+		});
+		lookedUpWords = new Set(progress.lookedUpWords);
+		if (progress.topTokenIndex >= 0) {
+			const tokenSpan = Array.from(contentDiv.querySelectorAll('span.word'))[
+				progress.topTokenIndex
+			] as HTMLSpanElement;
+			const tokenLeft = tokenSpan.offsetLeft;
+			const { scrollWidth } = contentDiv;
+			const interval = scrollWidth / pages;
+			let left = 0;
+			let page = 1;
+			while (left + interval < tokenLeft) {
+				left += interval;
+				page++;
+			}
+			contentDiv.scrollTo({
+				left,
+				behavior: 'smooth'
+			});
+			currentPage = page;
+		}
+	}
 </script>
 
 <svelte:head>
@@ -242,7 +295,6 @@
 					{#each parsedText.lines as line, i}
 						<TextLine
 							{line}
-							{selectedToken}
 							on:lookup={onLookup}
 							{currentTime}
 							timing={timings[i]}

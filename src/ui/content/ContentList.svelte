@@ -36,7 +36,6 @@
 			limit = getLimit(container);
 			const langs = $targetLanguages.join('|');
 			const viewedIds = getViewedContentIds($historyStore);
-			console.log(viewedIds);
 			const list = langs.length
 				? await fetch(`${endpoint}${requestPath}langs=${langs}&skip=${skip}&limit=${limit}`, {
 						method: 'POST',
@@ -65,7 +64,6 @@
 			contentList = getSkeletons(limit);
 			isLoadingMore = true;
 			reachedEnd = false;
-			console.log('subscribed to target languages', langs);
 			updateContentList();
 		});
 	});

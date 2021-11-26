@@ -1,34 +1,19 @@
-import localforage from 'localforage';
 import type { Knowledge, KnowledgeScores, LanguageKnowledge } from '../types/knowledge.types';
 import { updateScore } from 'knowledge-score';
-import { writable } from 'svelte/store';
 import { LanguageCode } from '../types/dictionary.types';
-import { browser } from '$app/env';
 import { charInCJK } from './util';
 import type { ContentItem } from 'src/types/content.types';
+import { cachedData } from './cachedData';
 
-let knowledge: Knowledge = {};
-export const knowledgeStore = writable(knowledge);
-
-if (browser) {
-	localforage.getItem('knowledge', (err, value) => {
-		if (err) {
-			return;
-		}
-		if (value) {
-			knowledge = value as Knowledge;
-			knowledgeStore.set(knowledge);
-		}
-	});
-}
+const knowledgeCache = cachedData<Knowledge>({}, 'knowledge');
+export const knowledgeStore = knowledgeCache.store;
 
 function commitKnowledge(knowledge: Knowledge) {
-	const k = { ...knowledge };
-	knowledgeStore.set(k);
-	localforage.setItem('knowledge', k);
+	knowledgeCache.update({ ...knowledge });
 }
 
 const markPoints = (points: number) => (words: string[], language: LanguageCode) => {
+	const knowledge = knowledgeCache.value;
 	knowledge[language] = knowledge[language] || {
 		totalSeconds: 0,
 		totalWords: 0,
@@ -57,6 +42,7 @@ export const markKnown = markPoints(1);
 export const markUnknown = markPoints(0);
 
 export function finishReading(content: ContentItem) {
+	const knowledge = knowledgeCache.value;
 	const language = content.lang;
 	knowledge[language] = knowledge[language] || {
 		totalSeconds: 0,

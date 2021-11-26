@@ -12,7 +12,6 @@
 	const { isTraditional } = settings;
 
 	export let line: TextLine;
-	export let selectedToken: Token | null;
 	export let currentTime: number;
 	export let timing: [number, number] = [-1, -1];
 	export let lang: LanguageCode;
@@ -123,7 +122,7 @@
 	}
 
 	.isCurrent {
-		background-color: rgba(128, 128, 128, 0.2);
+		background-color: rgba(128, 128, 128, 0.15);
 		transition: background-color 0.5s ease-in-out; /* fade in time*/
 	}
 	.icon {
