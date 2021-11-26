@@ -29,9 +29,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's',
-		'knowledge.knownWord': 'I know this word.',
-		'knowledge.unknownWord': "I don't know this word."
+		'progress.second': 's'
 	},
 	es: {
 		'settings.title': 'Preferencias',
@@ -60,9 +58,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's',
-		'knowledge.knownWord': 'Sé esta palabra.',
-		'knowledge.unknownWord': 'No sé esta palabra.'
+		'progress.second': 's'
 	},
 	zh: {
 		'settings.title': '设置',
@@ -91,9 +87,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': '天',
 		'progress.hour': '小时',
 		'progress.minute': '分钟',
-		'progress.second': '秒',
-		'knowledge.knownWord': '我知道这个单词。',
-		'knowledge.unknownWord': '我不知道这个单词。'
+		'progress.second': '秒'
 	},
 	ca: {
 		'settings.title': 'Preferències',
@@ -123,9 +117,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's',
-		'knowledge.knownWord': 'Estic familiar amb aquesta paraula.',
-		'knowledge.unknownWord': 'No estic familiar amb aquesta paraula.'
+		'progress.second': 's'
 	},
 	fr: {
 		'settings.title': 'Paramètres',
@@ -155,9 +147,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'j',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's',
-		'knowledge.knownWord': 'Je connais cette mot.',
-		'knowledge.unknownWord': 'Je ne connais pas cette mot.'
+		'progress.second': 's'
 	},
 	de: {
 		'settings.title': 'Einstellungen',
@@ -187,9 +177,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'T',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's',
-		'knowledge.knownWord': 'Ich kenne dieses Wort.',
-		'knowledge.unknownWord': 'Ich kenne dieses Wort nicht.'
+		'progress.second': 's'
 	},
 	el: {
 		'settings.title': 'Ρυθμίσεις',
@@ -219,9 +207,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'η',
 		'progress.hour': 'ώ',
 		'progress.minute': 'λ',
-		'progress.second': 'δ',
-		'knowledge.knownWord': 'Ξέρω αυτή τη λέξη.',
-		'knowledge.unknownWord': 'Δεν την ξέρω αυτή τη λέξη.'
+		'progress.second': 'δ'
 	},
 	it: {
 		'settings.title': 'Impostazioni',
@@ -251,9 +237,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'g',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's',
-		'knowledge.knownWord': 'Conosco questa parola.',
-		'knowledge.unknownWord': 'Non conosco questa parola.'
+		'progress.second': 's'
 	},
 	ja: {
 		'settings.title': '設定',
@@ -283,9 +267,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': '日',
 		'progress.hour': '時間',
 		'progress.minute': '分',
-		'progress.second': '秒',
-		'knowledge.knownWord': 'この単語を知っています。',
-		'knowledge.unknownWord': 'この単語を知っていません。'
+		'progress.second': '秒'
 	},
 	lt: {
 		'settings.title': 'Nustatymai',
@@ -315,9 +297,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 'v',
 		'progress.minute': 'm',
-		'progress.second': 's',
-		'knowledge.knownWord': 'Šis žodis mano žinomoje.',
-		'knowledge.unknownWord': 'Šis žodis mano nežinomoje.'
+		'progress.second': 's'
 	},
 	mk: {
 		'settings.title': 'Поставки',
@@ -347,9 +327,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'д',
 		'progress.hour': 'ч',
 		'progress.minute': 'м',
-		'progress.second': 'с',
-		'knowledge.knownWord': 'Оваа реч е мојата запомнена.',
-		'knowledge.unknownWord': 'Оваа реч е мојата незапомнена.'
+		'progress.second': 'с'
 	},
 	nb: {
 		'settings.title': 'Innstillinger',
@@ -379,9 +357,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 't',
 		'progress.minute': 'm',
-		'progress.second': 's',
-		'knowledge.knownWord': 'Dette ordet er min kjent.',
-		'knowledge.unknownWord': 'Dette ordet er min ukjent.'
+		'progress.second': 's'
 	},
 	pl: {
 		'settings.title': 'Ustawienia',
@@ -411,9 +387,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 'g',
 		'progress.minute': 'm',
-		'progress.second': 's',
-		'knowledge.knownWord': 'To słowo jest moim znanym.',
-		'knowledge.unknownWord': 'To słowo jest moim nieznanym.'
+		'progress.second': 's'
 	},
 	pt: {
 		'settings.title': 'Configurações',
@@ -442,9 +416,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's',
-		'knowledge.knownWord': 'Eu conheço essa palavra.',
-		'knowledge.unknownWord': 'Eu não conheço essa palavra.'
+		'progress.second': 's'
 	},
 	ro: {
 		'settings.title': 'Setări',
@@ -474,9 +446,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'z',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's',
-		'knowledge.knownWord': 'Acest cuvânt este cunoscut.',
-		'knowledge.unknownWord': 'Acest cuvânt nu este cunoscut.'
+		'progress.second': 's'
 	},
 	ru: {
 		'settings.title': 'Настройки',
@@ -506,9 +476,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'д',
 		'progress.hour': 'ч',
 		'progress.minute': 'м',
-		'progress.second': 'с',
-		'knowledge.knownWord': 'Я знаю это слово.',
-		'knowledge.unknownWord': 'Я не знаю это слово.'
+		'progress.second': 'с'
 	},
 	da: {
 		'settings.title': 'Indstillinger',
@@ -538,9 +506,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 't',
 		'progress.minute': 'm',
-		'progress.second': 's',
-		'knowledge.knownWord': 'Jeg ved dette ord.',
-		'knowledge.unknownWord': 'Jeg ved ikke dette ord.'
+		'progress.second': 's'
 	},
 	nl: {
 		'settings.title': 'Instellingen',
@@ -570,9 +536,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 'u',
 		'progress.minute': 'm',
-		'progress.second': 's',
-		'knowledge.knownWord': 'Ik weet dit woord.',
-		'knowledge.unknownWord': 'Ik weet dit woord niet.'
+		'progress.second': 's'
 	}
 };
 

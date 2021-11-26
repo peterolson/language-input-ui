@@ -97,6 +97,38 @@ export function getProgressKey(scores: KnowledgeScores, word: string) {
 	return PROGRESS_KEYS[i];
 }
 
+function getScoreFromProgressKey(key: string) {
+	let score = 0;
+	const index = PROGRESS_KEYS.indexOf(key);
+	if (index >= 0 && index < cutoffs.length) {
+		score = cutoffs[index] + 0.1;
+	}
+	return score;
+}
+
+export function getColorFromProgressKey(key: string, isDark: boolean) {
+	const score = getScoreFromProgressKey(key);
+	return getColor(isDark, score);
+}
+
+export function setProgressKey(language: LanguageCode, words: string[], key: string) {
+	const knowledge = knowledgeCache.value;
+	knowledge[language] = knowledge[language] || {
+		totalSeconds: 0,
+		totalWords: 0,
+		scores: {}
+	};
+	const languageKnowledge = knowledge[language] as LanguageKnowledge;
+	const scores = languageKnowledge.scores as KnowledgeScores;
+	const score = getScoreFromProgressKey(key);
+	for (const word of words) {
+		if (!word) continue;
+		const w = word.toLowerCase();
+		scores[w] = [score, +new Date()];
+	}
+	commitKnowledge(knowledge);
+}
+
 export function getBreakdownByCategory(scores: KnowledgeScores, isDark: boolean) {
 	const breakdown: Record<string, { word: string; score: number; color: string }[]> = {};
 	for (const word in scores) {
@@ -131,10 +163,13 @@ export function getColor(isDark: boolean, score: number) {
 	const MIN_COLOR = isDark ? [0, 0, 0] : [255, 255, 204];
 	const MAX_COLOR = [50, 150, 50];
 	const ratio = Math.log(score - scoreMin + 1) / Math.log(scoreMax - scoreMin + 1);
-	const color = MIN_COLOR.map((min, i) => {
+	let color = MIN_COLOR.map((min, i) => {
 		const max = MAX_COLOR[i];
 		return Math.round(min + (max - min) * ratio);
 	});
+	if (score === 0) {
+		color = isDark ? [0, 0, 0] : [255, 255, 255];
+	}
 	return `rgb(${color.join(',')})`;
 }
 

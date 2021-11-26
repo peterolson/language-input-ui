@@ -75,6 +75,7 @@
 				<span
 					data-lemma={token.lemma}
 					class:word={token.isWord}
+					class:nonWord={!token.isWord}
 					class:lemmaUnknown={isLemmaUnknown(knowledge, lang, token, $isTraditional)}
 					class:wordUnknown={isWordUnknown(knowledge, lang, token, $isTraditional)}
 					class:lookedUp={lookedUpWords.has(token.text.toLowerCase())}
@@ -108,6 +109,12 @@
 	.word.lookedUp {
 		background-color: rgba(255, 230, 0, 0.25);
 		border-color: rgba(255, 230, 0, 0.4);
+	}
+
+	.nonWord {
+		margin-left: -2px;
+		margin-right: -2px;
+		padding: 0;
 	}
 
 	.line {

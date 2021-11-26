@@ -13,8 +13,10 @@
 		seek: () => {},
 		play: () => {},
 		onLoad: (fn: () => void) => {
-			fn();
 			loadListeners.push(fn);
+		},
+		clearListeners: () => {
+			loadListeners = [];
 		}
 	};
 

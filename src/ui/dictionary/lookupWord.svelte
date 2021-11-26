@@ -8,10 +8,7 @@
 	import IconButton from '@smui/icon-button';
 	import { createEventDispatcher } from 'svelte';
 	import { settings } from '../../data/settings';
-	import Switch from '@smui/switch';
-	import { isKnown, knowledgeStore, markKnown, markUnknown } from '../../data/knowledge';
-	import type { Knowledge } from '../../types/knowledge.types';
-	import { t } from '../../i18n/i18n';
+	import KnowledgeLevelSelector from './knowledgeLevelSelector.svelte';
 
 	const dispatch = createEventDispatcher();
 	const { isTraditional } = settings;
@@ -32,33 +29,6 @@
 	}
 	function onFold() {
 		dispatch('fold');
-	}
-
-	function isWordKnown(
-		knowledge: Knowledge,
-		lang: LanguageCode,
-		token: Token,
-		isTraditional: boolean
-	) {
-		if (!token?.isWord) return false;
-		const text = isTraditional && token.tradText ? token.tradText : token.text;
-		return isKnown(knowledge, lang, text);
-	}
-
-	let knowsWord = isWordKnown($knowledgeStore, fromLang, token, $isTraditional);
-	$: {
-		knowsWord = isWordKnown($knowledgeStore, fromLang, token, $isTraditional);
-	}
-
-	function toggleWordKnown(lang: LanguageCode, token: Token, isTraditional: boolean) {
-		const text = isTraditional && token.tradText ? token.tradText : token.text;
-		if (knowsWord) {
-			markUnknown([text], lang);
-			dispatch('markUnknown', token);
-		} else {
-			markKnown([text], lang);
-			dispatch('markKnown', token);
-		}
 	}
 </script>
 
@@ -94,18 +64,7 @@
 				{/each}
 			</div>
 		{/if}
-		<!-- svelte-ignore a11y-label-has-associated-control -->
-		<label class="space-between mdc-typography--caption">
-			<span style="opacity:0.7">
-				{knowsWord ? $t('knowledge.knownWord') : $t('knowledge.unknownWord')}
-			</span>
-			<div>
-				<Switch
-					checked={knowsWord}
-					on:click={() => toggleWordKnown(fromLang, token, $isTraditional)}
-				/>
-			</div>
-		</label>
+		<KnowledgeLevelSelector {token} lang={fromLang} {dispatch} />
 		{#if lookupResult?.translations}
 			{#each lookupResult.translations as translation, i}
 				<div class="result" in:fade>

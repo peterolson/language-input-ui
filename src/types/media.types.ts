@@ -21,4 +21,5 @@ export type MediaControls = {
 	play: () => void;
 	seek: (time: number) => void;
 	onLoad: (fn: () => void) => void;
+	clearListeners: () => void;
 };

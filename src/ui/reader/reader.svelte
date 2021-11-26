@@ -98,6 +98,8 @@
 		swipeMove(e.clientX);
 	}
 	function onTouchEnd(e: TouchEvent) {
+		const target = e.target as HTMLElement;
+		if (['span', 'i', 'button'].includes(target.tagName.toLowerCase())) return; // prevent swiping on button taps
 		swipeEnd();
 	}
 	function onMouseUp(e: MouseEvent) {
@@ -123,13 +125,13 @@
 		}
 		if (1 <= currentPage + n) {
 			if (n > 0) markWordsOnCurrentPage();
+			saveViewProgress();
 			contentDiv.scrollTo({
 				left: contentDiv.clientWidth * (currentPage - 1 + n),
 				behavior: 'smooth'
 			});
 			currentPage += n;
 			updateProgress();
-			saveViewProgress();
 		}
 	}
 
@@ -211,6 +213,7 @@
 
 	function onSeek(e: CustomEvent<{ time: number }>) {
 		if (mediaView) {
+			mediaView.controls.clearListeners();
 			mediaView.controls.seek(e.detail.time);
 			mediaView.controls.play();
 		}
@@ -227,32 +230,32 @@
 	}
 
 	function restoreViewProgress(progress: ViewProgressItem) {
-		console.log(progress);
 		if (!progress) return;
-		mediaView.controls.onLoad(() => {
-			mediaView.controls.seek(progress.currentTime);
-			mediaView.controls.play();
-		});
+
 		lookedUpWords = new Set(progress.lookedUpWords);
-		if (progress.topTokenIndex >= 0) {
-			const tokenSpan = Array.from(contentDiv.querySelectorAll('span.word'))[
-				progress.topTokenIndex
-			] as HTMLSpanElement;
-			const tokenLeft = tokenSpan.offsetLeft;
-			const { scrollWidth } = contentDiv;
-			const interval = scrollWidth / pages;
-			let left = 0;
-			let page = 1;
-			while (left + interval < tokenLeft) {
-				left += interval;
-				page++;
-			}
-			contentDiv.scrollTo({
-				left,
-				behavior: 'smooth'
-			});
-			currentPage = page;
+		const tokenSpan = Array.from(contentDiv.querySelectorAll('span.word'))[
+			progress.topTokenIndex
+		] as HTMLSpanElement;
+		const { scrollWidth } = contentDiv;
+		const tokenLeft = tokenSpan.offsetLeft - contentDiv.offsetLeft;
+		const interval = scrollWidth / pages;
+		let left = 0;
+		let page = 1;
+		while (left + interval < tokenLeft) {
+			left += interval;
+			page++;
 		}
+		contentDiv.scrollLeft = left;
+		mediaView.controls.onLoad(() => {
+			const topLineButton = tokenSpan?.parentNode?.parentNode?.querySelector('button');
+			if (topLineButton) topLineButton.click();
+			else {
+				mediaView.controls.seek(progress.currentTime);
+				mediaView.controls.play();
+			}
+		});
+		currentPage = page;
+		updateProgress();
 	}
 </script>
 
