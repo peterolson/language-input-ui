@@ -41,9 +41,7 @@
 			{#each combined as word, i}
 				<div
 					class="mdc-typography--body2 word"
-					style={`background-color:${
-						lookedUp.includes(word) ? 'var(--highlight-color)' : wordColor(word, $darkMode)
-					}`}
+					style={`background-color:${wordColor(word, $darkMode)}`}
 					in:fade={{ duration: 1000, delay: i * 75 }}
 				>
 					{word}

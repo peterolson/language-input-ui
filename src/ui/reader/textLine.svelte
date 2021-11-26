@@ -24,6 +24,8 @@
 	}
 
 	function lookupWord(token: Token, e: MouseEvent) {
+		e.preventDefault();
+		e.stopPropagation();
 		if (!token.isWord) return;
 		dispatch('lookup', { token, target: e.target });
 	}
@@ -74,7 +76,6 @@
 				<span
 					data-lemma={token.lemma}
 					class:word={token.isWord}
-					class:selected={selectedToken === token}
 					class:lemmaUnknown={isLemmaUnknown(knowledge, lang, token, $isTraditional)}
 					class:wordUnknown={isWordUnknown(knowledge, lang, token, $isTraditional)}
 					class:lookedUp={lookedUpWords.has(token.text.toLowerCase())}
@@ -94,17 +95,20 @@
 		display: inline-block;
 		border: 1px solid transparent;
 		border-radius: 5px;
+		margin: 1px;
+		padding: 1px;
 		transition: border-color 0.5s ease-in-out;
 		transition: background-color 0.5s ease-in-out;
 	}
 	.word.lemmaUnknown {
-		background-color: rgba(0, 0, 255, 0.2);
+		background-color: rgba(255, 115, 0, 0.15);
 	}
 	.word.wordUnknown {
-		border-color: rgba(0, 0, 255, 0.5);
+		border-color: rgba(255, 115, 0, 0.2);
 	}
 	.word.lookedUp {
-		background-color: rgba(255, 230, 0, 0.5);
+		background-color: rgba(255, 230, 0, 0.25);
+		border-color: rgba(255, 230, 0, 0.4);
 	}
 
 	.line {
@@ -118,11 +122,8 @@
 		transition: background-color 0.5s ease-in-out; /* fade out time*/
 	}
 
-	.selected {
-		text-decoration: underline;
-	}
 	.isCurrent {
-		background-color: var(--border-color);
+		background-color: rgba(128, 128, 128, 0.2);
 		transition: background-color 0.5s ease-in-out; /* fade in time*/
 	}
 	.icon {

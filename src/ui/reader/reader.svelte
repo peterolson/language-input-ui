@@ -13,6 +13,7 @@
 	import SidePanel from './sidePanel.svelte';
 	import TextLine from './textLine.svelte';
 	import { addViewToHistory } from '../../data/history';
+	import { fade } from 'svelte/transition';
 
 	export let content: ContentItem;
 	const { media, parsedText, lang, timings } = content;
@@ -179,6 +180,21 @@
 		markUnknown([selectedToken.text, selectedToken.lemma], content.lang);
 	}
 
+	function closeDictionary() {
+		selectedToken = null;
+	}
+
+	function onRemoveLookedupWord(e: CustomEvent<Token>) {
+		const token = e.detail;
+		lookedUpWords.delete(token.text.toLowerCase());
+		lookedUpWords = new Set(lookedUpWords);
+	}
+	function onAddLookedupWord(e: CustomEvent<Token>) {
+		const token = e.detail;
+		lookedUpWords.add(token.text.toLowerCase());
+		lookedUpWords = new Set(lookedUpWords);
+	}
+
 	function onSeek(e: CustomEvent<{ time: number }>) {
 		if (mediaView) {
 			mediaView.controls.seek(e.detail.time);
@@ -200,10 +216,10 @@
 	on:touchend={onTouchEnd}
 	on:mouseup={onMouseUp}
 >
-	<div class="leftPanel">
+	<div class="leftPanel" on:click={closeDictionary}>
 		<SidePanel {content} />
 	</div>
-	<div class="contentContainer">
+	<div class="contentContainer" on:click={closeDictionary}>
 		{#if isFinished}
 			<div class="content finished" bind:this={contentDiv}>
 				<Finished
@@ -259,6 +275,7 @@
 		class:displayAtTop={displayDictionaryAtTop}
 		class:hidden={!selectedToken}
 		class:fullScreen={fullScreenLookup}
+		in:fade
 	>
 		{#if selectedToken}
 			{#key `${$userLanguage} ${selectedToken.text}`}
@@ -267,6 +284,8 @@
 					fromLang={lang}
 					toLang={$userLanguage}
 					fullScreen={fullScreenLookup}
+					on:markKnown={onRemoveLookedupWord}
+					on:markUnknown={onAddLookedupWord}
 					on:close={() => {
 						selectedToken = null;
 						fullScreenLookup = false;
@@ -337,6 +356,7 @@
 
 	.leftPanel {
 		flex: 1;
+		height: 100%;
 	}
 
 	@media (max-width: 1200px) {
@@ -356,7 +376,7 @@
 			bottom: 0;
 			left: 0;
 			right: 0;
-			height: 180px;
+			height: 40vh;
 			background-color: var(--theme-background);
 			border-top: 1px solid var(--border-color);
 		}
