@@ -4,6 +4,7 @@ import { LanguageCode } from '../types/dictionary.types';
 import { charInCJK } from './util';
 import type { ContentItem } from 'src/types/content.types';
 import { cachedData } from './cachedData';
+import { addToProgress, setProgress } from './progressData';
 
 const knowledgeCache = cachedData<Knowledge>({}, 'knowledge');
 export const knowledgeStore = knowledgeCache.store;
@@ -34,6 +35,7 @@ const markPoints = (points: number) => (words: string[], language: LanguageCode)
 			newWords.push(word);
 		}
 	}
+	setProgress(language, 'wordsKnown', Object.keys(scores).filter((x) => scores[x][0] > 0).length);
 	commitKnowledge(knowledge);
 	return newWords;
 };
@@ -52,6 +54,8 @@ export function finishReading(content: ContentItem) {
 	const languageKnowledge = knowledge[language] as LanguageKnowledge;
 	languageKnowledge.totalSeconds += content.duration || 0;
 	languageKnowledge.totalWords += content.wordCount;
+	addToProgress(language, 'timeWatched', content.duration || 0);
+	addToProgress(language, 'wordsRead', content.wordCount);
 	commitKnowledge(knowledge);
 }
 

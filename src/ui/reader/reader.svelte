@@ -325,31 +325,33 @@
 			<RatingDialog open={dialogOpen} on:close={onDialogClose} id={content._id} />
 		{/if}
 	</div>
-	<div
-		class="dictionary mdc-elevation--z6"
-		class:displayAtTop={displayDictionaryAtTop}
-		class:hidden={!selectedToken}
-		class:fullScreen={fullScreenLookup}
-		in:fade
-	>
-		{#if selectedToken}
-			{#key `${$userLanguage} ${selectedToken.text}`}
-				<LookupWord
-					token={selectedToken}
-					fromLang={lang}
-					toLang={$userLanguage}
-					fullScreen={fullScreenLookup}
-					on:markKnown={onRemoveLookedupWord}
-					on:markUnknown={onAddLookedupWord}
-					on:close={() => {
-						selectedToken = null;
-						fullScreenLookup = false;
-					}}
-					on:fold={() => (fullScreenLookup = !fullScreenLookup)}
-				/>
-			{/key}
-		{/if}
-	</div>
+	{#if !isFinished}
+		<div
+			class="dictionary mdc-elevation--z6"
+			class:displayAtTop={displayDictionaryAtTop}
+			class:hidden={!selectedToken}
+			class:fullScreen={fullScreenLookup}
+			in:fade
+		>
+			{#if selectedToken}
+				{#key `${$userLanguage} ${selectedToken.text}`}
+					<LookupWord
+						token={selectedToken}
+						fromLang={lang}
+						toLang={$userLanguage}
+						fullScreen={fullScreenLookup}
+						on:markKnown={onRemoveLookedupWord}
+						on:markUnknown={onAddLookedupWord}
+						on:close={() => {
+							selectedToken = null;
+							fullScreenLookup = false;
+						}}
+						on:fold={() => (fullScreenLookup = !fullScreenLookup)}
+					/>
+				{/key}
+			{/if}
+		</div>
+	{/if}
 </div>
 
 <style lang="scss">
@@ -363,6 +365,7 @@
 	}
 	.contentContainer {
 		display: flex;
+		flex: 2;
 		flex-direction: column;
 		height: 100%;
 	}
@@ -376,9 +379,11 @@
 		column-gap: 0px;
 	}
 	.content.finished {
-		overflow: auto;
 		column-width: unset !important;
 		column-gap: unset;
+		width: unset !important;
+		max-width: unset;
+		overflow: auto;
 	}
 
 	.dictionary {

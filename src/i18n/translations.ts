@@ -29,7 +29,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's'
+		'progress.second': 's',
+		'progress.week': 'Week',
+		'progress.month': 'Month',
+		'progress.year': 'Year',
+		'progress.allTime': 'All time',
+		'progress.wordsKnown': 'Words known',
+		'progress.wordsRead': 'Words read',
+		'progress.timeWatched': 'Time watched'
 	},
 	es: {
 		'settings.title': 'Preferencias',
@@ -58,7 +65,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's'
+		'progress.second': 's',
+		'progress.week': 'Semana',
+		'progress.month': 'Mes',
+		'progress.year': 'Año',
+		'progress.allTime': 'Todo el tiempo',
+		'progress.wordsKnown': 'Palabras conocidas',
+		'progress.wordsRead': 'Palabras leídas',
+		'progress.timeWatched': 'Tiempo visto'
 	},
 	zh: {
 		'settings.title': '设置',
@@ -87,7 +101,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': '天',
 		'progress.hour': '小时',
 		'progress.minute': '分钟',
-		'progress.second': '秒'
+		'progress.second': '秒',
+		'progress.week': '周',
+		'progress.month': '月',
+		'progress.year': '年',
+		'progress.allTime': '所有时间',
+		'progress.wordsKnown': '已知词数',
+		'progress.wordsRead': '已读词数',
+		'progress.timeWatched': '观看时间'
 	},
 	ca: {
 		'settings.title': 'Preferències',
@@ -117,7 +138,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's'
+		'progress.second': 's',
+		'progress.week': 'Setmana',
+		'progress.month': 'Mes',
+		'progress.year': 'Any',
+		'progress.allTime': 'Tot el temps',
+		'progress.wordsKnown': 'Paraules conegudes',
+		'progress.wordsRead': 'Paraules llegides',
+		'progress.timeWatched': 'Temps vist'
 	},
 	fr: {
 		'settings.title': 'Paramètres',
@@ -147,7 +175,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'j',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's'
+		'progress.second': 's',
+		'progress.week': 'Semaine',
+		'progress.month': 'Mois',
+		'progress.year': 'Année',
+		'progress.allTime': 'Tout le temps',
+		'progress.wordsKnown': 'Mots connus',
+		'progress.wordsRead': 'Mots lus',
+		'progress.timeWatched': 'Temps vu'
 	},
 	de: {
 		'settings.title': 'Einstellungen',
@@ -177,7 +212,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'T',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's'
+		'progress.second': 's',
+		'progress.week': 'Woche',
+		'progress.month': 'Monat',
+		'progress.year': 'Jahr',
+		'progress.allTime': 'Alle Zeit',
+		'progress.wordsKnown': 'Wörter bekannt',
+		'progress.wordsRead': 'Wörter gelesen',
+		'progress.timeWatched': 'Zeit gesehen'
 	},
 	el: {
 		'settings.title': 'Ρυθμίσεις',
@@ -207,7 +249,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'η',
 		'progress.hour': 'ώ',
 		'progress.minute': 'λ',
-		'progress.second': 'δ'
+		'progress.second': 'δ',
+		'progress.week': 'Εβδομάδα',
+		'progress.month': 'Μήνας',
+		'progress.year': 'Έτος',
+		'progress.allTime': 'Όλο το χρόνο',
+		'progress.wordsKnown': 'Γνωστές λέξεις',
+		'progress.wordsRead': 'Λέξεις που διαβάστηκαν',
+		'progress.timeWatched': 'Χρόνος που παρακολουθήθηκε'
 	},
 	it: {
 		'settings.title': 'Impostazioni',
@@ -237,7 +286,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'g',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's'
+		'progress.second': 's',
+		'progress.week': 'Settimana',
+		'progress.month': 'Mese',
+		'progress.year': 'Anno',
+		'progress.allTime': 'Tutto il tempo',
+		'progress.wordsKnown': 'Parole conosciute',
+		'progress.wordsRead': 'Parole lette',
+		'progress.timeWatched': 'Tempo guardato'
 	},
 	ja: {
 		'settings.title': '設定',
@@ -267,7 +323,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': '日',
 		'progress.hour': '時間',
 		'progress.minute': '分',
-		'progress.second': '秒'
+		'progress.second': '秒',
+		'progress.week': '週',
+		'progress.month': '月',
+		'progress.year': '年',
+		'progress.allTime': 'すべての時間',
+		'progress.wordsKnown': '知っている単語',
+		'progress.wordsRead': '読んだ単語の総数',
+		'progress.timeWatched': '視聴時間'
 	},
 	lt: {
 		'settings.title': 'Nustatymai',
@@ -297,7 +360,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 'v',
 		'progress.minute': 'm',
-		'progress.second': 's'
+		'progress.second': 's',
+		'progress.week': 'Savaitė',
+		'progress.month': 'Mėnuo',
+		'progress.year': 'Metai',
+		'progress.allTime': 'Viso laiko',
+		'progress.wordsKnown': 'Žodžių žinomi',
+		'progress.wordsRead': 'Žodžių perskaityta',
+		'progress.timeWatched': 'Peržiūrėta laiko'
 	},
 	mk: {
 		'settings.title': 'Поставки',
@@ -327,7 +397,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'д',
 		'progress.hour': 'ч',
 		'progress.minute': 'м',
-		'progress.second': 'с'
+		'progress.second': 'с',
+		'progress.week': 'Седмица',
+		'progress.month': 'Месец',
+		'progress.year': 'Година',
+		'progress.allTime': 'Вкупно време',
+		'progress.wordsKnown': 'Познати речи',
+		'progress.wordsRead': 'Речи прочитани',
+		'progress.timeWatched': 'Време прочитано'
 	},
 	nb: {
 		'settings.title': 'Innstillinger',
@@ -357,7 +434,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 't',
 		'progress.minute': 'm',
-		'progress.second': 's'
+		'progress.second': 's',
+		'progress.week': 'Uke',
+		'progress.month': 'Måned',
+		'progress.year': 'År',
+		'progress.allTime': 'Hele tiden',
+		'progress.wordsKnown': 'Ord kjent',
+		'progress.wordsRead': 'Ord lest',
+		'progress.timeWatched': 'Tid sett'
 	},
 	pl: {
 		'settings.title': 'Ustawienia',
@@ -387,7 +471,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 'g',
 		'progress.minute': 'm',
-		'progress.second': 's'
+		'progress.second': 's',
+		'progress.week': 'Tydzień',
+		'progress.month': 'Miesiąc',
+		'progress.year': 'Rok',
+		'progress.allTime': 'Cały czas',
+		'progress.wordsKnown': 'Znane słowa',
+		'progress.wordsRead': 'Przeczytane słowa',
+		'progress.timeWatched': 'Czas oglądania'
 	},
 	pt: {
 		'settings.title': 'Configurações',
@@ -416,7 +507,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's'
+		'progress.second': 's',
+		'progress.week': 'Semana',
+		'progress.month': 'Mês',
+		'progress.year': 'Ano',
+		'progress.allTime': 'Todo o tempo',
+		'progress.wordsKnown': 'Palavras conhecidas',
+		'progress.wordsRead': 'Palavras lidas',
+		'progress.timeWatched': 'Tempo assistido'
 	},
 	ro: {
 		'settings.title': 'Setări',
@@ -446,7 +544,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'z',
 		'progress.hour': 'h',
 		'progress.minute': 'm',
-		'progress.second': 's'
+		'progress.second': 's',
+		'progress.week': 'Săptămână',
+		'progress.month': 'Lună',
+		'progress.year': 'An',
+		'progress.allTime': 'Toată durata',
+		'progress.wordsKnown': 'Cuvinte cunoscute',
+		'progress.wordsRead': 'Cuvinte citite',
+		'progress.timeWatched': 'Timpul vorbit'
 	},
 	ru: {
 		'settings.title': 'Настройки',
@@ -476,7 +581,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'д',
 		'progress.hour': 'ч',
 		'progress.minute': 'м',
-		'progress.second': 'с'
+		'progress.second': 'с',
+		'progress.week': 'Неделя',
+		'progress.month': 'Месяц',
+		'progress.year': 'Год',
+		'progress.allTime': 'Все время',
+		'progress.wordsKnown': 'Знакомые слова',
+		'progress.wordsRead': 'Слова прочитано',
+		'progress.timeWatched': 'Время просмотра'
 	},
 	da: {
 		'settings.title': 'Indstillinger',
@@ -506,7 +618,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 't',
 		'progress.minute': 'm',
-		'progress.second': 's'
+		'progress.second': 's',
+		'progress.week': 'Uge',
+		'progress.month': 'Måned',
+		'progress.year': 'År',
+		'progress.allTime': 'Hele tiden',
+		'progress.wordsKnown': 'Værker kendt',
+		'progress.wordsRead': 'Ord læst',
+		'progress.timeWatched': 'Tid set'
 	},
 	nl: {
 		'settings.title': 'Instellingen',
@@ -536,7 +655,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.day': 'd',
 		'progress.hour': 'u',
 		'progress.minute': 'm',
-		'progress.second': 's'
+		'progress.second': 's',
+		'progress.week': 'Week',
+		'progress.month': 'Maand',
+		'progress.year': 'Jaar',
+		'progress.allTime': 'Alle tijd',
+		'progress.wordsKnown': 'Bekende woorden',
+		'progress.wordsRead': 'Woorden gelezen',
+		'progress.timeWatched': 'Tijd bekeken'
 	}
 };
 

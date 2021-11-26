@@ -6,14 +6,15 @@
 	export let type: string;
 	export let items: { word: string; score: number; color: string }[];
 
-	let wordsDiv: HTMLDivElement;
-	let isExpanded: boolean = false;
+	const DEFAULT_LIMIT = 50;
+	let limit = DEFAULT_LIMIT;
 
-	function canExpand(wordsDiv: HTMLDivElement) {
-		if (!wordsDiv) {
-			return false;
+	function expand() {
+		if (limit < items.length) {
+			limit += DEFAULT_LIMIT;
+		} else {
+			limit = DEFAULT_LIMIT;
 		}
-		return wordsDiv.scrollHeight > wordsDiv.clientHeight;
 	}
 </script>
 
@@ -22,16 +23,16 @@
 		<span class="title">{$t('progress.' + type)}</span>
 		<span><strong>{items.length}</strong></span>
 	</div>
-	<div class="words" bind:this={wordsDiv} class:expanded={isExpanded}>
-		{#each items as item}
+	<div class="words">
+		{#each items.slice(0, limit) as item}
 			<div class="word mdc-typography--body2" style={`background-color:${item.color}`}>
 				{item.word}
 			</div>
 		{/each}
 	</div>
-	{#if canExpand(wordsDiv)}
-		<IconButton class="material-icons" on:click={() => (isExpanded = !isExpanded)}>
-			{isExpanded ? 'expand_less' : 'expand_more'}
+	{#if items.length > DEFAULT_LIMIT}
+		<IconButton class="material-icons" on:click={expand}>
+			{limit < items.length ? 'expand_more' : 'expand_less'}
 		</IconButton>
 	{/if}
 </div>
@@ -47,14 +48,6 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-	}
-
-	.words {
-		max-height: 100px;
-		overflow: hidden;
-	}
-	.words.expanded {
-		max-height: none;
 	}
 
 	.word {

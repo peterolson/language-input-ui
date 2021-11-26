@@ -1,20 +1,18 @@
 <script lang="ts">
 	import type { KnowledgeScores, LanguageKnowledge } from '../../types/knowledge.types';
-
 	import { getBreakdownByCategory, knowledgeStore } from '../../data/knowledge';
-	import { LanguageCode, languageNames } from '../../types/dictionary.types';
+	import type { LanguageCode } from '../../types/dictionary.types';
 	import { t } from '../../i18n/i18n';
 	import ProgressCategory from './progressCategory.svelte';
 	import { settings } from '../../data/settings';
+	import ProgressChart from './progressChart.svelte';
 
 	export let language: LanguageCode;
-	const languageName = languageNames[language];
 
 	const { darkMode } = settings;
 
 	const knowledge = ($knowledgeStore[language] || {}) as LanguageKnowledge;
 	const knowledgeScores = (knowledge?.scores || {}) as KnowledgeScores;
-	const knownWords = Object.keys(knowledgeScores).filter((word) => knowledgeScores[word][0] > 0);
 
 	let breakdown: { type: string; items: { word: string; score: number; color: string }[] }[];
 	$: {
@@ -44,14 +42,12 @@
 </script>
 
 <div class="container">
-	<div class="mdc-typography--body1 space-between">
-		<span class="title">{languageName}</span>
-		<span>{$t('card.words')}: <strong>{knownWords.length}</strong></span>
-	</div>
 	<ul class="mdc-typography--body1">
 		<li>{$t('progress.totalWordsRead')}: {knowledge.totalWords}</li>
 		<li>{$t('progress.totalTimeRead')}: {durationToTime(knowledge.totalSeconds, $t)}</li>
 	</ul>
+	<ProgressChart {language} />
+
 	{#each breakdown as { type, items }}
 		<ProgressCategory {type} {items} />
 	{/each}
@@ -60,13 +56,5 @@
 <style>
 	.container {
 		padding: 8px;
-	}
-	.title {
-		font-size: 125%;
-	}
-	.space-between {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
 	}
 </style>
