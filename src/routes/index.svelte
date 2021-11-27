@@ -2,4 +2,4 @@
 	import ContentList from '../ui/content/ContentList.svelte';
 </script>
 
-<ContentList requestPath="/content/newest?" />
+<ContentList requestHandler="/content/newest?" />

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import IconButton from '@smui/icon-button';
+	import { historyStore } from '../data/history';
 	import { knowledgeStore } from '../data/knowledge';
 	import SettingsDialog from '../ui/settings/settingsDialog.svelte';
 
@@ -15,6 +16,11 @@
 			<a sveltekit:prefetch href="/">Language Input</a>
 		</div>
 		<div>
+			{#if $historyStore.length}
+				<a href="/content/history" sveltekit:prefetch>
+					<IconButton class="material-icons" color="secondary">history</IconButton>
+				</a>
+			{/if}
 			{#if Object.keys($knowledgeStore).length}
 				<a href="/progress" sveltekit:prefetch>
 					<IconButton class="material-icons" color="secondary">insights</IconButton>

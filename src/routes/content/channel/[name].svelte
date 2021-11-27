@@ -18,4 +18,4 @@
 	console.log(name);
 </script>
 
-<ContentList requestPath={`/content/channel?name=${name}&`} />
+<ContentList requestHandler={`/content/channel?name=${name}&`} />

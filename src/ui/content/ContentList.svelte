@@ -7,7 +7,9 @@
 	import { t } from '../../i18n/i18n';
 	import { getViewedContentIds, historyStore } from '../../data/history';
 
-	export let requestPath: string;
+	export let requestHandler:
+		| string
+		| ((skip: number, limit: number, langs: string) => Promise<ContentItemSummary[]>);
 	const { targetLanguages } = settings;
 
 	let skip = 0;
@@ -18,7 +20,7 @@
 	let isLoadingMore = false;
 
 	function getSkeletons(length: number): SkeletonItem[] {
-		return Array.apply(null, Array(limit)).map(function (x, i) {
+		return Array.apply(null, Array(length)).map(function (x, i) {
 			return { _id: 'empty' + i, skeleton: true };
 		});
 	}
@@ -36,8 +38,13 @@
 			limit = getLimit(container);
 			const langs = $targetLanguages.join('|');
 			const viewedIds = getViewedContentIds($historyStore);
-			const list = langs.length
-				? await fetch(`${endpoint}${requestPath}langs=${langs}&skip=${skip}&limit=${limit}`, {
+			let list = [];
+			if (typeof requestHandler === 'function') {
+				list = await requestHandler(skip, limit, langs);
+			} else if (langs.length) {
+				list = await fetch(
+					`${endpoint}${requestHandler}langs=${langs}&skip=${skip}&limit=${limit}`,
+					{
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json'
@@ -45,8 +52,9 @@
 						body: JSON.stringify({
 							viewedIds
 						})
-				  }).then((x) => x.json())
-				: [];
+					}
+				).then((x) => x.json());
+			}
 			if (!list.length) {
 				reachedEnd = true;
 			}
