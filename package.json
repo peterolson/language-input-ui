@@ -19,6 +19,7 @@
 		"@smui/switch": "^5.0.1",
 		"@smui/tab": "^5.0.1",
 		"@smui/tab-bar": "^5.0.1",
+		"@smui/textfield": "^5.0.1",
 		"@sveltejs/kit": "next",
 		"@types/events": "^3.0.0",
 		"@types/yt-player": "^3.5.1",

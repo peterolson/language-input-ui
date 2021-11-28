@@ -13,9 +13,17 @@
 <div class="container">
 	<div class="topBar">
 		<div class="mdc-typography--headline6">
-			<a sveltekit:prefetch href="/">Language Input</a>
+			<a sveltekit:prefetch href="/">
+				<span class="titleIcon">
+					<IconButton class="material-icons">home</IconButton>
+				</span>
+				<span class="title">Language Input</span>
+			</a>
 		</div>
 		<div>
+			<a href="/add" sveltekit:prefetch>
+				<IconButton class="material-icons" color="secondary">add_box</IconButton>
+			</a>
 			{#if $historyStore.length}
 				<a href="/content/history" sveltekit:prefetch>
 					<IconButton class="material-icons" color="secondary">history</IconButton>
@@ -27,6 +35,9 @@
 				</a>
 			{/if}
 			<IconButton class="material-icons" on:click={toggleSettings}>settings</IconButton>
+			<a href="/account/login" sveltekit:prefetch>
+				<IconButton class="material-icons" color="secondary">login</IconButton>
+			</a>
 		</div>
 	</div>
 	<div class="content"><slot /></div>
@@ -39,6 +50,19 @@
 		text-decoration: none;
 		color: unset;
 	}
+	.titleIcon {
+		vertical-align: middle;
+		display: none;
+	}
+	@media (max-width: 410px) {
+		.titleIcon {
+			display: inline;
+		}
+		.title {
+			display: none;
+		}
+	}
+
 	.topBar {
 		display: flex;
 		justify-content: space-between;
