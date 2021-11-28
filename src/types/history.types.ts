@@ -1,6 +1,6 @@
 export type UserHistory = HistoryItem[];
 
-export type HistoryAction = 'view';
+export type HistoryAction = 'view' | 'import';
 
 export type HistoryItem = {
 	id: string;

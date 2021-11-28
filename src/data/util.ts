@@ -1,3 +1,5 @@
+import { LanguageCode } from '../types/dictionary.types';
+
 // http://www.unicode.org/reports/tr38/#BlockListing
 export function charInCJK(char: string) {
 	const codePoint = char.codePointAt(0) as number;
@@ -14,4 +16,12 @@ export function charInCJK(char: string) {
 		(0x30000 <= codePoint && codePoint <= 0x3134a) || // CJK Unified Ideographs Extension G
 		(0x2f800 <= codePoint && codePoint <= 0x2fa1d)
 	); // 	CJK Compatibility Supplement
+}
+
+export function normalizeLanguageCode(code: string): LanguageCode {
+	const normalized = code.toLowerCase().slice(0, 2);
+	if (normalized === 'no') {
+		return LanguageCode.Norwegian;
+	}
+	return normalized as LanguageCode;
 }

@@ -272,9 +272,11 @@
 	on:touchend={onTouchEnd}
 	on:mouseup={onMouseUp}
 >
-	<div class="leftPanel" on:click={closeDictionary}>
-		<SidePanel {content} />
-	</div>
+	{#if !isFinished}
+		<div class="leftPanel" on:click={closeDictionary}>
+			<SidePanel {content} />
+		</div>
+	{/if}
 	<div class="contentContainer" on:click={closeDictionary}>
 		{#if isFinished}
 			<div class="content finished" bind:this={contentDiv}>
@@ -301,6 +303,7 @@
 							on:lookup={onLookup}
 							{currentTime}
 							timing={timings[i]}
+							nextTiming={timings[i + 1]}
 							knowledge={$knowledgeStore}
 							lang={content.lang}
 							{lookedUpWords}

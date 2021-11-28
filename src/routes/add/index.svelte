@@ -1,19 +1,20 @@
 <script>
 	import Button from '@smui/button/Button.svelte';
 	import { Icon } from '@smui/common';
+	import { t } from '../../i18n/i18n';
 </script>
 
 <div class="container">
 	<a href="/add/youtube" sveltekit:prefetch>
 		<Button variant="unelevated" style="width:100%">
 			<Icon class="material-icons">video_library</Icon>
-			Import YouTube video
+			{$t('add.importYouTube')}
 		</Button>
 	</a>
 	<a href="/add/text" sveltekit:prefetch>
 		<Button variant="unelevated" style="width:100%">
 			<Icon class="material-icons">post_add</Icon>
-			Upload text with audio
+			{$t('add.importText')}
 		</Button>
 	</a>
 </div>

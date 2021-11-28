@@ -14,6 +14,7 @@
 	export let line: TextLine;
 	export let currentTime: number;
 	export let timing: [number, number] = [-1, -1];
+	export let nextTiming: [number, number] | undefined;
 	export let lang: LanguageCode;
 	export let knowledge: Knowledge;
 	export let lookedUpWords: Set<string>;
@@ -58,11 +59,24 @@
 		const text = isTraditional && token.tradText ? token.tradText : token.text;
 		return !isKnown(knowledge, lang, text);
 	}
+
+	function isCurrent(
+		currentTime: number,
+		timing: [number, number],
+		nextTiming: [number, number] | undefined
+	) {
+		const afterStart = timing[0] - 0.25 <= currentTime;
+		let beforeEnd = currentTime <= timing[1];
+		if (nextTiming) {
+			beforeEnd = beforeEnd && currentTime <= nextTiming[0];
+		}
+		return afterStart && beforeEnd;
+	}
 </script>
 
 <div
 	class="mdc-typography--body1 line"
-	class:isCurrent={timing[0] - 0.25 <= currentTime && currentTime <= timing[1]}
+	class:isCurrent={isCurrent(currentTime, timing, nextTiming)}
 >
 	{#if timing[0] >= 0}
 		<button class="icon" on:click={seekToLine}>
@@ -111,10 +125,13 @@
 		border-color: rgba(255, 230, 0, 0.4);
 	}
 
-	.nonWord {
+	.word + .nonWord {
 		margin-left: -2px;
-		margin-right: -2px;
 		padding: 0;
+	}
+
+	.nonWord + .word {
+		margin-left: -1px;
 	}
 
 	.line {

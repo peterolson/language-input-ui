@@ -24,37 +24,45 @@
 	let isExpanded: boolean = false;
 </script>
 
-{#if combined.length}
-	<div style="padding:8px;">
-		<div class="mdc-typography--headline6" in:fade={{ duration: 1000 }}>
-			{$t('progress.newWords')}: {newWords.length + lookedUp.length}
+<div class="container">
+	{#if combined.length}
+		<div style="padding:8px;">
+			<div class="mdc-typography--headline6" in:fade={{ duration: 1000 }}>
+				{$t('progress.newWords')}: {newWords.length + lookedUp.length}
+			</div>
+			<div class="newwords" class:expanded={isExpanded}>
+				{#each combined.slice(0, 50) as word, i}
+					<div
+						class="mdc-typography--body2 word"
+						style={`background-color:${wordColor(word, $darkMode)}`}
+						in:fade={{ duration: 1000, delay: i * 50 }}
+					>
+						{word}
+					</div>
+				{/each}
+				{#if combined.length > 50}
+					<div class="mdc-typography--body2" style="display:inline-block">...</div>
+				{/if}
+			</div>
 		</div>
-		<div class="newwords" class:expanded={isExpanded}>
-			{#each combined.slice(0, 50) as word, i}
-				<div
-					class="mdc-typography--body2 word"
-					style={`background-color:${wordColor(word, $darkMode)}`}
-					in:fade={{ duration: 1000, delay: i * 50 }}
-				>
-					{word}
-				</div>
-			{/each}
-		</div>
+	{/if}
+
+	<div class="mdc-typography--body1" in:fade={{ duration: 1000, delay: 500 }}>
+		<LanguageProgress language={content.lang} />
+
+		<a href="/" class="ok" sveltekit:prefetch>
+			<Button variant="unelevated">
+				<Icon class="material-icons">done</Icon>
+				OK
+			</Button>
+		</a>
 	</div>
-{/if}
-
-<div class="mdc-typography--body1" in:fade={{ duration: 1000, delay: 500 }}>
-	<LanguageProgress language={content.lang} />
-
-	<a href="/" sveltekit:prefetch>
-		<Button>
-			<Icon class="material-icons">done</Icon>
-			OK
-		</Button>
-	</a>
 </div>
 
 <style>
+	.container {
+		margin: auto;
+	}
 	a {
 		text-decoration: none;
 	}
@@ -71,5 +79,10 @@
 		padding: 4px;
 		border: 1px solid var(--border-color);
 		border-radius: 4px;
+	}
+
+	.ok {
+		display: block;
+		padding: 16px;
 	}
 </style>

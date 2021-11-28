@@ -115,7 +115,10 @@
 	div {
 		display: flex;
 		flex-direction: row;
-		justify-content: space-between;
+		justify-content: center;
+	}
+	div select {
+		margin: 8px;
 	}
 	canvas {
 		width: 100%;

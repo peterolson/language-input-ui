@@ -11,7 +11,7 @@ export enum LanguageCode {
 	Japanese = 'ja',
 	Lithuanian = 'lt',
 	Macedonain = 'mk',
-	Norweigan = 'nb',
+	Norwegian = 'nb',
 	Polish = 'pl',
 	Portuguese = 'pt',
 	Romanian = 'ro',

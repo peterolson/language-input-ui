@@ -12,6 +12,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'No content found.',
 		'content.continueWatching': 'Continue watching',
 		'content.history': 'History',
+		'content.uploads': 'My uploads',
 		'rating.question': 'Did you like this content?',
 		'rating.yes': 'Yes',
 		'rating.no': 'No',
@@ -37,7 +38,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'All time',
 		'progress.wordsKnown': 'Words known',
 		'progress.wordsRead': 'Words read',
-		'progress.timeWatched': 'Time watched'
+		'progress.timeWatched': 'Time watched',
+		'add.importYouTube': 'Import YouTube video',
+		'add.importText': 'Upload text with audio',
+		'add.youtubeURL': 'YouTube URL',
+		'add.loadingSubtitles': 'Loading subtitles...',
+		'add.noSubtitles': 'No subtitles found for this video.',
+		'add.import': 'Import',
+		'add.importError': 'Error importing subtitles for this content.'
 	},
 	es: {
 		'settings.title': 'Preferencias',
@@ -50,6 +58,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'No se encontraron contenidos.',
 		'content.continueWatching': 'Continuar viendo',
 		'content.history': 'Historial',
+		'content.uploads': 'Mis subidas',
 		'rating.question': '¿Te gustó este contenido?',
 		'rating.yes': 'Sí',
 		'rating.no': 'No',
@@ -74,7 +83,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Todo el tiempo',
 		'progress.wordsKnown': 'Palabras conocidas',
 		'progress.wordsRead': 'Palabras leídas',
-		'progress.timeWatched': 'Tiempo visto'
+		'progress.timeWatched': 'Tiempo visto',
+		'add.importYouTube': 'Importar vídeo de YouTube',
+		'add.importText': 'Subir texto con audio',
+		'add.youtubeURL': 'URL de YouTube',
+		'add.loadingSubtitles': 'Cargando subtítulos...',
+		'add.noSubtitles': 'No se encontraron subtítulos para este vídeo.',
+		'add.import': 'Importar',
+		'add.importError': 'Error importando subtítulos para este contenido.'
 	},
 	zh: {
 		'settings.title': '设置',
@@ -87,6 +103,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': '没有找到内容。',
 		'content.continueWatching': '继续观看',
 		'content.history': '历史',
+		'content.uploads': '我的上传',
 		'rating.question': '你觉得这个内容有用吗？',
 		'rating.yes': '是',
 		'rating.no': '否',
@@ -111,7 +128,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': '所有时间',
 		'progress.wordsKnown': '已知词数',
 		'progress.wordsRead': '已读词数',
-		'progress.timeWatched': '观看时间'
+		'progress.timeWatched': '观看时间',
+		'add.importYouTube': '从YouTube导入视频',
+		'add.importText': '上传文本和音频',
+		'add.youtubeURL': 'YouTube URL',
+		'add.loadingSubtitles': '加载字幕...',
+		'add.noSubtitles': '没有找到字幕。',
+		'add.import': '导入',
+		'add.importError': '导入字幕时出错。'
 	},
 	ca: {
 		'settings.title': 'Preferències',
@@ -124,6 +148,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': "No s'ha trobat cap contingut.",
 		'content.continueWatching': 'Continuar veient',
 		'content.history': 'Historial',
+		'content.uploads': 'Els meus arxius',
 		'rating.question': 'Has agradat aquest contingut?',
 		'rating.yes': 'Sí',
 		'rating.no': 'No',
@@ -149,7 +174,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Tot el temps',
 		'progress.wordsKnown': 'Paraules conegudes',
 		'progress.wordsRead': 'Paraules llegides',
-		'progress.timeWatched': 'Temps vist'
+		'progress.timeWatched': 'Temps vist',
+		'add.importYouTube': 'Importar vídeo de YouTube',
+		'add.importText': 'Pujar text amb àudio',
+		'add.youtubeURL': 'URL de YouTube',
+		'add.loadingSubtitles': 'Carregant subtítols...',
+		'add.noSubtitles': "No s'han trobat subtítols per a aquest vídeo.",
+		'add.import': 'Importar',
+		'add.importError': 'Error important subtítols per a aquest contingut.'
 	},
 	fr: {
 		'settings.title': 'Paramètres',
@@ -162,6 +194,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'Aucun contenu trouvé.',
 		'content.continueWatching': 'Continuer à regarder',
 		'content.history': 'Historique',
+		'content.uploads': 'Mes téléchargements',
 		'rating.question': 'Aimez-vous ce contenu?',
 		'rating.yes': 'Oui',
 		'rating.no': 'Non',
@@ -187,7 +220,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Tout le temps',
 		'progress.wordsKnown': 'Mots connus',
 		'progress.wordsRead': 'Mots lus',
-		'progress.timeWatched': 'Temps vu'
+		'progress.timeWatched': 'Temps vu',
+		'add.importYouTube': 'Importer une vidéo YouTube',
+		'add.importText': 'Importer un texte et un fichier audio',
+		'add.youtubeURL': 'URL YouTube',
+		'add.loadingSubtitles': 'Chargement des sous-titres...',
+		'add.noSubtitles': 'Aucun sous-titre trouvé pour cette vidéo.',
+		'add.import': 'Importer',
+		'add.importError': 'Erreur lors de l’importation des sous-titres.'
 	},
 	de: {
 		'settings.title': 'Einstellungen',
@@ -200,6 +240,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'Kein Inhalt gefunden.',
 		'content.continueWatching': 'Weiter ansehen',
 		'content.history': 'Verlauf',
+		'content.uploads': 'Meine Dateien',
 		'rating.question': 'Gefällt Ihnen dieser Inhalt?',
 		'rating.yes': 'Ja',
 		'rating.no': 'Nein',
@@ -225,7 +266,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Alle Zeit',
 		'progress.wordsKnown': 'Wörter bekannt',
 		'progress.wordsRead': 'Wörter gelesen',
-		'progress.timeWatched': 'Zeit gesehen'
+		'progress.timeWatched': 'Zeit gesehen',
+		'add.importYouTube': 'YouTube-Video importieren',
+		'add.importText': 'Text und Audio hochladen',
+		'add.youtubeURL': 'YouTube-URL',
+		'add.loadingSubtitles': 'Lade Untertitel...',
+		'add.noSubtitles': 'Keine Untertitel für dieses Video gefunden.',
+		'add.import': 'Importieren',
+		'add.importError': 'Fehler beim Importieren der Untertitel.'
 	},
 	el: {
 		'settings.title': 'Ρυθμίσεις',
@@ -238,6 +286,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'Δεν βρέθηκαν περιεχόμενα.',
 		'content.continueWatching': 'Συνέχεια παρακολούθησης',
 		'content.history': 'Ιστορικό',
+		'content.uploads': 'Αρχεία μου',
 		'rating.question': 'Αρέσει η περιεχόμενος;',
 		'rating.yes': 'Ναι',
 		'rating.no': 'Όχι',
@@ -263,7 +312,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Όλο το χρόνο',
 		'progress.wordsKnown': 'Γνωστές λέξεις',
 		'progress.wordsRead': 'Λέξεις που διαβάστηκαν',
-		'progress.timeWatched': 'Χρόνος που παρακολουθήθηκε'
+		'progress.timeWatched': 'Χρόνος που παρακολουθήθηκε',
+		'add.importYouTube': 'Εισαγωγή YouTube-βίντεο',
+		'add.importText': 'Εισαγωγή κειμένου και ήχου',
+		'add.youtubeURL': 'YouTube-URL',
+		'add.loadingSubtitles': 'Φόρτωση υποτίτλων...',
+		'add.noSubtitles': 'Δεν βρέθηκαν υποτίτλοι για αυτό το βίντεο.',
+		'add.import': 'Εισαγωγή',
+		'add.importError': 'Σφάλμα κατά την εισαγωγή των υποτίτλων.'
 	},
 	it: {
 		'settings.title': 'Impostazioni',
@@ -276,6 +332,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'Nessun contenuto trovato.',
 		'content.continueWatching': 'Continua a guardare',
 		'content.history': 'Cronologia',
+		'content.uploads': 'I miei file',
 		'rating.question': 'Ti piace questo contenuto?',
 		'rating.yes': 'Sì',
 		'rating.no': 'No',
@@ -301,7 +358,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Tutto il tempo',
 		'progress.wordsKnown': 'Parole conosciute',
 		'progress.wordsRead': 'Parole lette',
-		'progress.timeWatched': 'Tempo guardato'
+		'progress.timeWatched': 'Tempo guardato',
+		'add.importYouTube': 'Importa video YouTube',
+		'add.importText': 'Importa testo e audio',
+		'add.youtubeURL': 'URL YouTube',
+		'add.loadingSubtitles': 'Caricamento sottotitoli...',
+		'add.noSubtitles': 'Nessun sottotitolo trovato per questo video.',
+		'add.import': 'Importa',
+		'add.importError': "Errore durante l'importazione dei sottotitoli."
 	},
 	ja: {
 		'settings.title': '設定',
@@ -314,6 +378,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'コンテンツが見つかりませんでした。',
 		'content.continueWatching': '続きを見る',
 		'content.history': '履歴',
+		'content.uploads': 'アップロード',
 		'rating.question': 'このコンテンツが好きですか？',
 		'rating.yes': 'はい',
 		'rating.no': 'いいえ',
@@ -339,7 +404,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'すべての時間',
 		'progress.wordsKnown': '知っている単語',
 		'progress.wordsRead': '読んだ単語の総数',
-		'progress.timeWatched': '視聴時間'
+		'progress.timeWatched': '視聴時間',
+		'add.importYouTube': 'YouTube動画をインポート',
+		'add.importText': 'テキストと音声をインポート',
+		'add.youtubeURL': 'YouTube URL',
+		'add.loadingSubtitles': '字幕を読み込んでいます...',
+		'add.noSubtitles': 'この動画には字幕が見つかりませんでした。',
+		'add.import': 'インポート',
+		'add.importError': '字幕のインポート中にエラーが発生しました。'
 	},
 	lt: {
 		'settings.title': 'Nustatymai',
@@ -352,6 +424,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'Nerasta jokių turinio.',
 		'content.continueWatching': 'Tęsti peržiūrėti',
 		'content.history': 'Istorija',
+		'content.uploads': 'Įkėlimai',
 		'rating.question': 'Ar jums patinka šis turinys?',
 		'rating.yes': 'Taip',
 		'rating.no': 'Ne',
@@ -377,7 +450,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Viso laiko',
 		'progress.wordsKnown': 'Žodžių žinomi',
 		'progress.wordsRead': 'Žodžių perskaityta',
-		'progress.timeWatched': 'Peržiūrėta laiko'
+		'progress.timeWatched': 'Peržiūrėta laiko',
+		'add.importYouTube': 'Importuoti YouTube',
+		'add.importText': 'Importuoti tekstą ir garsą',
+		'add.youtubeURL': 'YouTube URL',
+		'add.loadingSubtitles': 'Įkeliama subtitrai...',
+		'add.noSubtitles': 'Šio vaizdo subtitrai nerasti.',
+		'add.import': 'Importuoti',
+		'add.importError': 'Subtitrų importavimo metu įvyko klaida.'
 	},
 	mk: {
 		'settings.title': 'Поставки',
@@ -390,6 +470,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'Не пронајдов ништо.',
 		'content.continueWatching': 'Продолжи да следиш',
 		'content.history': 'Историја',
+		'content.uploads': 'Подигнати',
 		'rating.question': 'Сакате да го оцените овој содржини?',
 		'rating.yes': 'Да',
 		'rating.no': 'Не',
@@ -415,7 +496,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Вкупно време',
 		'progress.wordsKnown': 'Познати речи',
 		'progress.wordsRead': 'Речи прочитани',
-		'progress.timeWatched': 'Време прочитано'
+		'progress.timeWatched': 'Време прочитано',
+		'add.importYouTube': 'Импортирај YouTube',
+		'add.importText': 'Импортирај текст и звук',
+		'add.youtubeURL': 'YouTube URL',
+		'add.loadingSubtitles': 'Вчитување на субтитри...',
+		'add.noSubtitles': 'Не пронајдов ништо.',
+		'add.import': 'Импортирај',
+		'add.importError': 'При вчитувањето на субтитри во текот е појавена грешка.'
 	},
 	nb: {
 		'settings.title': 'Innstillinger',
@@ -428,6 +516,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'Ingen innhold funnet.',
 		'content.continueWatching': 'Fortsett å se',
 		'content.history': 'Historie',
+		'content.uploads': 'Opplastede',
 		'rating.question': 'Vil du være en del av denne innholdet?',
 		'rating.yes': 'Ja',
 		'rating.no': 'Nei',
@@ -453,7 +542,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Hele tiden',
 		'progress.wordsKnown': 'Ord kjent',
 		'progress.wordsRead': 'Ord lest',
-		'progress.timeWatched': 'Tid sett'
+		'progress.timeWatched': 'Tid sett',
+		'add.importYouTube': 'Importer YouTube',
+		'add.importText': 'Importer tekst og lyd',
+		'add.youtubeURL': 'YouTube URL',
+		'add.loadingSubtitles': 'Laster undertekster...',
+		'add.noSubtitles': 'Ingen undertekster funnet.',
+		'add.import': 'Importer',
+		'add.importError': 'Det oppstod en feil under lasting av undertekster.'
 	},
 	pl: {
 		'settings.title': 'Ustawienia',
@@ -466,6 +562,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'Nie znaleziono zawartości.',
 		'content.continueWatching': 'Kontynuuj oglądanie',
 		'content.history': 'Historia',
+		'content.uploads': 'Przesłane',
 		'rating.question': 'Czy lubisz ten zawartość?',
 		'rating.yes': 'Tak',
 		'rating.no': 'Nie',
@@ -491,7 +588,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Cały czas',
 		'progress.wordsKnown': 'Znane słowa',
 		'progress.wordsRead': 'Przeczytane słowa',
-		'progress.timeWatched': 'Czas oglądania'
+		'progress.timeWatched': 'Czas oglądania',
+		'add.importYouTube': 'Importuj YouTube',
+		'add.importText': 'Importuj tekst i dźwięk',
+		'add.youtubeURL': 'YouTube URL',
+		'add.loadingSubtitles': 'Ładowanie napisów...',
+		'add.noSubtitles': 'Nie znaleziono napisów.',
+		'add.import': 'Importuj',
+		'add.importError': 'Wystąpił błąd podczas ładowania napisów.'
 	},
 	pt: {
 		'settings.title': 'Configurações',
@@ -504,6 +608,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'Nenhum conteúdo encontrado.',
 		'content.continueWatching': 'Continuar assistindo',
 		'content.history': 'História',
+		'content.uploads': 'Envios',
 		'rating.question': 'Você gosta deste conteúdo?',
 		'rating.yes': 'Sim',
 		'rating.no': 'Não',
@@ -528,7 +633,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Todo o tempo',
 		'progress.wordsKnown': 'Palavras conhecidas',
 		'progress.wordsRead': 'Palavras lidas',
-		'progress.timeWatched': 'Tempo assistido'
+		'progress.timeWatched': 'Tempo assistido',
+		'add.importYouTube': 'Importar YouTube',
+		'add.importText': 'Importar texto e áudio',
+		'add.youtubeURL': 'YouTube URL',
+		'add.loadingSubtitles': 'Carregando legendas...',
+		'add.noSubtitles': 'Nenhuma legenda encontrada.',
+		'add.import': 'Importar',
+		'add.importError': 'Ocorreu um erro ao carregar as legendas.'
 	},
 	ro: {
 		'settings.title': 'Setări',
@@ -541,6 +653,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'Nu s-a găsit conținutul.',
 		'content.continueWatching': 'Continua să văd',
 		'content.history': 'Istoric',
+		'content.uploads': 'Încărcări',
 		'rating.question': 'Vreți să fii un parte din acest conținut?',
 		'rating.yes': 'Da',
 		'rating.no': 'Nu',
@@ -566,7 +679,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Toată durata',
 		'progress.wordsKnown': 'Cuvinte cunoscute',
 		'progress.wordsRead': 'Cuvinte citite',
-		'progress.timeWatched': 'Timpul vorbit'
+		'progress.timeWatched': 'Timpul vorbit',
+		'add.importYouTube': 'Import YouTube',
+		'add.importText': 'Import text și audio',
+		'add.youtubeURL': 'YouTube URL',
+		'add.loadingSubtitles': 'Încărcare subtitrare...',
+		'add.noSubtitles': 'Nu s-a găsit subtitrarea.',
+		'add.import': 'Import',
+		'add.importError': 'A apărut o eroare la încărcarea subtitrării.'
 	},
 	ru: {
 		'settings.title': 'Настройки',
@@ -579,6 +699,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'Не найдено ничего.',
 		'content.continueWatching': 'Продолжить просмотр',
 		'content.history': 'История',
+		'content.uploads': 'Загрузки',
 		'rating.question': 'Вы любите этот контент?',
 		'rating.yes': 'Да',
 		'rating.no': 'Нет',
@@ -604,7 +725,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Все время',
 		'progress.wordsKnown': 'Знакомые слова',
 		'progress.wordsRead': 'Слова прочитано',
-		'progress.timeWatched': 'Время просмотра'
+		'progress.timeWatched': 'Время просмотра',
+		'add.importYouTube': 'Импорт YouTube',
+		'add.importText': 'Импорт текста и аудио',
+		'add.youtubeURL': 'YouTube URL',
+		'add.loadingSubtitles': 'Загрузка субтитров...',
+		'add.noSubtitles': 'Субтитры не найдены.',
+		'add.import': 'Импорт',
+		'add.importError': 'Произошла ошибка при загрузке субтитров.'
 	},
 	da: {
 		'settings.title': 'Indstillinger',
@@ -617,6 +745,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'Ingen indhold fundet.',
 		'content.continueWatching': 'Fortsæt med at se',
 		'content.history': 'Historik',
+		'content.uploads': 'Uploads',
 		'rating.question': 'Vil du være en del af dette indhold?',
 		'rating.yes': 'Ja',
 		'rating.no': 'Nej',
@@ -642,7 +771,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Hele tiden',
 		'progress.wordsKnown': 'Værker kendt',
 		'progress.wordsRead': 'Ord læst',
-		'progress.timeWatched': 'Tid set'
+		'progress.timeWatched': 'Tid set',
+		'add.importYouTube': 'Importer YouTube',
+		'add.importText': 'Importer tekst og lyd',
+		'add.youtubeURL': 'YouTube URL',
+		'add.loadingSubtitles': 'Indlæser undertekster...',
+		'add.noSubtitles': 'Undertekster ikke fundet.',
+		'add.import': 'Importer',
+		'add.importError': 'Der opstod en fejl under indlæsning af undertekster.'
 	},
 	nl: {
 		'settings.title': 'Instellingen',
@@ -655,6 +791,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'content.empty': 'Geen inhoud gevonden.',
 		'content.continueWatching': 'Ga door met kijken',
 		'content.history': 'Geschiedenis',
+		'content.uploads': 'Uploads',
 		'rating.question': 'Wilt u deel uitmaken van dit inhoud?',
 		'rating.yes': 'Ja',
 		'rating.no': 'Nee',
@@ -680,7 +817,14 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'progress.allTime': 'Alle tijd',
 		'progress.wordsKnown': 'Bekende woorden',
 		'progress.wordsRead': 'Woorden gelezen',
-		'progress.timeWatched': 'Tijd bekeken'
+		'progress.timeWatched': 'Tijd bekeken',
+		'add.importYouTube': 'Importeer YouTube',
+		'add.importText': 'Importeer tekst en geluidsfragmenten',
+		'add.youtubeURL': 'YouTube URL',
+		'add.loadingSubtitles': 'Laden van ondertitels...',
+		'add.noSubtitles': 'Ondertitels niet gevonden.',
+		'add.import': 'Importeer',
+		'add.importError': 'Er is een fout opgetreden bij het laden van ondertitels.'
 	}
 };
 
