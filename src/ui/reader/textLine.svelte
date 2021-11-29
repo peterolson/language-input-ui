@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon } from '@smui/common';
-	import { isKnown } from '../../data/knowledge';
+	import { isKnown, normalizeWord } from '../../data/knowledge';
 	import { LanguageCode } from '../../types/dictionary.types';
 	import type { Knowledge } from '../../types/knowledge.types';
 	import type { TextLine, Token } from '../../types/parse.types';
@@ -92,7 +92,7 @@
 					class:nonWord={!token.isWord}
 					class:lemmaUnknown={isLemmaUnknown(knowledge, lang, token, $isTraditional)}
 					class:wordUnknown={isWordUnknown(knowledge, lang, token, $isTraditional)}
-					class:lookedUp={lookedUpWords.has(token.text.toLowerCase())}
+					class:lookedUp={lookedUpWords.has(normalizeWord(token.text))}
 					on:click={(e) => lookupWord(token, e)}
 					>{$isTraditional && token.tradText ? token.tradText : token.text}</span
 				>{token.suffix}{#if token.text.includes('\n')}

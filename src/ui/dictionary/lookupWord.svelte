@@ -9,6 +9,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { settings } from '../../data/settings';
 	import KnowledgeLevelSelector from './knowledgeLevelSelector.svelte';
+	import { normalizeWord } from '../../data/knowledge';
 
 	const dispatch = createEventDispatcher();
 	const { isTraditional } = settings;
@@ -36,7 +37,7 @@
 	<div class="header">
 		<h1 class="mdc-typography--headline6">
 			{$isTraditional && token.tradText ? token.tradText : token.text}
-			{#if token.lemma && token.lemma.toLowerCase() !== token.text.toLowerCase()}
+			{#if token.lemma && normalizeWord(token.lemma) !== normalizeWord(token.text)}
 				({token.lemma})
 			{/if}
 			{#if token.tradText && token.tradText !== token.text}

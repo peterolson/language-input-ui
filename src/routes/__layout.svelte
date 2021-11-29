@@ -1,13 +1,28 @@
 <script lang="ts">
+	import { session } from '$app/stores';
+	import { setSession } from '../data/session';
 	import IconButton from '@smui/icon-button';
 	import { historyStore } from '../data/history';
 	import { knowledgeStore } from '../data/knowledge';
 	import SettingsDialog from '../ui/settings/settingsDialog.svelte';
-	import { session } from '$app/stores';
+	import { page } from '$app/stores';
+	import localforage from 'localforage';
+	import { goto } from '$app/navigation';
+	import { browser } from '$app/env';
 
+	setSession($session);
 	let isSettingsOpen = false;
 	function toggleSettings() {
 		isSettingsOpen = !isSettingsOpen;
+	}
+
+	if (browser) {
+		if ($page.query.get('logout')) {
+			localStorage.clear();
+			localforage.clear();
+			goto('/');
+			window.location.reload();
+		}
 	}
 </script>
 

@@ -20,6 +20,7 @@ export function addViewProgress(id: string, item: ViewProgressItem) {
 }
 
 export function removeViewProgress(id: string) {
-	delete viewProgressCache.value[id];
-	viewProgressCache.update({ ...viewProgressCache.value });
+	const copy = { ...viewProgressCache.value };
+	delete copy[id];
+	viewProgressCache.update({ ...copy });
 }

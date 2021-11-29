@@ -9,10 +9,12 @@ export const progressStore = progressCache.store;
 export function setProgress(lang: LanguageCode, key: string, value: number) {
 	const date = new Date();
 	const day = `${date.getUTCFullYear()}-${date.getUTCMonth() + 1}-${date.getUTCDate()}`;
-	const progress = progressCache.value;
-	const langProgress = (progress[lang] = progress[lang] || {});
-	const dayProgress = (langProgress[day] = langProgress[day] || {});
+	const progress = { ...progressCache.value };
+	const langProgress = { ...(progress[lang] = progress[lang] || {}) };
+	const dayProgress = { ...(langProgress[day] = langProgress[day] || {}) };
 	dayProgress[key] = value;
+	langProgress[day] = dayProgress;
+	progress[lang] = langProgress;
 	progressCache.update({ ...progress });
 }
 
@@ -23,10 +25,12 @@ function formatDate(date: Date) {
 export function addToProgress(lang: LanguageCode, key: string, value: number) {
 	const date = new Date();
 	const day = formatDate(date);
-	const progress = progressCache.value;
-	const langProgress = (progress[lang] = progress[lang] || {});
-	const dayProgress = (langProgress[day] = langProgress[day] || {});
+	const progress = { ...progressCache.value };
+	const langProgress = { ...(progress[lang] = progress[lang] || {}) };
+	const dayProgress = { ...(langProgress[day] = langProgress[day] || {}) };
 	dayProgress[key] = (dayProgress[key] || 0) + value;
+	langProgress[day] = dayProgress;
+	progress[lang] = langProgress;
 	progressCache.update({ ...progress });
 }
 

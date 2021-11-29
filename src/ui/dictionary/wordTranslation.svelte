@@ -13,6 +13,7 @@
 	import Button from '@smui/button';
 	import { Label } from '@smui/common';
 	import { settings } from '../../data/settings';
+	import { normalizeWord } from '../../data/knowledge';
 	const { isTraditional } = settings;
 
 	export let word: string;
@@ -50,8 +51,8 @@
 
 	function isCurrentWord(backtranslation: BackTranslation, currentWord: string) {
 		return (
-			backtranslation.displayText.toLowerCase() === currentWord.toLowerCase() ||
-			backtranslation.normalizedText.toLowerCase() === currentWord.toLowerCase()
+			normalizeWord(backtranslation.displayText) === normalizeWord(currentWord) ||
+			normalizeWord(backtranslation.normalizedText) === normalizeWord(currentWord)
 		);
 	}
 

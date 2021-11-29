@@ -6,7 +6,7 @@ export const post: RequestHandler<Locals, FormData> = async () => {
 		body: { status: 'ok' },
 		headers: {
 			'set-cookie': `login_token=; Path=/; HttpOnly`,
-			Location: '/'
+			Location: '/?logout=true'
 		}
 	};
 };

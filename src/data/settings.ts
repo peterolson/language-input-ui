@@ -1,6 +1,8 @@
 import { LanguageCode } from '../types/dictionary.types';
 import { writable } from 'svelte/store';
 import { browser } from '$app/env';
+import { scheduleCommit } from './cachedData';
+import { onSessionReady } from './session';
 
 const isDarkMode = (): boolean => {
 	if (typeof window === 'undefined') {
@@ -42,6 +44,21 @@ function getWritable<T>(key: string, defaultValue: T) {
 	if (browser) {
 		store.subscribe((value) => {
 			localStorage.setItem(storageKey, JSON.stringify(value));
+			scheduleCommit({
+				[`settings.${key}`]: value
+			});
+		});
+		onSessionReady((session) => {
+			if (session.user && !(key in ((session?.userData?.settings as object) || {}))) {
+				scheduleCommit({
+					[`settings.${key}`]: value
+				});
+			} else {
+				const value = (session?.userData?.settings as Record<string, T>)?.[key];
+				if (value !== undefined) {
+					store.set(value);
+				}
+			}
 		});
 	}
 	return store;

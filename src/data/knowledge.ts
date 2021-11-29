@@ -13,20 +13,27 @@ function commitKnowledge(knowledge: Knowledge) {
 	knowledgeCache.update({ ...knowledge });
 }
 
+export function normalizeWord(word: string) {
+	return String(word)
+		.toLowerCase()
+		.replace(/[.$/\\]/g, '')
+		.trim();
+}
+
 const markPoints = (points: number) => (words: string[], language: LanguageCode) => {
-	const knowledge = knowledgeCache.value;
+	const knowledge = { ...knowledgeCache.value };
 	knowledge[language] = knowledge[language] || {
 		totalSeconds: 0,
 		totalWords: 0,
 		scores: {}
 	};
-	const languageKnowledge = knowledge[language] as LanguageKnowledge;
-	const scores = languageKnowledge?.scores as KnowledgeScores;
+	const languageKnowledge = { ...knowledge[language] } as LanguageKnowledge;
+	const scores = { ...languageKnowledge?.scores } as KnowledgeScores;
 	const newWords: string[] = [];
 	const ws = language === LanguageCode.Chinese ? chineseWords(words) : words;
 	for (const w of ws) {
 		if (!w) continue;
-		const word = w.toLowerCase();
+		const word = normalizeWord(w);
 		const [oldScore, previousTimestamp] = scores[word] || [0, +new Date()];
 		const newScore = updateScore(points, oldScore, new Date(previousTimestamp));
 		const newTimestamp = +new Date();
@@ -35,6 +42,8 @@ const markPoints = (points: number) => (words: string[], language: LanguageCode)
 			newWords.push(word);
 		}
 	}
+	languageKnowledge.scores = scores;
+	knowledge[language] = languageKnowledge;
 	setProgress(language, 'wordsKnown', Object.keys(scores).filter((x) => scores[x][0] > 0).length);
 	commitKnowledge(knowledge);
 	return newWords;
@@ -44,16 +53,17 @@ export const markKnown = markPoints(1);
 export const markUnknown = markPoints(0);
 
 export function finishReading(content: ContentItem) {
-	const knowledge = knowledgeCache.value;
+	const knowledge = { ...knowledgeCache.value };
 	const language = content.lang;
 	knowledge[language] = knowledge[language] || {
 		totalSeconds: 0,
 		totalWords: 0,
 		scores: {}
 	};
-	const languageKnowledge = knowledge[language] as LanguageKnowledge;
+	const languageKnowledge = { ...knowledge[language] } as LanguageKnowledge;
 	languageKnowledge.totalSeconds += content.duration || 0;
 	languageKnowledge.totalWords += content.wordCount;
+	knowledge[language] = languageKnowledge;
 	addToProgress(language, 'timeWatched', content.duration || 0);
 	addToProgress(language, 'wordsRead', content.wordCount);
 	commitKnowledge(knowledge);
@@ -63,7 +73,7 @@ export function getScore(scores: KnowledgeScores | undefined, w: string) {
 	if (!scores) {
 		return 0;
 	}
-	const word = w.toLowerCase();
+	const word = normalizeWord(w);
 	if (!scores[word]) {
 		return 0;
 	}
@@ -116,20 +126,22 @@ export function getColorFromProgressKey(key: string, isDark: boolean) {
 }
 
 export function setProgressKey(language: LanguageCode, words: string[], key: string) {
-	const knowledge = knowledgeCache.value;
+	const knowledge = { ...knowledgeCache.value };
 	knowledge[language] = knowledge[language] || {
 		totalSeconds: 0,
 		totalWords: 0,
 		scores: {}
 	};
-	const languageKnowledge = knowledge[language] as LanguageKnowledge;
-	const scores = languageKnowledge.scores as KnowledgeScores;
+	const languageKnowledge = { ...knowledge[language] } as LanguageKnowledge;
+	const scores = { ...languageKnowledge.scores } as KnowledgeScores;
 	const score = getScoreFromProgressKey(key);
 	for (const word of words) {
 		if (!word) continue;
-		const w = word.toLowerCase();
+		const w = normalizeWord(word);
 		scores[w] = [score, +new Date()];
 	}
+	languageKnowledge.scores = scores;
+	knowledge[language] = languageKnowledge;
 	commitKnowledge(knowledge);
 }
 

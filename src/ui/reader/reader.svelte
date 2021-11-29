@@ -2,7 +2,13 @@
 	import IconButton from '@smui/icon-button';
 	import { viewContent } from '../../data/content';
 	import { onMount } from 'svelte';
-	import { finishReading, knowledgeStore, markKnown, markUnknown } from '../../data/knowledge';
+	import {
+		finishReading,
+		knowledgeStore,
+		markKnown,
+		markUnknown,
+		normalizeWord
+	} from '../../data/knowledge';
 	import { settings } from '../../data/settings';
 	import type { ContentItem } from '../../types/content.types';
 	import type { Token } from '../../types/parse.types';
@@ -167,8 +173,8 @@
 		visibleTokens.forEach((span) => {
 			const lemma = span.dataset.lemma;
 			const word = span.textContent;
-			if (lemma) wordSet.add(lemma.toLowerCase());
-			if (word) wordSet.add(word.toLowerCase());
+			if (lemma) wordSet.add(normalizeWord(lemma));
+			if (word) wordSet.add(normalizeWord(word));
 		});
 		const words = Array.from(wordSet).filter((word) => !lookedUpWords.has(word));
 		const newWords = markKnown(words, content.lang);
@@ -191,7 +197,7 @@
 		if (mediaView) {
 			mediaView.controls.pause();
 		}
-		lookedUpWords.add(selectedToken.text.toLowerCase());
+		lookedUpWords.add(normalizeWord(selectedToken.text));
 		lookedUpWords = new Set(lookedUpWords);
 		markUnknown([selectedToken.text, selectedToken.lemma], content.lang);
 	}
@@ -202,12 +208,12 @@
 
 	function onRemoveLookedupWord(e: CustomEvent<Token>) {
 		const token = e.detail;
-		lookedUpWords.delete(token.text.toLowerCase());
+		lookedUpWords.delete(normalizeWord(token.text));
 		lookedUpWords = new Set(lookedUpWords);
 	}
 	function onAddLookedupWord(e: CustomEvent<Token>) {
 		const token = e.detail;
-		lookedUpWords.add(token.text.toLowerCase());
+		lookedUpWords.add(normalizeWord(token.text));
 		lookedUpWords = new Set(lookedUpWords);
 	}
 
