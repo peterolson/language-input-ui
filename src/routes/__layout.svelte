@@ -3,6 +3,7 @@
 	import { historyStore } from '../data/history';
 	import { knowledgeStore } from '../data/knowledge';
 	import SettingsDialog from '../ui/settings/settingsDialog.svelte';
+	import { session } from '$app/stores';
 
 	let isSettingsOpen = false;
 	function toggleSettings() {
@@ -35,9 +36,11 @@
 				</a>
 			{/if}
 			<IconButton class="material-icons" on:click={toggleSettings}>settings</IconButton>
-			<a href="/account/login" sveltekit:prefetch>
-				<IconButton class="material-icons" color="secondary">login</IconButton>
-			</a>
+			{#if !$session.user}
+				<a href="/account/login" sveltekit:prefetch>
+					<IconButton class="material-icons" color="secondary">login</IconButton>
+				</a>
+			{/if}
 		</div>
 	</div>
 	<div class="content"><slot /></div>

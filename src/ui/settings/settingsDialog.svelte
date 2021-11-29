@@ -7,6 +7,7 @@
 	import { settings } from '../../data/settings';
 	import { LanguageCode, languageNames } from '../../types/dictionary.types';
 	import Switch from '@smui/switch';
+	import { session } from '$app/stores';
 
 	export let open: boolean;
 
@@ -23,6 +24,15 @@
 		</div></Title
 	>
 	<Content>
+		{#if $session.user}
+			<div class="opposite">
+				<Label>{$t('user.username')}</Label>
+				<Label>{$session.user.username}</Label>
+			</div>
+			<form class="logout" action="/account/logout.json" method="post">
+				<Button type="submit">{$t('user.logout')}</Button>
+			</form>
+		{/if}
 		<div class="opposite">
 			<Label>{!$darkMode ? $t('settings.darkMode') : $t('settings.lightMode')}&nbsp;</Label>
 			<Button on:click={onSwitch}>
@@ -58,6 +68,7 @@
 		margin-top: -32px;
 		margin-left: 16px;
 	}
+
 	.opposite {
 		display: flex;
 		justify-content: space-between;
@@ -67,5 +78,9 @@
 
 	.opposite:first-child {
 		padding-right: 8px;
+	}
+
+	.logout {
+		text-align: right;
 	}
 </style>
