@@ -6,6 +6,8 @@
 	import ProgressCategory from './progressCategory.svelte';
 	import { settings } from '../../data/settings';
 	import ProgressChart from './progressChart.svelte';
+	import { session } from '$app/stores';
+	import Error from '../widgets/Error.svelte';
 
 	export let language: LanguageCode;
 
@@ -42,6 +44,11 @@
 </script>
 
 <div class="container">
+	{#if !$session.user}
+		<Error>
+			{@html $t('progress.saveProgressWarning')}
+		</Error>
+	{/if}
 	<ul class="mdc-typography--body1">
 		<li>{$t('progress.totalWordsRead')}: {knowledge.totalWords}</li>
 		<li>{$t('progress.totalTimeRead')}: {durationToTime(knowledge.totalSeconds, $t)}</li>

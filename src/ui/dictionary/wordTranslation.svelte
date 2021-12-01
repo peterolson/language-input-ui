@@ -100,10 +100,12 @@
 		<Label>{getExampleNum(currentWord, translation)}</Label>
 	</Button>
 {/if}
-{#each examples.slice(0, limitExamples ? DEFAULT_EXAMPLE_COUNT : examples.length) as example}
-	<ExampleSentence {example} />
-{/each}
-{#if examples.length > DEFAULT_EXAMPLE_COUNT}
+{#if examples?.length}
+	{#each examples.slice(0, limitExamples ? DEFAULT_EXAMPLE_COUNT : examples.length) as example}
+		<ExampleSentence {example} />
+	{/each}
+{/if}
+{#if examples?.length > DEFAULT_EXAMPLE_COUNT}
 	<Button color="secondary" on:click={toggleExampleLimit}>
 		<Icon class="material-icons">
 			{limitExamples ? 'expand_more' : 'expand_less'}
