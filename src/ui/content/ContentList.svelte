@@ -34,7 +34,7 @@
 		);
 	}
 
-	async function updateContentList() {
+	async function updateContentList(clearCurrent = false) {
 		try {
 			limit = getLimit(container);
 			const langs = $targetLanguages.join('|');
@@ -59,7 +59,11 @@
 			if (!list.length) {
 				reachedEnd = true;
 			}
-			contentList = contentList.filter((x) => !('skeleton' in x)).concat(list);
+			if (clearCurrent) {
+				contentList = list;
+			} else {
+				contentList = contentList.filter((x) => !('skeleton' in x)).concat(list);
+			}
 		} catch (e) {
 			contentList = [];
 		}
@@ -72,20 +76,20 @@
 		contentList = getSkeletons(limit);
 		isLoadingMore = true;
 		reachedEnd = false;
-		updateContentList();
+		updateContentList(true);
 	}
 
 	onMount(async () => {
 		let hasHistory = false;
 		let hasLangs = false;
 		historyStore.subscribe(() => {
-			if (hasLangs && hasHistory) {
+			if (hasLangs) {
 				init();
 			}
 			hasHistory = true;
 		});
 		targetLanguages.subscribe(() => {
-			if (hasHistory && hasHistory) {
+			if (hasHistory) {
 				init();
 			}
 			hasLangs = true;
