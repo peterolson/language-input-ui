@@ -78,7 +78,6 @@ function commitUpdates() {
 		},
 		body: JSON.stringify(diffToCommit)
 	});
-	console.log('commiting updates...', diffToCommit);
 	diffToCommit = {};
 }
 
