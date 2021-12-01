@@ -16,7 +16,7 @@ function commitKnowledge(knowledge: Knowledge) {
 export function normalizeWord(word: string) {
 	return String(word)
 		.toLowerCase()
-		.replace(/[.$/\\]/g, '')
+		.replace(/[.$()¡!¿?/\\]/g, '')
 		.trim();
 }
 

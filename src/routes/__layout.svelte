@@ -17,12 +17,14 @@
 	}
 
 	if (browser) {
-		if ($page.query.get('logout')) {
-			localStorage.clear();
-			localforage.clear();
-			goto('/');
-			window.location.reload();
-		}
+		(async () => {
+			if ($page.query.get('logout')) {
+				localStorage.clear();
+				await localforage.clear();
+				goto('/');
+				window.location.reload();
+			}
+		})();
 	}
 </script>
 
