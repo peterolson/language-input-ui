@@ -10,6 +10,8 @@
 	import { settings } from '../../data/settings';
 	import KnowledgeLevelSelector from './knowledgeLevelSelector.svelte';
 	import { normalizeWord } from '../../data/knowledge';
+	import { speak } from '../../data/speech';
+	import { voices } from '../../data/voices';
 
 	const dispatch = createEventDispatcher();
 	const { isTraditional } = settings;
@@ -21,8 +23,17 @@
 
 	let lookupResult: DictionaryLookup;
 
+	let voiceIndex = 0;
+	function speakWord() {
+		const possibleVoices = voices[fromLang];
+		const voice = possibleVoices[voiceIndex % possibleVoices.length];
+		speak(token.text, voice);
+		voiceIndex++;
+	}
+
 	onMount(async () => {
 		lookupResult = await lookupWord(token.text, fromLang, toLang);
+		speakWord();
 	});
 
 	function onClose() {
@@ -35,6 +46,7 @@
 
 <div class="container" in:fade out:fade>
 	<div class="header">
+		<IconButton class="material-icons" on:click={speakWord}>volume_up</IconButton>
 		<h1 class="mdc-typography--headline6">
 			{$isTraditional && token.tradText ? token.tradText : token.text}
 			{#if token.lemma && normalizeWord(token.lemma) !== normalizeWord(token.text)}
