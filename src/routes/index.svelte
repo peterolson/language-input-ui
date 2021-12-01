@@ -4,7 +4,10 @@
 	import ContentList from '../ui/content/ContentList.svelte';
 	const { targetLanguages } = settings;
 
-	let showOnboard = $targetLanguages.length < 1;
+	let showOnboard = false;
+	setTimeout(() => {
+		showOnboard = $targetLanguages.length < 1;
+	}, 1);
 	function onStart() {
 		showOnboard = false;
 	}
