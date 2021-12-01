@@ -25,3 +25,13 @@ export function normalizeLanguageCode(code: string): LanguageCode {
 	}
 	return normalized as LanguageCode;
 }
+
+export function debounce(fn: () => void, time: number) {
+	let timer: number;
+	return function () {
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			fn();
+		}, time) as unknown as number;
+	};
+}

@@ -7,7 +7,7 @@ type Session = {
 	userData?: Record<string, unknown>;
 };
 let session: Session = {};
-const isSessionReady = false;
+let isSessionReady = false;
 let sessionListeners: ((session: Session) => void)[] = [];
 
 export function setSession(s: object) {
@@ -16,6 +16,7 @@ export function setSession(s: object) {
 		listener(s);
 	}
 	sessionListeners = [];
+	isSessionReady = true;
 }
 
 export function getSession() {

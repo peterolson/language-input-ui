@@ -41,7 +41,7 @@
 		uploads: getHistoryByAction('import'),
 		continueWatching: async (skip: number, limit: number) => {
 			const viewProgress = $viewProgressStore;
-			const ids = Object.keys(viewProgress);
+			const ids = Object.keys(viewProgress).slice(skip, skip + limit);
 			return await fetch(`${endpoint}/content/ids`, {
 				method: 'POST',
 				headers: {

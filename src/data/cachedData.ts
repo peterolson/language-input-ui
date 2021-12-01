@@ -29,19 +29,23 @@ export function cachedData<T>(defaultValue: T, storageKey: string): CachedData<T
 	};
 	if (browser) {
 		onSessionReady((session) => {
-			localforage.getItem(storageKey, (err, value) => {
+			localforage.getItem(storageKey, (err, value: any) => {
 				if (session.user) {
 					if (value && !(storageKey in ((session?.userData as object) || {}))) {
 						// populate userData with cached value if userData doesn't have it
+						cachedData.value = value;
+						cachedData.store.set(value);
 						scheduleCommit({
 							[`${storageKey}`]: value
 						});
-					} else {
-						const value = session?.userData?.[storageKey];
-						if (value) {
-							cachedData.value = value as T;
-							cachedData.store.set(value as T);
-						}
+						return;
+					}
+					const userDataValue: any = session?.userData?.[storageKey];
+					if (userDataValue) {
+						cachedData.value = userDataValue as T;
+						cachedData.store.set(userDataValue as T);
+						localforage.setItem(storageKey, userDataValue);
+						return;
 					}
 				}
 				if (err) {

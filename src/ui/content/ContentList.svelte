@@ -6,6 +6,7 @@
 	import ContentCard from './ContentCard.svelte';
 	import { t } from '../../i18n/i18n';
 	import { getViewedContentIds, historyStore } from '../../data/history';
+	import { debounce } from '../../data/util';
 
 	export let requestHandler:
 		| string
@@ -65,14 +66,29 @@
 		isLoadingMore = false;
 	}
 
+	function init() {
+		skip = 0;
+		limit = getLimit(container);
+		contentList = getSkeletons(limit);
+		isLoadingMore = true;
+		reachedEnd = false;
+		updateContentList();
+	}
+
 	onMount(async () => {
-		targetLanguages.subscribe((langs) => {
-			skip = 0;
-			limit = getLimit(container);
-			contentList = getSkeletons(limit);
-			isLoadingMore = true;
-			reachedEnd = false;
-			updateContentList();
+		let hasHistory = false;
+		let hasLangs = false;
+		historyStore.subscribe(() => {
+			if (hasLangs && hasHistory) {
+				init();
+			}
+			hasHistory = true;
+		});
+		targetLanguages.subscribe(() => {
+			if (hasHistory && hasHistory) {
+				init();
+			}
+			hasLangs = true;
 		});
 	});
 
