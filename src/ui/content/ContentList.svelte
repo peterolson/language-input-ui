@@ -102,6 +102,7 @@
 		if (distanceToBottom < 275) {
 			skip += limit;
 			isLoadingMore = true;
+			contentList = contentList.concat(getSkeletons(limit));
 			updateContentList();
 		}
 	}
