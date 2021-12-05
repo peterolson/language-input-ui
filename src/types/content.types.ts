@@ -20,6 +20,7 @@ export type ContentItem = {
 	dislikes: number;
 	neutral: number;
 	views: number;
+	difficulty: number;
 };
 
 export type ContentItemSummary = {

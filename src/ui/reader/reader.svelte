@@ -43,6 +43,7 @@
 	let lookedUpWords = new Set<string>();
 	let newWordSet = new Set<string>();
 	let isFinished = false;
+	let container: HTMLDivElement;
 
 	$: {
 		maxWidth = Math.min(640, innerWidth);
@@ -203,6 +204,9 @@
 	}
 
 	function closeDictionary() {
+		if (container.clientWidth >= 875) {
+			return;
+		}
 		selectedToken = null;
 	}
 
@@ -277,6 +281,7 @@
 	on:mousemove={onMouseMove}
 	on:touchend={onTouchEnd}
 	on:mouseup={onMouseUp}
+	bind:this={container}
 >
 	{#if !isFinished}
 		<div class="leftPanel" on:click={closeDictionary}>
@@ -426,6 +431,7 @@
 	.leftPanel {
 		flex: 1;
 		height: 100%;
+		overflow: auto;
 	}
 
 	@media (max-width: 1200px) {

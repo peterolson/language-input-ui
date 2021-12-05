@@ -50,7 +50,6 @@ export async function getAudio(
 
 	return new Promise((resolve) => {
 		synthesizer.speakSsmlAsync(ssml, (result: { audioData: BlobPart }) => {
-			console.log(result);
 			const timings = wordBoundaryEvents.map((x: { audioOffset: number; text: any }) => ({
 				audioOffset: x.audioOffset / 10000000,
 				text: x.text

@@ -5,6 +5,7 @@
 	import type { ContentItem } from '../../types/content.types';
 	import { t } from '../../i18n/i18n';
 	import { Icon } from '@smui/common';
+	import ContentList from '../content/ContentList.svelte';
 	const { userLanguage } = settings;
 
 	export let content: ContentItem;
@@ -31,33 +32,13 @@
 	<div class="mdc-typography--caption">
 		<a href={content.url} target="_blank">{content.url}</a>
 	</div>
-	<div class="mdc-typography--body2 space-between">
-		<div class="iconNumber">
-			{#if content.views}
-				<Icon class="material-icons" style="font-size:unset">visibility</Icon>
-				<span>{content.views}</span>
-			{/if}
-		</div>
-		<div class="iconNumber">
-			{#if content.dislikes}
-				<Icon class="material-icons" style="font-size:unset">thumb_down</Icon>
-				<span>{content.dislikes}</span>
-			{/if}
-		</div>
-		<div class="iconNumber">
-			{#if content.neutral}
-				<Icon class="material-icons" style="font-size:unset">sentiment_neutral</Icon>
-				<span>{content.neutral}</span>
-			{/if}
-		</div>
-		<div class="iconNumber">
-			{#if content.likes}
-				<Icon class="material-icons" style="font-size:unset">thumb_up</Icon>
-				<span>{content.likes}</span>
-			{/if}
-		</div>
-	</div>
 	<hr />
+	<ContentList
+		requestHandler={`/content/recommend?channel=${encodeURIComponent(content.channel)}&lang=${
+			content.lang
+		}&difficulty=${content.difficulty}&id=${content._id}&`}
+		fullWidth
+	/>
 </div>
 
 <style>

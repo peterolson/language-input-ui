@@ -12,6 +12,7 @@
 	import { normalizeWord } from '../../data/knowledge';
 	import { speak } from '../../data/speech';
 	import { voices } from '../../data/voices';
+	import { SkeletonBlock, SkeletonText } from 'skeleton-elements/svelte';
 
 	const dispatch = createEventDispatcher();
 	const { isTraditional } = settings;
@@ -78,6 +79,13 @@
 			</div>
 		{/if}
 		<KnowledgeLevelSelector {token} lang={fromLang} {dispatch} />
+		{#if !lookupResult}
+			<div style="padding:16px;">
+				<SkeletonBlock width="100%" height="16px" effect="wave" borderRadius="5px" />
+				<hr />
+				<SkeletonBlock width="100%" height="16px" effect="wave" borderRadius="5px" />
+			</div>
+		{/if}
 		{#if lookupResult?.translations}
 			{#each lookupResult.translations as translation, i}
 				<div class="result" in:fade>

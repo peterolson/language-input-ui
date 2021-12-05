@@ -21,4 +21,4 @@
 	<Onboard {onStart} />
 {/if}
 
-<ContentList requestHandler="/content/newest?" />
+<ContentList requestHandler="/content/list?" showFilters={true} />

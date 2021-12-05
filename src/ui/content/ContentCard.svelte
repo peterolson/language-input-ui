@@ -12,6 +12,8 @@
 	const { darkMode, isTraditional } = settings;
 
 	export let content: ContentItemSummary | SkeletonItem;
+	export let fullWidth: boolean = false;
+
 	let languageName: string = '';
 	let title: string = '';
 	let percent = 0;
@@ -48,7 +50,7 @@
 	}
 </script>
 
-<div class="card" {title}>
+<div class="card" class:fullWidth {title}>
 	{#if 'skeleton' in content}
 		<div class="imageContainer">
 			<SkeletonBlock width="100%" height="100%" effect="wave" borderRadius="5px" />
@@ -149,6 +151,9 @@
 		display: block;
 		margin: 8px 0px;
 		width: 320px;
+	}
+	.card.fullWidth {
+		width: 100%;
 	}
 
 	@media (max-width: 1920px) {

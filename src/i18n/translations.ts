@@ -61,7 +61,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': 'Invalid username or password.',
 		'user.createError': 'Error creating account.',
 		'user.passwordDoesNotMatch': 'Passwords do not match.',
-		'user.accountExists': 'An account with this username already exists.'
+		'user.accountExists': 'An account with this username already exists.',
+		'sort.bestLevel': 'Best for my level',
+		'sort.newest': 'Newest',
+		'sort.popular': 'Popular',
+		'sort.anyDuration': 'Any duration'
 	},
 	es: {
 		'settings.title': 'Preferencias',
@@ -122,7 +126,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': 'Nombre de usuario o contraseña inválidos.',
 		'user.createError': 'Error creando la cuenta.',
 		'user.passwordDoesNotMatch': 'Las contraseñas no coinciden.',
-		'user.accountExists': 'Ya existe una cuenta con este nombre de usuario.'
+		'user.accountExists': 'Ya existe una cuenta con este nombre de usuario.',
+		'sort.bestLevel': 'Mejor para mi nivel',
+		'sort.newest': 'Más nuevo',
+		'sort.popular': 'Más popular',
+		'sort.anyDuration': 'Cualquier duración'
 	},
 	zh: {
 		'settings.title': '设置',
@@ -183,7 +191,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': '用户名或密码错误。',
 		'user.createError': '创建账户时出错。',
 		'user.passwordDoesNotMatch': '密码不匹配。',
-		'user.accountExists': '已存在该用户名的账户。'
+		'user.accountExists': '已存在该用户名的账户。',
+		'sort.bestLevel': '最佳级别',
+		'sort.newest': '最新',
+		'sort.popular': '最流行',
+		'sort.anyDuration': '任何时长'
 	},
 	ca: {
 		'settings.title': 'Preferències',
@@ -245,7 +257,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': "Nom d'usuari o contrasenya incorrectes.",
 		'user.createError': 'Error creant el compte.',
 		'user.passwordDoesNotMatch': 'Les contrasenyes no coincideixen.',
-		'user.accountExists': "Ja existeix un compte amb aquest nom d'usuari."
+		'user.accountExists': "Ja existeix un compte amb aquest nom d'usuari.",
+		'sort.bestLevel': 'Millor nivell',
+		'sort.newest': 'Més nous',
+		'sort.popular': 'Més populars',
+		'sort.anyDuration': 'Qualsevol durada'
 	},
 	fr: {
 		'settings.title': 'Paramètres',
@@ -307,7 +323,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': "Nom d'utilisateur ou mot de passe incorrect.",
 		'user.createError': 'Erreur lors de la création du compte.',
 		'user.passwordDoesNotMatch': 'Les mots de passe ne correspondent pas.',
-		'user.accountExists': "Un compte existe déjà avec ce nom d'utilisateur."
+		'user.accountExists': "Un compte existe déjà avec ce nom d'utilisateur.",
+		'sort.bestLevel': 'Meilleur niveau',
+		'sort.newest': 'Plus récent',
+		'sort.popular': 'Plus populaires',
+		'sort.anyDuration': 'Toute la durée'
 	},
 	de: {
 		'settings.title': 'Einstellungen',
@@ -369,7 +389,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': 'Benutzername oder Passwort falsch.',
 		'user.createError': 'Fehler beim Erstellen des Kontos.',
 		'user.passwordDoesNotMatch': 'Passwörter stimmen nicht überein.',
-		'user.accountExists': 'Ein Konto existiert bereits mit diesem Benutzernamen.'
+		'user.accountExists': 'Ein Konto existiert bereits mit diesem Benutzernamen.',
+		'sort.bestLevel': 'Bestes Level',
+		'sort.newest': 'Neueste',
+		'sort.popular': 'Beliebteste',
+		'sort.anyDuration': 'Alle Dauer'
 	},
 	el: {
 		'settings.title': 'Ρυθμίσεις',
@@ -431,7 +455,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': 'Σφάλμα κατά την σύνδεση.',
 		'user.createError': 'Σφάλμα κατά την δημιουργία του λογαριασμού.',
 		'user.passwordDoesNotMatch': 'Ο κωδικός πρόσβασης δεν ταιριάζει.',
-		'user.accountExists': 'Υπάρχει ήδη λογαριασμός με αυτό το όνομα χρήστη.'
+		'user.accountExists': 'Υπάρχει ήδη λογαριασμός με αυτό το όνομα χρήστη.',
+		'sort.bestLevel': 'Καλύτερο επίπεδο',
+		'sort.newest': 'Νεότερο',
+		'sort.popular': 'Δημοφιλή',
+		'sort.anyDuration': 'Οποιοδήποτε διάρκεια'
 	},
 	it: {
 		'settings.title': 'Impostazioni',
@@ -492,7 +520,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': "Errore durante l'accesso.",
 		'user.createError': "Errore durante la creazione dell'account.",
 		'user.passwordDoesNotMatch': 'La password non corrisponde.',
-		'user.accountExists': 'Esiste già un account con questo nome utente.'
+		'user.accountExists': 'Esiste già un account con questo nome utente.',
+		'sort.bestLevel': 'Livello migliore',
+		'sort.newest': 'Più nuovi',
+		'sort.popular': 'Più popolari',
+		'sort.anyDuration': 'Qualsiasi durata'
 	},
 	ja: {
 		'settings.title': '設定',
@@ -553,7 +585,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': 'ログイン中にエラーが発生しました。',
 		'user.createError': 'アカウントの作成中にエラーが発生しました。',
 		'user.passwordDoesNotMatch': 'パスワードが一致しません。',
-		'user.accountExists': 'このユーザー名は既に使用されています。'
+		'user.accountExists': 'このユーザー名は既に使用されています。',
+		'sort.bestLevel': 'ベストレベル',
+		'sort.newest': '最新',
+		'sort.popular': '人気',
+		'sort.anyDuration': '任意の時間'
 	},
 	lt: {
 		'settings.title': 'Nustatymai',
@@ -614,7 +650,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': 'Prisijungimo metu įvyko klaida.',
 		'user.createError': 'Paskyros sukūrimo metu įvyko klaida.',
 		'user.passwordDoesNotMatch': 'Slaptažodžiai nesutampa.',
-		'user.accountExists': 'Toks vartotojo vardas jau naudojamas.'
+		'user.accountExists': 'Toks vartotojo vardas jau naudojamas.',
+		'sort.bestLevel': 'Geriausias lygis',
+		'sort.newest': 'Naujausi',
+		'sort.popular': 'Populiariausi',
+		'sort.anyDuration': 'Bet koks laikas'
 	},
 	nb: {
 		'settings.title': 'Innstillinger',
@@ -675,7 +715,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': 'Det oppstod en feil under innlogging.',
 		'user.createError': 'Det oppstod en feil under opprettelse av konto.',
 		'user.passwordDoesNotMatch': 'Passordene er ikke like.',
-		'user.accountExists': 'Brukernavnet er allerede tatt.'
+		'user.accountExists': 'Brukernavnet er allerede tatt.',
+		'sort.bestLevel': 'Beste nivå',
+		'sort.newest': 'Nyeste',
+		'sort.popular': 'Populær',
+		'sort.anyDuration': 'Hvilken som helst lengde'
 	},
 	pl: {
 		'settings.title': 'Ustawienia',
@@ -736,7 +780,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': 'Wystąpił błąd podczas logowania.',
 		'user.createError': 'Wystąpił błąd podczas tworzenia konta.',
 		'user.passwordDoesNotMatch': 'Hasła nie pasują do siebie.',
-		'user.accountExists': 'Nazwa użytkownika jest już zajęta.'
+		'user.accountExists': 'Nazwa użytkownika jest już zajęta.',
+		'sort.bestLevel': 'Najlepszy poziom',
+		'sort.newest': 'Najnowsze',
+		'sort.popular': 'Popularne',
+		'sort.anyDuration': 'Dowolny czas trwania'
 	},
 	pt: {
 		'settings.title': 'Configurações',
@@ -796,7 +844,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': 'Ocorreu um erro ao entrar.',
 		'user.createError': 'Ocorreu um erro ao criar a conta.',
 		'user.passwordDoesNotMatch': 'As senhas não coincidem.',
-		'user.accountExists': 'O nome de usuário já está em uso.'
+		'user.accountExists': 'O nome de usuário já está em uso.',
+		'sort.bestLevel': 'Melhor nível',
+		'sort.newest': 'Mais recentes',
+		'sort.popular': 'Populares',
+		'sort.anyDuration': 'Qualquer duração'
 	},
 	ro: {
 		'settings.title': 'Setări',
@@ -857,7 +909,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': 'A apărut o eroare la autentificarea.',
 		'user.createError': 'A apărut o eroare la crearea contului.',
 		'user.passwordDoesNotMatch': 'Parolele nu se potrivesc.',
-		'user.accountExists': 'Numele de utilizator este deja folosit.'
+		'user.accountExists': 'Numele de utilizator este deja folosit.',
+		'sort.bestLevel': 'Cel mai bun nivel',
+		'sort.newest': 'Cele mai noi',
+		'sort.popular': 'Cele mai populare',
+		'sort.anyDuration': 'Orice durată'
 	},
 	ru: {
 		'settings.title': 'Настройки',
@@ -918,7 +974,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': 'Произошла ошибка при авторизации.',
 		'user.createError': 'Произошла ошибка при создании аккаунта.',
 		'user.passwordDoesNotMatch': 'Пароли не совпадают.',
-		'user.accountExists': 'Имя пользователя уже занято.'
+		'user.accountExists': 'Имя пользователя уже занято.',
+		'sort.bestLevel': 'Лучший уровень',
+		'sort.newest': 'Новые',
+		'sort.popular': 'Популярные',
+		'sort.anyDuration': 'Любая продолжительность'
 	},
 	da: {
 		'settings.title': 'Indstillinger',
@@ -979,7 +1039,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': 'Der opstod en fejl under login.',
 		'user.createError': 'Der opstod en fejl under oprettelse af konto.',
 		'user.passwordDoesNotMatch': 'Adgangskoderne er ikke ens.',
-		'user.accountExists': 'Brugernavnet er allerede taget.'
+		'user.accountExists': 'Brugernavnet er allerede taget.',
+		'sort.bestLevel': 'Bedste niveau',
+		'sort.newest': 'Nyeste',
+		'sort.popular': 'Populære',
+		'sort.anyDuration': 'Alle længder'
 	},
 	nl: {
 		'settings.title': 'Instellingen',
@@ -1040,7 +1104,11 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'user.loginError': 'Er is een fout opgetreden bij het inloggen.',
 		'user.createError': 'Er is een fout opgetreden bij het aanmaken van een account.',
 		'user.passwordDoesNotMatch': 'Wachtwoorden komen niet overeen.',
-		'user.accountExists': 'De gebruikersnaam is al in gebruik.'
+		'user.accountExists': 'De gebruikersnaam is al in gebruik.',
+		'sort.bestLevel': 'Beste niveau',
+		'sort.newest': 'Nieuwste',
+		'sort.popular': 'Populair',
+		'sort.anyDuration': 'Alle duur'
 	}
 };
 

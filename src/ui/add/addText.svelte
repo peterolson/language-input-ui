@@ -2,11 +2,12 @@
 	import Textfield from '@smui/textfield';
 	import { LanguageCode, languageNames } from '../../types/dictionary.types';
 	import Checkbox from '@smui/checkbox';
+	import AddMedia from './addMedia.svelte';
 
 	let title = '';
 	let text = '';
 	let url = '';
-	let selectedLanguage = 'en';
+	let selectedLanguage: LanguageCode = LanguageCode.English;
 	let isPublic = false;
 </script>
 
@@ -25,6 +26,7 @@
 				<option value={lang}>{languageNames[lang]}</option>
 			{/each}
 		</select>
+		<AddMedia lang={selectedLanguage} {text} />
 		<Textfield label={'Source URL'} bind:value={url} style="width:100%" />
 		<div class="mdc-typography--caption" style="margin-bottom: 8px;">
 			Where does this content come from?
