@@ -38,6 +38,7 @@
 			content.lang
 		}&difficulty=${content.difficulty}&id=${content._id}&`}
 		fullWidth
+		preventUpdate={true}
 	/>
 </div>
 

@@ -14,6 +14,7 @@
 		| ((skip: number, limit: number, langs: string) => Promise<ContentItemSummary[]>);
 	export let showFilters = false;
 	export let fullWidth = false;
+	export let preventUpdate = false;
 
 	const { targetLanguages, isTraditional } = settings;
 
@@ -84,6 +85,9 @@
 	}
 
 	function init() {
+		if (contentList.filter((x) => !('skeleton' in x)).length && preventUpdate) {
+			return;
+		}
 		skip = 0;
 		limit = getLimit(container);
 		contentList = getSkeletons(limit);
@@ -110,7 +114,7 @@
 	});
 
 	function onScroll() {
-		if (reachedEnd || isLoadingMore) return;
+		if (reachedEnd || isLoadingMore || preventUpdate) return;
 		const distanceToBottom = container.scrollHeight - container.scrollTop - container.clientHeight;
 		if (distanceToBottom < 275) {
 			skip += limit;

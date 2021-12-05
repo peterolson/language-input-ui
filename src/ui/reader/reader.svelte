@@ -283,11 +283,9 @@
 	on:mouseup={onMouseUp}
 	bind:this={container}
 >
-	{#if !isFinished}
-		<div class="leftPanel" on:click={closeDictionary}>
-			<SidePanel {content} />
-		</div>
-	{/if}
+	<div class="leftPanel" on:click={closeDictionary}>
+		<SidePanel {content} />
+	</div>
 	<div class="contentContainer" on:click={closeDictionary}>
 		{#if isFinished}
 			<div class="content finished" bind:this={contentDiv}>
@@ -432,6 +430,7 @@
 		flex: 1;
 		height: 100%;
 		overflow: auto;
+		max-width: 320px;
 	}
 
 	@media (max-width: 1200px) {

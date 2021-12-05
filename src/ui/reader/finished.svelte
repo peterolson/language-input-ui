@@ -1,10 +1,8 @@
 <script lang="ts">
 	import Button, { Icon } from '@smui/button';
-	import { getColor, getScore, knowledgeStore } from '../../data/knowledge';
 	import type { ContentItem } from '../../types/content.types';
 	import { fade } from 'svelte/transition';
 	import LanguageProgress from '../progress/languageProgress.svelte';
-	import { settings } from '../../data/settings';
 	import { t } from '../../i18n/i18n';
 	import IconButton from '@smui/icon-button';
 
@@ -14,14 +12,8 @@
 
 	const combined = Array.from(new Set([...lookedUp, ...newWords]));
 
-	const knowledge = $knowledgeStore[content.lang] || {};
-	const { darkMode } = settings;
-
-	function wordColor(word: string, isDark: boolean) {
-		return getColor(isDark, getScore(knowledge, word));
-	}
-
 	let isExpanded: boolean = false;
+	let limit = 50;
 </script>
 
 <div class="container">
@@ -31,17 +23,15 @@
 				{$t('progress.newWords')}: {newWords.length + lookedUp.length}
 			</div>
 			<div class="newwords" class:expanded={isExpanded}>
-				{#each combined.slice(0, 50) as word, i}
-					<div
-						class="mdc-typography--body2 word"
-						style={`background-color:${wordColor(word, $darkMode)}`}
-						in:fade={{ duration: 1000, delay: i * 50 }}
-					>
+				{#each combined.slice(0, limit) as word, i}
+					<div class="mdc-typography--body2 word" in:fade>
 						{word}
 					</div>
 				{/each}
-				{#if combined.length > 50}
-					<div class="mdc-typography--body2" style="display:inline-block">...</div>
+				{#if combined.length > limit}
+					<Button on:click={() => (limit = limit + 50)}>
+						<Icon class="material-icons">expand_more</Icon>
+					</Button>
 				{/if}
 			</div>
 		</div>
@@ -69,7 +59,6 @@
 
 	.newwords {
 		padding: 8px;
-		max-height: 128px;
 		overflow: hidden;
 	}
 
@@ -77,8 +66,6 @@
 		display: inline-block;
 		margin: 2px;
 		padding: 4px;
-		border: 1px solid var(--border-color);
-		border-radius: 4px;
 	}
 
 	.ok {
