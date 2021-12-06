@@ -65,6 +65,7 @@
 		timing: [number, number],
 		nextTiming: [number, number] | undefined
 	) {
+		if (!timing || timing[0] === null) return false;
 		const afterStart = timing[0] - 0.25 <= currentTime;
 		let beforeEnd = currentTime <= timing[1];
 		if (nextTiming) {
@@ -72,13 +73,22 @@
 		}
 		return afterStart && beforeEnd;
 	}
+
+	function isCurrentWord(token: Token, currentTime: number) {
+		if (token.timing?.length && token.timing[0] !== null) {
+			const afterStart = token.timing[0] - 0.25 <= currentTime;
+			const beforeEnd = currentTime <= token.timing[1];
+			return afterStart && beforeEnd;
+		}
+		return false;
+	}
 </script>
 
 <div
 	class="mdc-typography--body1 line"
 	class:isCurrent={isCurrent(currentTime, timing, nextTiming)}
 >
-	{#if timing[0] >= 0}
+	{#if timing && timing[0] >= 0 && timing[0] !== null}
 		<button class="icon" on:click={seekToLine}>
 			<Icon class="material-icons">play_arrow</Icon>
 		</button>
@@ -93,6 +103,7 @@
 					class:lemmaUnknown={isLemmaUnknown(knowledge, lang, token, $isTraditional)}
 					class:wordUnknown={isWordUnknown(knowledge, lang, token, $isTraditional)}
 					class:lookedUp={lookedUpWords.has(normalizeWord(token.text))}
+					class:isCurrentWord={isCurrentWord(token, currentTime)}
 					on:click={(e) => lookupWord(token, e)}
 					>{$isTraditional && token.tradText ? token.tradText : token.text}</span
 				>{token.suffix}{#if token.text.includes('\n')}
@@ -109,10 +120,13 @@
 		display: inline-block;
 		border: 1px solid transparent;
 		border-radius: 5px;
-		margin: 1px;
-		padding: 1px;
+		margin: 1px 0;
+		padding: 1px 0;
 		transition: border-color 0.5s ease-in-out;
 		transition: background-color 0.5s ease-in-out;
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		transition: text-decoration-color 0.5s ease-in-out;
 	}
 	.word.lemmaUnknown {
 		background-color: rgba(255, 115, 0, 0.15);
@@ -149,6 +163,12 @@
 		background-color: rgba(128, 128, 128, 0.15);
 		transition: background-color 0.5s ease-in-out; /* fade in time*/
 	}
+
+	.isCurrentWord {
+		text-decoration-color: var(--foreground);
+		transition: text-decoration-color 0.5s ease-in-out; /* fade in time*/
+	}
+
 	.icon {
 		vertical-align: text-top;
 		border: none;

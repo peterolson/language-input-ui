@@ -7,13 +7,14 @@
 	import { endpoint } from '../../data/endpoint';
 	import { viewProgressStore } from '../../data/viewProgress';
 	import { t } from '../../i18n/i18n';
+	import { objectToArray } from '../../data/util';
 
 	const tabs = ['history', 'continueWatching', 'uploads'];
 	let activeTab = 'history';
 
 	const getHistoryByAction = (action: string) => async (skip: number, limit: number) => {
 		const historyItems = [];
-		const history = $historyStore;
+		const history = objectToArray($historyStore);
 		const hasEncountered = new Set<string>();
 		for (let i = history.length - 1; i >= 0; i--) {
 			const item = history[i];

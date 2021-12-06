@@ -24,9 +24,11 @@
 {#if !content || 'statusCode' in content}
 	<Error404 message={content?.message || ''} />
 {:else}
-	<div class="container">
-		<Reader {content} />
-	</div>
+	{#key content._id}
+		<div class="container">
+			<Reader {content} />
+		</div>
+	{/key}
 {/if}
 
 <style>

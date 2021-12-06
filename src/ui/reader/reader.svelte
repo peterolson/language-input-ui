@@ -26,6 +26,7 @@
 		ViewProgressItem,
 		viewProgressStore
 	} from '../../data/viewProgress';
+	import FeedbackButton from './feedbackButton.svelte';
 
 	export let content: ContentItem;
 	const { media, parsedText, lang, timings } = content;
@@ -118,6 +119,7 @@
 			const { scrollLeft, scrollWidth } = contentDiv;
 			const interval = scrollWidth / pages;
 			const page = Math.round(scrollLeft / interval);
+			console.log('snapToNearestPage', page, interval, page * interval, scrollLeft, scrollWidth);
 			contentDiv.scrollTo({
 				left: page * interval,
 				behavior
@@ -322,6 +324,7 @@
 				</div>
 			</div>
 			<div class="progressContainer">
+				<FeedbackButton {content} />
 				<div class:hidden={currentPage === 1}>
 					<IconButton class="material-icons" on:click={() => movePage(-1)}>
 						navigate_before

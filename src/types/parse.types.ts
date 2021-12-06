@@ -23,4 +23,5 @@ export type Token = {
 	isWord: boolean;
 	start: number;
 	end: number;
+	timing?: [number, number];
 };

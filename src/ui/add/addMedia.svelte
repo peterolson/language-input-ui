@@ -4,9 +4,11 @@
 	import UploadMedia from './uploadMedia.svelte';
 	import UploadTts from './uploadTTS.svelte';
 	import type { LanguageCode } from '../../types/dictionary.types';
+	import type { Media } from 'src/types/media.types';
 
 	export let lang: LanguageCode;
 	export let text: string;
+	export let onUploadMedia: (item: { media: Media; duration: number; timings: any[] }) => void;
 	let selected = 'upload';
 </script>
 
@@ -19,17 +21,13 @@
 		<Radio bind:group={selected} value="tts" />
 		<span slot="label">Read with text-to-speech</span>
 	</FormField>
-	<FormField>
-		<Radio bind:group={selected} value="noMedia" />
-		<span slot="label">No audio</span>
-	</FormField>
 </div>
 
 {#if selected === 'upload'}
-	<UploadMedia />
+	<UploadMedia {onUploadMedia} />
 {:else if selected === 'tts'}
 	{#key lang}
-		<UploadTts {lang} {text} />
+		<UploadTts {lang} {text} {onUploadMedia} />
 	{/key}
 {/if}
 

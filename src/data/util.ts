@@ -35,3 +35,12 @@ export function debounce(fn: () => void, time: number) {
 		}, time) as unknown as number;
 	};
 }
+
+export function objectToArray<T>(obj: T): T {
+	const arr = [];
+	for (let i = 0; i in obj; i++) {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		arr.push((obj as any)[i]);
+	}
+	return arr as unknown as T;
+}

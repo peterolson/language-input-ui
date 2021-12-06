@@ -36,9 +36,9 @@ export const post: RequestHandler<Locals, FormData> = async (request) => {
 		};
 	}
 
-	const { id, createdAt, authToken } = response;
+	const { id, createdAt, authToken, isAdmin } = response;
 
-	const jwt = createJWT({ username, id, createdAt, authToken });
+	const jwt = createJWT({ username, id, createdAt, authToken, isAdmin });
 
 	return {
 		status: 303,

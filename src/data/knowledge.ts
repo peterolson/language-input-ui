@@ -73,11 +73,12 @@ export function getScore(scores: KnowledgeScores | undefined, w: string) {
 	if (!scores) {
 		return 0;
 	}
+
 	const word = normalizeWord(w);
 	if (!scores[word]) {
 		return 0;
 	}
-	const [score] = scores[word] || [0];
+	const score = (scores[word] || [0])[0];
 	return score;
 }
 

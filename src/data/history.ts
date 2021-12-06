@@ -1,5 +1,6 @@
 import type { UserHistory } from '../types/history.types';
 import { cachedData } from './cachedData';
+import { objectToArray } from './util';
 
 const historyCache = cachedData([] as UserHistory, 'history');
 
@@ -7,7 +8,7 @@ export const historyStore = historyCache.store;
 
 function addToHistory(id: string, action: 'view' | 'import') {
 	historyCache.update([
-		...historyCache.value,
+		...objectToArray(historyCache.value),
 		{
 			id,
 			timestamp: new Date(),
@@ -25,5 +26,7 @@ export function addImportToHistory(id: string) {
 }
 
 export function getViewedContentIds(history: UserHistory) {
-	return history.filter((h) => h.action === 'view').map((h) => h.id);
+	return objectToArray(history)
+		.filter((h) => h.action === 'view')
+		.map((h) => h.id);
 }

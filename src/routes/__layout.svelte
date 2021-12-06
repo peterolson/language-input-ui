@@ -9,6 +9,7 @@
 	import localforage from 'localforage';
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/env';
+	import { objectToArray } from '../data/util';
 
 	setSession($session);
 	let isSettingsOpen = false;
@@ -42,7 +43,7 @@
 			<a href="/add" sveltekit:prefetch>
 				<IconButton class="material-icons" color="secondary">add_box</IconButton>
 			</a>
-			{#if $historyStore.length}
+			{#if objectToArray($historyStore).length}
 				<a href="/content/history" sveltekit:prefetch>
 					<IconButton class="material-icons" color="secondary">history</IconButton>
 				</a>

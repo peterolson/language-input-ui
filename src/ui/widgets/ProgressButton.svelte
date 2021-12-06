@@ -2,7 +2,7 @@
 	import Button from '@smui/button/Button.svelte';
 	import CircularProgress from '@smui/circular-progress';
 	export let inProgress: boolean;
-	export let onClick: () => void;
+	export let onClick: (e: Event) => void;
 </script>
 
 <Button {...$$restProps} disabled={inProgress || $$restProps.disabled} on:click={onClick}>

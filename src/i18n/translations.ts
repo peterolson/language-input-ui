@@ -9,6 +9,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Dark mode',
 		'settings.close': 'Close',
 		'settings.start': 'Start',
+		'settings.selectLanguage': 'Select language',
 		'card.words': 'Words',
 		'content.empty': 'No content found.',
 		'content.continueWatching': 'Continue watching',
@@ -65,7 +66,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Best for my level',
 		'sort.newest': 'Newest',
 		'sort.popular': 'Popular',
-		'sort.anyDuration': 'Any duration'
+		'sort.anyDuration': 'Any duration',
+		'feedback.delete': 'Delete',
+		'feedback.deleteConfirm': 'Are you sure you want to delete this content?',
+		'feedback.cancel': 'Cancel',
+		'feedback.report': 'Report',
+		'feedback.reportPrompt': 'Why do you want to report this content?',
+		'feedback.reportSuccess': "Thanks! We'll take a look at it."
 	},
 	es: {
 		'settings.title': 'Preferencias',
@@ -75,6 +82,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Modo oscuro',
 		'settings.close': 'Cerrar',
 		'settings.start': 'Iniciar',
+		'settings.selectLanguage': 'Seleccionar idioma',
 		'card.words': 'Palabras',
 		'content.empty': 'No se encontraron contenidos.',
 		'content.continueWatching': 'Continuar viendo',
@@ -130,7 +138,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Mejor para mi nivel',
 		'sort.newest': 'Más nuevo',
 		'sort.popular': 'Más popular',
-		'sort.anyDuration': 'Cualquier duración'
+		'sort.anyDuration': 'Cualquier duración',
+		'feedback.delete': 'Borrar',
+		'feedback.deleteConfirm': '¿Estás seguro de que quieres borrar este contenido?',
+		'feedback.cancel': 'Cancelar',
+		'feedback.report': 'Reportar',
+		'feedback.reportPrompt': '¿Por qué quieres reportar este contenido?',
+		'feedback.reportSuccess': '¡Gracias! Revisaremos tu reporte.'
 	},
 	zh: {
 		'settings.title': '设置',
@@ -140,6 +154,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': '深色模式',
 		'settings.close': '关闭',
 		'settings.start': '开始',
+		'settings.selectLanguage': '选择语言',
 		'card.words': '单词',
 		'content.empty': '没有找到内容。',
 		'content.continueWatching': '继续观看',
@@ -195,7 +210,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': '最佳级别',
 		'sort.newest': '最新',
 		'sort.popular': '最流行',
-		'sort.anyDuration': '任何时长'
+		'sort.anyDuration': '任何时长',
+		'feedback.delete': '删除',
+		'feedback.deleteConfirm': '你确定要删除这个内容吗？',
+		'feedback.cancel': '取消',
+		'feedback.report': '举报',
+		'feedback.reportPrompt': '为什么你要举报这个内容？',
+		'feedback.reportSuccess': '谢谢！我们会尽快处理你的举报。'
 	},
 	ca: {
 		'settings.title': 'Preferències',
@@ -205,6 +226,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Mode fosc',
 		'settings.close': 'Tancar',
 		'settings.start': 'Començar',
+		'settings.selectLanguage': 'Seleccionar idioma',
 		'card.words': 'Paraules',
 		'content.empty': "No s'ha trobat cap contingut.",
 		'content.continueWatching': 'Continuar veient',
@@ -261,7 +283,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Millor nivell',
 		'sort.newest': 'Més nous',
 		'sort.popular': 'Més populars',
-		'sort.anyDuration': 'Qualsevol durada'
+		'sort.anyDuration': 'Qualsevol durada',
+		'feedback.delete': 'Esborrar',
+		'feedback.deleteConfirm': 'Estàs segur que vols esborrar aquest contingut?',
+		'feedback.cancel': 'Cancel·lar',
+		'feedback.report': 'Denunciar',
+		'feedback.reportPrompt': 'Per què vols denunciar aquest contingut?',
+		'feedback.reportSuccess': 'Gràcies! Hem processat la teva denúncia.'
 	},
 	fr: {
 		'settings.title': 'Paramètres',
@@ -271,6 +299,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Mode sombre',
 		'settings.close': 'Fermer',
 		'settings.start': 'Commencer',
+		'settings.selectLanguage': 'Sélectionner une langue',
 		'card.words': 'Mots',
 		'content.empty': 'Aucun contenu trouvé.',
 		'content.continueWatching': 'Continuer à regarder',
@@ -327,7 +356,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Meilleur niveau',
 		'sort.newest': 'Plus récent',
 		'sort.popular': 'Plus populaires',
-		'sort.anyDuration': 'Toute la durée'
+		'sort.anyDuration': 'Toute la durée',
+		'feedback.delete': 'Supprimer',
+		'feedback.deleteConfirm': 'Êtes-vous sûr de vouloir supprimer ce contenu?',
+		'feedback.cancel': 'Annuler',
+		'feedback.report': 'Signaler',
+		'feedback.reportPrompt': 'Pourquoi voulez-vous signaler ce contenu?',
+		'feedback.reportSuccess': 'Merci! Nous avons bien reçu votre signalement.'
 	},
 	de: {
 		'settings.title': 'Einstellungen',
@@ -337,6 +372,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Dunkles Modus',
 		'settings.close': 'Schließen',
 		'settings.start': 'Starten',
+		'settings.selectLanguage': 'Sprache auswählen',
 		'card.words': 'Wörter',
 		'content.empty': 'Kein Inhalt gefunden.',
 		'content.continueWatching': 'Weiter ansehen',
@@ -393,7 +429,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Bestes Level',
 		'sort.newest': 'Neueste',
 		'sort.popular': 'Beliebteste',
-		'sort.anyDuration': 'Alle Dauer'
+		'sort.anyDuration': 'Alle Dauer',
+		'feedback.delete': 'Löschen',
+		'feedback.deleteConfirm': 'Sind Sie sicher, dass Sie diesen Inhalt löschen möchten?',
+		'feedback.cancel': 'Abbrechen',
+		'feedback.report': 'Melden',
+		'feedback.reportPrompt': 'Warum möchten Sie diesen Inhalt melden?',
+		'feedback.reportSuccess': 'Vielen Dank! Wir haben Ihre Meldung erhalten.'
 	},
 	el: {
 		'settings.title': 'Ρυθμίσεις',
@@ -403,6 +445,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Λειτουργία μπάρας σκούρου',
 		'settings.close': 'Κλείσιμο',
 		'settings.start': 'Εκκίνηση',
+		'settings.selectLanguage': 'Επιλογή γλώσσας',
 		'card.words': 'Λέξεις',
 		'content.empty': 'Δεν βρέθηκαν περιεχόμενα.',
 		'content.continueWatching': 'Συνέχεια παρακολούθησης',
@@ -459,7 +502,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Καλύτερο επίπεδο',
 		'sort.newest': 'Νεότερο',
 		'sort.popular': 'Δημοφιλή',
-		'sort.anyDuration': 'Οποιοδήποτε διάρκεια'
+		'sort.anyDuration': 'Οποιοδήποτε διάρκεια',
+		'feedback.delete': 'Διαγραφή',
+		'feedback.deleteConfirm': 'Είστε σίγουρος ότι θέλετε να διαγράψετε αυτό το σχόλιο;',
+		'feedback.cancel': 'Ακύρωση',
+		'feedback.report': 'Αναφορά',
+		'feedback.reportPrompt': 'Ποια λεπτομέρεια θα θέλατε να συμβουλευτείτε;',
+		'feedback.reportSuccess': 'Η αναφορά σας έχει υποβληθεί.'
 	},
 	it: {
 		'settings.title': 'Impostazioni',
@@ -469,6 +518,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Modalità scura',
 		'settings.close': 'Chiudi',
 		'settings.start': 'Inizia',
+		'settings.selectLanguage': 'Seleziona la lingua',
 		'card.words': 'Parole',
 		'content.empty': 'Nessun contenuto trovato.',
 		'content.continueWatching': 'Continua a guardare',
@@ -524,7 +574,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Livello migliore',
 		'sort.newest': 'Più nuovi',
 		'sort.popular': 'Più popolari',
-		'sort.anyDuration': 'Qualsiasi durata'
+		'sort.anyDuration': 'Qualsiasi durata',
+		'feedback.delete': 'Elimina',
+		'feedback.deleteConfirm': 'Sei sicuro di voler eliminare questo commento?',
+		'feedback.cancel': 'Annulla',
+		'feedback.report': 'Segnala',
+		'feedback.reportPrompt': 'Quale informazione vuoi segnalare?',
+		'feedback.reportSuccess': 'La tua segnalazione è stata inviata.'
 	},
 	ja: {
 		'settings.title': '設定',
@@ -534,6 +590,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'ダークモード',
 		'settings.close': '閉じる',
 		'settings.start': '開始',
+		'settings.selectLanguage': '言語を選択',
 		'card.words': '単語',
 		'content.empty': 'コンテンツが見つかりませんでした。',
 		'content.continueWatching': '続きを見る',
@@ -589,7 +646,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'ベストレベル',
 		'sort.newest': '最新',
 		'sort.popular': '人気',
-		'sort.anyDuration': '任意の時間'
+		'sort.anyDuration': '任意の時間',
+		'feedback.delete': '削除',
+		'feedback.deleteConfirm': '本当にこのコメントを削除しますか？',
+		'feedback.cancel': 'キャンセル',
+		'feedback.report': '報告',
+		'feedback.reportPrompt': 'どのような情報を報告しますか？',
+		'feedback.reportSuccess': 'あなたの報告は送信されました。'
 	},
 	lt: {
 		'settings.title': 'Nustatymai',
@@ -599,6 +662,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Tamsos režimas',
 		'settings.close': 'Uždaryti',
 		'settings.start': 'Pradėti',
+		'settings.selectLanguage': 'Pasirinkite kalbą',
 		'card.words': 'Žodžiai',
 		'content.empty': 'Nerasta jokių turinio.',
 		'content.continueWatching': 'Tęsti peržiūrėti',
@@ -654,7 +718,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Geriausias lygis',
 		'sort.newest': 'Naujausi',
 		'sort.popular': 'Populiariausi',
-		'sort.anyDuration': 'Bet koks laikas'
+		'sort.anyDuration': 'Bet koks laikas',
+		'feedback.delete': 'Ištrinti',
+		'feedback.deleteConfirm': 'Ar tikrai norite ištrinti šį komentarą?',
+		'feedback.cancel': 'Atšaukti',
+		'feedback.report': 'Atsakyti',
+		'feedback.reportPrompt': 'Ką norite atsakyti?',
+		'feedback.reportSuccess': 'Jūsų atsakymas buvo išsiųstas.'
 	},
 	nb: {
 		'settings.title': 'Innstillinger',
@@ -664,6 +734,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Mørk modus',
 		'settings.close': 'Lukk',
 		'settings.start': 'Start',
+		'settings.selectLanguage': 'Velg språk',
 		'card.words': 'Ord',
 		'content.empty': 'Ingen innhold funnet.',
 		'content.continueWatching': 'Fortsett å se',
@@ -719,7 +790,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Beste nivå',
 		'sort.newest': 'Nyeste',
 		'sort.popular': 'Populær',
-		'sort.anyDuration': 'Hvilken som helst lengde'
+		'sort.anyDuration': 'Hvilken som helst lengde',
+		'feedback.delete': 'Slett',
+		'feedback.deleteConfirm': 'Er du sikker på at du vil slette denne kommentaren?',
+		'feedback.cancel': 'Avbryt',
+		'feedback.report': 'Svar',
+		'feedback.reportPrompt': 'Hva vil du svare?',
+		'feedback.reportSuccess': 'Ditt svar er sendt.'
 	},
 	pl: {
 		'settings.title': 'Ustawienia',
@@ -729,6 +806,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Tryb ciemny',
 		'settings.close': 'Zamknij',
 		'settings.start': 'Początek',
+		'settings.selectLanguage': 'Wybierz język',
 		'card.words': 'Słowa',
 		'content.empty': 'Nie znaleziono zawartości.',
 		'content.continueWatching': 'Kontynuuj oglądanie',
@@ -784,7 +862,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Najlepszy poziom',
 		'sort.newest': 'Najnowsze',
 		'sort.popular': 'Popularne',
-		'sort.anyDuration': 'Dowolny czas trwania'
+		'sort.anyDuration': 'Dowolny czas trwania',
+		'feedback.delete': 'Usuń',
+		'feedback.deleteConfirm': 'Czy na pewno chcesz usunąć ten komentarz?',
+		'feedback.cancel': 'Anuluj',
+		'feedback.report': 'Odpowiedz',
+		'feedback.reportPrompt': 'Co chcesz odpowiedzieć?',
+		'feedback.reportSuccess': 'Twoja odpowiedź została wysłana.'
 	},
 	pt: {
 		'settings.title': 'Configurações',
@@ -794,6 +878,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Modo escuro',
 		'settings.close': 'Fechar',
 		'settings.start': 'Começar',
+		'settings.selectLanguage': 'Selecione um idioma',
 		'card.words': 'Palavras',
 		'content.empty': 'Nenhum conteúdo encontrado.',
 		'content.continueWatching': 'Continuar assistindo',
@@ -848,7 +933,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Melhor nível',
 		'sort.newest': 'Mais recentes',
 		'sort.popular': 'Populares',
-		'sort.anyDuration': 'Qualquer duração'
+		'sort.anyDuration': 'Qualquer duração',
+		'feedback.delete': 'Excluir',
+		'feedback.deleteConfirm': 'Você tem certeza que deseja excluir este comentário?',
+		'feedback.cancel': 'Cancelar',
+		'feedback.report': 'Responder',
+		'feedback.reportPrompt': 'O que você quer responder?',
+		'feedback.reportSuccess': 'Sua resposta foi enviada.'
 	},
 	ro: {
 		'settings.title': 'Setări',
@@ -858,6 +949,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Modul întunecat',
 		'settings.close': 'Închide',
 		'settings.start': 'Începe',
+		'settings.selectLanguage': 'Selectează o limbă',
 		'card.words': 'Cuvinte',
 		'content.empty': 'Nu s-a găsit conținutul.',
 		'content.continueWatching': 'Continua să văd',
@@ -913,7 +1005,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Cel mai bun nivel',
 		'sort.newest': 'Cele mai noi',
 		'sort.popular': 'Cele mai populare',
-		'sort.anyDuration': 'Orice durată'
+		'sort.anyDuration': 'Orice durată',
+		'feedback.delete': 'Șterge',
+		'feedback.deleteConfirm': 'Sunteți sigur că doriți să ștergeți acest comentariu?',
+		'feedback.cancel': 'Anulează',
+		'feedback.report': 'Răspunde',
+		'feedback.reportPrompt': 'Ce doriți să răspundeți?',
+		'feedback.reportSuccess': 'Răspunsul dumneavoastră a fost trimis.'
 	},
 	ru: {
 		'settings.title': 'Настройки',
@@ -923,6 +1021,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Темный режим',
 		'settings.close': 'Закрыть',
 		'settings.start': 'Начать',
+		'settings.selectLanguage': 'Выберите язык',
 		'card.words': 'Слова',
 		'content.empty': 'Не найдено ничего.',
 		'content.continueWatching': 'Продолжить просмотр',
@@ -978,7 +1077,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Лучший уровень',
 		'sort.newest': 'Новые',
 		'sort.popular': 'Популярные',
-		'sort.anyDuration': 'Любая продолжительность'
+		'sort.anyDuration': 'Любая продолжительность',
+		'feedback.delete': 'Удалить',
+		'feedback.deleteConfirm': 'Вы уверены, что хотите удалить этот контент?',
+		'feedback.cancel': 'Отмена',
+		'feedback.report': 'Сообщить',
+		'feedback.reportPrompt': 'Пожалуйста, опишите причину жалобы.',
+		'feedback.reportSuccess': 'Сообщение отправлено.'
 	},
 	da: {
 		'settings.title': 'Indstillinger',
@@ -988,6 +1093,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Mørkt tilstand',
 		'settings.close': 'Luk',
 		'settings.start': 'Start',
+		'settings.selectLanguage': 'Vælg sprog',
 		'card.words': 'Ord',
 		'content.empty': 'Ingen indhold fundet.',
 		'content.continueWatching': 'Fortsæt med at se',
@@ -1043,7 +1149,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Bedste niveau',
 		'sort.newest': 'Nyeste',
 		'sort.popular': 'Populære',
-		'sort.anyDuration': 'Alle længder'
+		'sort.anyDuration': 'Alle længder',
+		'feedback.delete': 'Slet',
+		'feedback.deleteConfirm': 'Er du sikker på, at du vil slette denne indhold?',
+		'feedback.cancel': 'Annuller',
+		'feedback.report': 'Rapporter',
+		'feedback.reportPrompt': 'Vær venlig at beskrive din anmodning.',
+		'feedback.reportSuccess': 'Beskeden er blevet sendt.'
 	},
 	nl: {
 		'settings.title': 'Instellingen',
@@ -1053,6 +1165,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'settings.darkMode': 'Donkere modus',
 		'settings.close': 'Sluiten',
 		'settings.start': 'Start',
+		'settings.selectLanguage': 'Selecteer taal',
 		'card.words': 'Woorden',
 		'content.empty': 'Geen inhoud gevonden.',
 		'content.continueWatching': 'Ga door met kijken',
@@ -1108,7 +1221,13 @@ const translations: Record<LanguageCode, Record<string, string>> = {
 		'sort.bestLevel': 'Beste niveau',
 		'sort.newest': 'Nieuwste',
 		'sort.popular': 'Populair',
-		'sort.anyDuration': 'Alle duur'
+		'sort.anyDuration': 'Alle duur',
+		'feedback.delete': 'Verwijder',
+		'feedback.deleteConfirm': 'Weet je zeker dat je dit wilt verwijderen?',
+		'feedback.cancel': 'Annuleer',
+		'feedback.report': 'Rapporteer',
+		'feedback.reportPrompt': 'Vul a.u.b. een verzoek in.',
+		'feedback.reportSuccess': 'Het verzoek is verzonden.'
 	}
 };
 

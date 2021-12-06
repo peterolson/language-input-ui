@@ -80,6 +80,7 @@
 			}
 		} catch (e) {
 			contentList = [];
+			console.error(e);
 		}
 		isLoadingMore = false;
 	}

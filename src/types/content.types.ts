@@ -11,6 +11,7 @@ export type ContentItem = {
 	timings: [number, number][];
 	media: Media;
 	lemmas: string[];
+	tradLemmas?: string[];
 	wordCount: number;
 	url: string;
 	publishedDate: Date;
@@ -20,7 +21,10 @@ export type ContentItem = {
 	dislikes: number;
 	neutral: number;
 	views: number;
+	popularity: number;
 	difficulty: number;
+	isPrivate?: boolean;
+	userId?: { toString: () => string };
 };
 
 export type ContentItemSummary = {

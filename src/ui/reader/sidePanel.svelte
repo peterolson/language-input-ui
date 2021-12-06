@@ -4,7 +4,6 @@
 
 	import type { ContentItem } from '../../types/content.types';
 	import { t } from '../../i18n/i18n';
-	import { Icon } from '@smui/common';
 	import ContentList from '../content/ContentList.svelte';
 	const { userLanguage } = settings;
 
@@ -54,12 +53,11 @@
 	.secondary {
 		opacity: 0.7;
 	}
-	.iconNumber {
-		display: flex;
-		align-items: center;
-	}
-	.iconNumber span {
-		margin-left: 4px;
-		margin-top: 2px;
+	a {
+		max-width: 100%;
+		overflow: hidden;
+		display: block;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 </style>

@@ -1,16 +1,9 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import dotenv from 'dotenv';
-dotenv.config();
-
-const MICROSOFT_SPEECH_SUBSCRIPTION_KEY = process.env[
-	'MICROSOFT_SPEECH_SUBSCRIPTION_KEY'
-] as string;
-const MICROSOFT_SPEECH_ISSUE_TOKEN_ENDPOINT = process.env[
-	'MICROSOFT_SPEECH_ISSUE_TOKEN_ENDPOINT'
-] as string;
-const MICROSOFT_SPEECH_ISSUE_TOKEN_HOST = process.env[
-	'MICROSOFT_SPEECH_ISSUE_TOKEN_HOST'
-] as string;
+import {
+	MICROSOFT_SPEECH_ISSUE_TOKEN_ENDPOINT,
+	MICROSOFT_SPEECH_ISSUE_TOKEN_HOST,
+	MICROSOFT_SPEECH_SUBSCRIPTION_KEY
+} from '../api/config';
 
 const EXPIRE_MS = 1000 * 60 * 9;
 let lastTokenTimestamp: number;

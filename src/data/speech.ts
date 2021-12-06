@@ -34,29 +34,18 @@ async function loadSDK() {
 }
 
 const region = 'eastus';
-export async function getAudio(
-	ssml: string
-): Promise<{ timings: { audioOffset: number; text: string }; blob: Blob }> {
+export async function getAudio(ssml: string): Promise<Blob> {
 	const token = await getToken();
 	const sdk = await loadSDK();
 	const speechConfig = sdk.SpeechConfig.fromAuthorizationToken(token, region);
 	const audioConfig = sdk.AudioConfig.fromStreamOutput(new sdk.PushAudioOutputStreamCallback());
 	const synthesizer = new sdk.SpeechSynthesizer(speechConfig, audioConfig);
 
-	const wordBoundaryEvents: any = [];
-	synthesizer.wordBoundary = (_sender: any, e: any) => {
-		wordBoundaryEvents.push(e);
-	};
-
 	return new Promise((resolve) => {
 		synthesizer.speakSsmlAsync(ssml, (result: { audioData: BlobPart }) => {
-			const timings = wordBoundaryEvents.map((x: { audioOffset: number; text: any }) => ({
-				audioOffset: x.audioOffset / 10000000,
-				text: x.text
-			}));
 			const blob = new Blob([result.audioData], { type: 'audio/mp3' });
 			synthesizer.close();
-			resolve({ timings, blob });
+			resolve(blob);
 		});
 	});
 }
@@ -75,7 +64,7 @@ const playAudio = (blob: Blob) => {
 	audio.play();
 };
 
-function getSSML(text: string, voice: Voice) {
+export function getSSML(text: string, voice: Voice) {
 	return (
 		`<speak version='1.0' xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang='${voice.code}'>` +
 		`<voice name='${voice.name}'>` +
@@ -87,6 +76,7 @@ function getSSML(text: string, voice: Voice) {
 
 export async function speak(text: string, voice: Voice) {
 	const ssml = getSSML(text, voice);
-	const { blob } = await getAudio(ssml);
+	const blob = await getAudio(ssml);
 	playAudio(blob);
+	return blob;
 }

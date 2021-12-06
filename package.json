@@ -16,6 +16,7 @@
 	"devDependencies": {
 		"@material/theme": "^11.0.0",
 		"@material/typography": "^11.0.0",
+		"@smui/snackbar": "^5.0.1",
 		"@smui/switch": "^5.0.1",
 		"@smui/tab": "^5.0.1",
 		"@smui/tab-bar": "^5.0.1",
@@ -51,6 +52,7 @@
 		"@smui/select": "^5.0.1",
 		"@types/cookie": "^0.4.1",
 		"@types/jsonwebtoken": "^8.5.6",
+		"aws-sdk": "^2.1043.0",
 		"chart.js": "^3.6.0",
 		"cookie": "^0.4.1",
 		"dotenv": "^10.0.0",
@@ -59,6 +61,7 @@
 		"knowledge-score": "^1.0.1",
 		"load-script2": "^2.0.6",
 		"localforage": "^1.10.0",
+		"microsoft-cognitiveservices-speech-sdk": "^1.19.0",
 		"skeleton-elements": "^4.0.0",
 		"smui-theme": "^5.0.0",
 		"yt-player": "^3.5.0"

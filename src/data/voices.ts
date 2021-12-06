@@ -370,7 +370,7 @@ export const voices: Record<LanguageCode, Voice[]> = {
 			name: 'en-US-AnaNeural',
 			region: 'United States',
 			code: 'en-US',
-			isFemale: false
+			isFemale: true
 		},
 		{
 			name: 'en-US-ChristopherNeural',

@@ -74,13 +74,14 @@ export function scheduleCommit(diff: Record<string, any>) {
 
 function commitUpdates() {
 	const authToken = getSession().user?.authToken as string;
+	const body = JSON.stringify(diffToCommit);
 	fetch(`${endpoint}/user/data`, {
 		method: 'POST',
 		headers: {
 			authToken: authToken,
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify(diffToCommit)
+		body: body
 	});
 	diffToCommit = {};
 }
@@ -96,6 +97,15 @@ function getDiff(key: string, prevValue: any, newValue: any) {
 	}
 	if (newValue instanceof Array) {
 		if (arraysEqual(prevValue, newValue)) {
+			return diff;
+		}
+		if (prevValue instanceof Array) {
+			const maxLength = Math.max(prevValue.length, newValue.length);
+			for (let i = 0; i < maxLength; i++) {
+				const newKey = `${key}.${i}`;
+				const subDiff = getDiff(newKey, prevValue[i], newValue[i]);
+				diff = { ...diff, ...subDiff };
+			}
 			return diff;
 		}
 		diff[key] = newValue;

@@ -35,7 +35,7 @@
 	}
 
 	function formatPercent(r: number): string {
-		return `${(r * 100).toFixed(3)}%`;
+		return `${((r || 0) * 100).toFixed(3)}%`;
 	}
 
 	function b(s: string): string {
