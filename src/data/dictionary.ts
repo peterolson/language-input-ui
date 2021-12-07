@@ -3,6 +3,7 @@ import { endpoint } from './endpoint';
 
 export async function lookupWord(
 	word: string,
+	sentence: string,
 	from: LanguageCode,
 	to: LanguageCode
 ): Promise<DictionaryLookup> {
@@ -14,7 +15,8 @@ export async function lookupWord(
 		body: JSON.stringify({
 			from,
 			to,
-			word
+			word,
+			sentence
 		})
 	}).then((res) => res.json());
 	return response;

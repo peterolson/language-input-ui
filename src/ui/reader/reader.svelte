@@ -11,7 +11,7 @@
 	} from '../../data/knowledge';
 	import { settings } from '../../data/settings';
 	import type { ContentItem } from '../../types/content.types';
-	import type { Token } from '../../types/parse.types';
+	import type { Sentence, Token } from '../../types/parse.types';
 	import LookupWord from '../dictionary/lookupWord.svelte';
 	import Finished from './finished.svelte';
 	import MediaView from './media/mediaView.svelte';
@@ -190,10 +190,12 @@
 	}
 
 	let selectedToken: Token | null = null;
+	let selectedSentence: Sentence;
 	let fullScreenLookup = false;
 
-	function onLookup(e: CustomEvent<{ token: Token; target: HTMLElement }>) {
+	function onLookup(e: CustomEvent<{ token: Token; sentence: Sentence; target: HTMLElement }>) {
 		selectedToken = e.detail.token;
+		selectedSentence = e.detail.sentence;
 		const target = e.detail.target;
 		const position = target.offsetTop / window.innerHeight;
 		displayDictionaryAtTop = position >= 0.5;
@@ -352,6 +354,7 @@
 				{#key `${$userLanguage} ${selectedToken.text}`}
 					<LookupWord
 						token={selectedToken}
+						sentence={selectedSentence}
 						fromLang={lang}
 						toLang={$userLanguage}
 						fullScreen={fullScreenLookup}

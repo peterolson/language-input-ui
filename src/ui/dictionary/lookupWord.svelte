@@ -4,7 +4,7 @@
 	import type { DictionaryLookup, LanguageCode } from '../../types/dictionary.types';
 	import { onMount } from 'svelte';
 	import WordTranslation from './wordTranslation.svelte';
-	import type { Token } from '../../types/parse.types';
+	import type { Sentence, Token } from '../../types/parse.types';
 	import IconButton from '@smui/icon-button';
 	import { createEventDispatcher } from 'svelte';
 	import { settings } from '../../data/settings';
@@ -18,6 +18,7 @@
 	const { isTraditional } = settings;
 
 	export let token: Token;
+	export let sentence: Sentence;
 	export let fromLang: LanguageCode;
 	export let toLang: LanguageCode;
 	export let fullScreen: boolean;
@@ -33,7 +34,12 @@
 	}
 
 	onMount(async () => {
-		lookupResult = await lookupWord(token.text, fromLang, toLang);
+		lookupResult = await lookupWord(
+			token.text,
+			sentence.tokens.map((x) => x.text + x.suffix).join(''),
+			fromLang,
+			toLang
+		);
 		speakWord();
 	});
 
@@ -54,7 +60,7 @@
 				({token.lemma})
 			{/if}
 			{#if token.tradText && token.tradText !== token.text}
-				({isTraditional ? token.text : token.tradText})
+				({$isTraditional ? token.text : token.tradText})
 			{/if}
 		</h1>
 		<div class="buttons">
@@ -98,6 +104,21 @@
 					/>
 				</div>
 			{/each}
+		{/if}
+		{#if lookupResult?.translatedSentence}
+			<div class="mdc-typography--caption result">
+				<div style="opacity: 0.7">
+					{$isTraditional && lookupResult.originalSentenceTrad
+						? lookupResult.originalSentenceTrad
+						: lookupResult.originalSentence}
+				</div>
+				<div>
+					{$isTraditional && lookupResult.translatedSentenceTrad
+						? lookupResult.translatedSentenceTrad
+						: lookupResult.translatedSentence}
+				</div>
+			</div>
+			<hr />
 		{/if}
 		<div class="mdc-typography--caption result">
 			{token.pos}

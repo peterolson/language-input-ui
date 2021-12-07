@@ -44,6 +44,10 @@ export type DictionaryLookup = {
 	normalizedSourceTrad?: string;
 	displaySourceTrad?: string;
 	translations: DictionaryTranslation[];
+	originalSentence?: string;
+	originalSentenceTrad?: string;
+	translatedSentence?: string;
+	translatedSentenceTrad?: string;
 };
 
 export type DictionaryTranslation = {

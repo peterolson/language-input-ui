@@ -3,7 +3,7 @@
 	import { isKnown, normalizeWord } from '../../data/knowledge';
 	import { LanguageCode } from '../../types/dictionary.types';
 	import type { Knowledge } from '../../types/knowledge.types';
-	import type { TextLine, Token } from '../../types/parse.types';
+	import type { Sentence, TextLine, Token } from '../../types/parse.types';
 	import { createEventDispatcher } from 'svelte';
 	import { charInCJK } from '../../data/util';
 	import { settings } from '../../data/settings';
@@ -23,11 +23,11 @@
 		return `padding-bottom: ${[...token.text].filter((x) => x === '\n').length * 2}px`;
 	}
 
-	function lookupWord(token: Token, e: MouseEvent) {
+	function lookupWord(token: Token, sentence: Sentence, e: MouseEvent) {
 		e.preventDefault();
 		e.stopPropagation();
 		if (!token.isWord) return;
-		dispatch('lookup', { token, target: e.target });
+		dispatch('lookup', { token, sentence, target: e.target });
 	}
 
 	function seekToLine() {
@@ -104,7 +104,7 @@
 					class:wordUnknown={isWordUnknown(knowledge, lang, token, $isTraditional)}
 					class:lookedUp={lookedUpWords.has(normalizeWord(token.text))}
 					class:isCurrentWord={isCurrentWord(token, currentTime)}
-					on:click={(e) => lookupWord(token, e)}
+					on:click={(e) => lookupWord(token, sentence, e)}
 					>{$isTraditional && token.tradText ? token.tradText : token.text}</span
 				>{token.suffix}{#if token.text.includes('\n')}
 					<div style={lineSpacingStyle(token)} />
