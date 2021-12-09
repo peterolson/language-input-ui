@@ -145,27 +145,27 @@ export const voices: Record<LanguageCode, Voice[]> = {
 	],
 	en: [
 		{
-			name: 'en-GB-LibbyNeural',
-			region: 'United Kingdom',
-			code: 'en-GB',
-			isFemale: true
-		},
-		{
 			name: 'en-US-AmberNeural',
 			region: 'United States',
 			code: 'en-US',
 			isFemale: true
 		},
 		{
-			name: 'en-GB-RyanNeural',
-			region: 'United Kingdom',
-			code: 'en-GB',
-			isFemale: false
-		},
-		{
 			name: 'en-US-BrandonNeural',
 			region: 'United States',
 			code: 'en-US',
+			isFemale: false
+		},
+		{
+			name: 'en-GB-LibbyNeural',
+			region: 'United Kingdom',
+			code: 'en-GB',
+			isFemale: true
+		},
+		{
+			name: 'en-GB-RyanNeural',
+			region: 'United Kingdom',
+			code: 'en-GB',
 			isFemale: false
 		},
 		{
@@ -399,6 +399,18 @@ export const voices: Record<LanguageCode, Voice[]> = {
 	],
 	fr: [
 		{
+			name: 'fr-FR-DeniseNeural',
+			region: 'France',
+			code: 'fr-FR',
+			isFemale: true
+		},
+		{
+			name: 'fr-FR-HenriNeural',
+			region: 'France',
+			code: 'fr-FR',
+			isFemale: false
+		},
+		{
 			name: 'fr-BE-CharlineNeural',
 			region: 'Belgium',
 			code: 'fr-BE',
@@ -429,18 +441,6 @@ export const voices: Record<LanguageCode, Voice[]> = {
 			isFemale: false
 		},
 		{
-			name: 'fr-FR-DeniseNeural',
-			region: 'France',
-			code: 'fr-FR',
-			isFemale: true
-		},
-		{
-			name: 'fr-FR-HenriNeural',
-			region: 'France',
-			code: 'fr-FR',
-			isFemale: false
-		},
-		{
 			name: 'fr-CH-ArianeNeural',
 			region: 'Switzerland',
 			code: 'fr-CH',
@@ -455,18 +455,6 @@ export const voices: Record<LanguageCode, Voice[]> = {
 	],
 	de: [
 		{
-			name: 'de-AT-IngridNeural',
-			region: 'Austria',
-			code: 'de-AT',
-			isFemale: true
-		},
-		{
-			name: 'de-AT-JonasNeural',
-			region: 'Austria',
-			code: 'de-AT',
-			isFemale: false
-		},
-		{
 			name: 'de-DE-KatjaNeural',
 			region: 'Germany',
 			code: 'de-DE',
@@ -476,6 +464,18 @@ export const voices: Record<LanguageCode, Voice[]> = {
 			name: 'de-DE-ConradNeural',
 			region: 'Germany',
 			code: 'de-DE',
+			isFemale: false
+		},
+		{
+			name: 'de-AT-IngridNeural',
+			region: 'Austria',
+			code: 'de-AT',
+			isFemale: true
+		},
+		{
+			name: 'de-AT-JonasNeural',
+			region: 'Austria',
+			code: 'de-AT',
 			isFemale: false
 		},
 		{
@@ -661,6 +661,30 @@ export const voices: Record<LanguageCode, Voice[]> = {
 	],
 	es: [
 		{
+			name: 'es-MX-DaliaNeural',
+			region: 'Mexico',
+			code: 'es-MX',
+			isFemale: true
+		},
+		{
+			name: 'es-MX-JorgeNeural',
+			region: 'Mexico',
+			code: 'es-MX',
+			isFemale: false
+		},
+		{
+			name: 'es-ES-ElviraNeural',
+			region: 'Spain',
+			code: 'es-ES',
+			isFemale: true
+		},
+		{
+			name: 'es-ES-AlvaroNeural',
+			region: 'Spain',
+			code: 'es-ES',
+			isFemale: false
+		},
+		{
 			name: 'es-AR-ElenaNeural',
 			region: 'Argentina',
 			code: 'es-AR',
@@ -805,18 +829,6 @@ export const voices: Record<LanguageCode, Voice[]> = {
 			isFemale: false
 		},
 		{
-			name: 'es-MX-DaliaNeural',
-			region: 'Mexico',
-			code: 'es-MX',
-			isFemale: true
-		},
-		{
-			name: 'es-MX-JorgeNeural',
-			region: 'Mexico',
-			code: 'es-MX',
-			isFemale: false
-		},
-		{
 			name: 'es-NI-YolandaNeural',
 			region: 'Nicaragua',
 			code: 'es-NI',
@@ -874,18 +886,6 @@ export const voices: Record<LanguageCode, Voice[]> = {
 			name: 'es-PR-Victor Neural',
 			region: 'Puerto Rico',
 			code: 'es-PR',
-			isFemale: false
-		},
-		{
-			name: 'es-ES-ElviraNeural',
-			region: 'Spain',
-			code: 'es-ES',
-			isFemale: true
-		},
-		{
-			name: 'es-ES-AlvaroNeural',
-			region: 'Spain',
-			code: 'es-ES',
 			isFemale: false
 		},
 		{
