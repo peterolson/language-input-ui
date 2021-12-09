@@ -27,6 +27,6 @@ export function addImportToHistory(id: string) {
 
 export function getViewedContentIds(history: UserHistory) {
 	return objectToArray(history)
-		.filter((h) => h.action === 'view')
+		.filter((h) => h?.action === 'view')
 		.map((h) => h.id);
 }

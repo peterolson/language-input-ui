@@ -2,13 +2,14 @@
 	import MediaView from '../reader/media/mediaView.svelte';
 	import type { Media } from '../../types/media.types';
 	import UploadFile from './uploadFile.svelte';
+	import { t } from '../../i18n/i18n';
 	let media: Media;
 	export let onUploadMedia: (item: { media: Media; duration: number; timings: any[] }) => void;
 
 	async function checkErrors(file: File) {
 		const type = file.type;
 		if (!type.includes('audio') && !type.includes('video')) {
-			return 'File must be a video or audio file';
+			return $t('add.upload.typeError');
 		}
 	}
 

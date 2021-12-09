@@ -5,6 +5,7 @@
 	import UploadTts from './uploadTTS.svelte';
 	import type { LanguageCode } from '../../types/dictionary.types';
 	import type { Media } from 'src/types/media.types';
+	import { t } from '../../i18n/i18n';
 
 	export let lang: LanguageCode;
 	export let text: string;
@@ -15,11 +16,11 @@
 <div class="radio-group mdc-typography--body1">
 	<FormField>
 		<Radio bind:group={selected} value="upload" />
-		<span slot="label">Upload audio / video</span>
+		<span slot="label">{$t('add.audioVideo')}</span>
 	</FormField>
 	<FormField>
 		<Radio bind:group={selected} value="tts" />
-		<span slot="label">Read with text-to-speech</span>
+		<span slot="label">{$t('add.tts')}</span>
 	</FormField>
 </div>
 

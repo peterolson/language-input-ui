@@ -8,6 +8,7 @@
 	import ProgressButton from '../widgets/ProgressButton.svelte';
 	import MediaView from '../reader/media/mediaView.svelte';
 	import Error from '../widgets/Error.svelte';
+	import { t } from '../../i18n/i18n';
 
 	export let lang: LanguageCode;
 	export let text: string;
@@ -57,7 +58,7 @@
 		isGenerating = false;
 		audio.addEventListener('loadedmetadata', () => {
 			if (audio.duration >= 10 * 60 - 10) {
-				error = 'Text is too long. Max duration is 10 minutes.';
+				error = $t('add.tts.lengthError');
 				media = null as any;
 			}
 			onUploadMedia({ media, duration: audio.duration, timings });
@@ -80,7 +81,7 @@
 		onClick={onGenerate}
 		disabled={isGenerating || !text.length}
 	>
-		Generate
+		{$t('add.tts.generate')}
 	</ProgressButton>
 </div>
 <div>

@@ -78,9 +78,9 @@
 
 <div class="container">
 	<div class="padded">
-		<Textfield label={'Title'} bind:value={title} style="width:100%; margin-bottom:12px" />
+		<Textfield label={$t('add.title')} bind:value={title} style="width:100%; margin-bottom:12px" />
 		<Textfield
-			label={'Text'}
+			label={$t('add.text')}
 			bind:value={text}
 			textarea
 			input$rows={5}
@@ -97,16 +97,16 @@
 			{#if duration}
 				<hr />
 				<UploadThumbnail {title} {text} lang={selectedLanguage} {duration} {onUploadThumbnail} />
-				<Textfield label={'Source URL'} bind:value={url} style="width:100%" />
+				<Textfield label={$t('add.sourceURL')} bind:value={url} style="width:100%" />
 				<div class="mdc-typography--caption" style="margin-bottom: 8px;">
-					Where does this content come from?
+					{$t('add.sourceHelper')}
 				</div>
 				<!-- svelte-ignore a11y-label-has-associated-control -->
 				<label>
 					<Checkbox touch bind:checked={isPublic} />
 					<div class="mdc-typography--body2">
-						Make public
-						<div class="mdc-typography--caption">All users can see public content.</div>
+						{$t('add.public')}
+						<div class="mdc-typography--caption">{$t('add.publicHelper')}</div>
 					</div>
 				</label>
 				<br />

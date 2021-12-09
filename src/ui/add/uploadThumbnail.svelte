@@ -5,6 +5,7 @@
 	import ContentCard from '../content/ContentCard.svelte';
 	import UploadFile from './uploadFile.svelte';
 	import { session } from '$app/stores';
+	import { t } from '../../i18n/i18n';
 
 	let contentSummary: ContentItemSummary;
 	export let title: string;
@@ -16,11 +17,11 @@
 	async function checkErrors(file: File): Promise<string | undefined> {
 		const type = file.type;
 		if (!type.includes('image')) {
-			return 'File must be an image.';
+			return $t('add.upload.imageTypeError');
 		}
 		const size = file.size;
 		if (size > 150000) {
-			return 'File size must be less than 150KB.';
+			return $t('add.upload.imageSizeError');
 		}
 
 		return await new Promise((resolve) => {
@@ -28,7 +29,7 @@
 			const img = new Image();
 			img.onload = function () {
 				if (img.width < 320 || img.height < 180) {
-					resolve('Image must be at least 320x180.');
+					resolve($t('add.upload.imageDimensionsError'));
 				}
 				URL.revokeObjectURL(url);
 				resolve(undefined);
@@ -59,7 +60,7 @@
 
 <div class="mdc-typography--body1 header">
 	<Icon class="material-icons">image</Icon>
-	&nbsp; Upload thumbnail
+	&nbsp; {$t('add.upload.image')}
 </div>
 <UploadFile {checkErrors} {onUploaded} />
 {#if contentSummary}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from '@smui/button/Button.svelte';
 	import CircularProgress from '@smui/circular-progress';
+	import { t } from '../../i18n/i18n';
 	import Error from '../widgets/Error.svelte';
 	let error = '';
 	let uploadedFile: File;
@@ -14,7 +15,7 @@
 
 		// limit size to 20MB
 		if (size > 20 * 1024 * 1024) {
-			error = 'File size is too large. Max size is 20MB.';
+			error = $t('add.upload.sizeError');
 			return;
 		}
 
@@ -99,11 +100,11 @@
 		{uploadedFile.name}<br />
 		{uploadedFile.type}<br />
 		{formatFileSize(uploadedFile.size)}<br />
-		<Button on:click={onCancel}>Change file</Button>
+		<Button on:click={onCancel}>{$t('add.upload.change')}</Button>
 	{:else}
-		Drop file here
+		{$t('add.upload.drop')}
 		<hr />
-		or<br />
+		{$t('add.upload.or')}<br />
 		<input type="file" class="mdc-typography--body2" on:change={onUpload} />
 	{/if}
 </div>
