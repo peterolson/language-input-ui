@@ -107,8 +107,6 @@
 		swipeMove(e.clientX);
 	}
 	function onTouchEnd(e: TouchEvent) {
-		const target = e.target as HTMLElement;
-		if (['span', 'i', 'button'].includes(target.tagName.toLowerCase())) return; // prevent swiping on button taps
 		swipeEnd();
 	}
 	function onMouseUp(e: MouseEvent) {
@@ -133,7 +131,8 @@
 			return;
 		}
 		if (1 <= currentPage + n) {
-			if (n > 0) markWordsOnCurrentPage();
+			const page = currentPage;
+			if (n > 0) setTimeout(() => markWordsOnPage(page), 500);
 			saveViewProgress();
 			contentDiv.scrollTo({
 				left: contentDiv.clientWidth * (currentPage - 1 + n),
@@ -146,7 +145,7 @@
 
 	let dialogOpen = false;
 	function onFinish() {
-		markWordsOnCurrentPage();
+		markWordsOnPage(currentPage);
 		selectedToken = null;
 		dialogOpen = true;
 		addViewToHistory(content._id);
@@ -169,9 +168,14 @@
 		}) as HTMLSpanElement[];
 	}
 
-	function markWordsOnCurrentPage() {
+	function markWordsOnPage(page: number) {
 		if (!contentDiv) return;
-		const visibleTokens = getVisibleTokens();
+		const left = contentDiv.offsetWidth * (page - 1);
+		const right = left + contentDiv.offsetWidth;
+		const visibleTokens = Array.from(contentDiv.querySelectorAll('span.word')).filter((el) => {
+			const span = el as HTMLSpanElement;
+			return span.offsetLeft >= left && span.offsetLeft + span.offsetWidth <= right;
+		}) as HTMLSpanElement[];
 		const wordSet = new Set<string>();
 		visibleTokens.forEach((span) => {
 			const lemma = span.dataset.lemma;
@@ -244,7 +248,7 @@
 	}
 
 	function restoreViewProgress(progress: ViewProgressItem) {
-		if (!progress) return;
+		if (!progress || !contentDiv) return;
 
 		lookedUpWords = new Set(progress.lookedUpWords);
 		const tokenSpan = Array.from(contentDiv.querySelectorAll('span.word'))[
