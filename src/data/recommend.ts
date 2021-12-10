@@ -25,7 +25,11 @@ export function recommendVideos(videos: { id: string }[], weight = 1): void {
 	for (const video of videos) {
 		const { id } = video;
 		recommendations[id] = [...(recommendations[id] || [0, 0])];
-		recommendations[id][0] += weight;
+		if (weight > 0) {
+			recommendations[id][0] += weight;
+		} else {
+			recommendations[id][0] = weight;
+		}
 		recommendations[id][1] = now;
 	}
 	removeOldestRecommendations(recommendations);
