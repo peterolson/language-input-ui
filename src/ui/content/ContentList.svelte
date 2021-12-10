@@ -140,10 +140,15 @@
 	}
 
 	function clickItem(i: number) {
-		const ignoredContent = (
-			contentList.slice(0, i).filter((x) => !('skeleton' in x)) as ContentItemSummary[]
-		).map((x) => ({ id: x._id }));
-		ignoreVideos(ignoredContent);
+		if ('lang' in contentList[i]) {
+			const lang = (contentList[i] as ContentItemSummary).lang;
+			const ignoredContent = (
+				contentList.slice(0, i).filter((x) => !('skeleton' in x)) as ContentItemSummary[]
+			)
+				.filter((x) => x.lang === lang)
+				.map((x) => ({ id: x._id }));
+			ignoreVideos(ignoredContent);
+		}
 	}
 </script>
 
