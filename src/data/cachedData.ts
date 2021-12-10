@@ -91,7 +91,7 @@ async function commitUpdates(): Promise<void> {
 		});
 	}
 	const authToken = getSession().user?.authToken as string;
-	const body = JSON.stringify(diffToCommit);
+	const body = JSON.stringify(diffToCommit, (k, v) => (v === undefined ? null : v));
 	isFetching = true;
 	await fetch(`${endpoint}/user/data`, {
 		method: 'POST',

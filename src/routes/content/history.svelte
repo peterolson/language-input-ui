@@ -43,6 +43,7 @@
 		continueWatching: async (skip: number, limit: number) => {
 			const viewProgress = $viewProgressStore;
 			const ids = Object.keys(viewProgress)
+				.filter((id) => viewProgress[id])
 				.reverse()
 				.slice(skip, skip + limit);
 			const content = await fetch(`${endpoint}/content/ids`, {

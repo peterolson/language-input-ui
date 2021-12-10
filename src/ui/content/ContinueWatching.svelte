@@ -6,7 +6,7 @@
 	export let id: string;
 </script>
 
-{#if id in $viewProgressStore}
+{#if $viewProgressStore[id]}
 	<div>{$t('content.continueWatching')}</div>
 {/if}
 
