@@ -5,6 +5,8 @@
 	import { t } from '../../i18n/i18n';
 	import { createEventDispatcher } from 'svelte';
 	import { rateContent } from '../../data/content';
+	import type { ContentItemSummary } from '../../types/content.types';
+	import { ignoreVideos, recommendVideos } from '../../data/recommend';
 	const dispatch = createEventDispatcher();
 
 	const buttonStyle = 'flex:1;display:inline-block;text-align:center;height:unset;padding:8px;';
@@ -12,6 +14,8 @@
 
 	export let open: boolean;
 	export let id: string;
+	export let recommendations: ContentItemSummary[];
+	export let channel: string;
 
 	function closeHandler(e: CustomEvent<{ action: string }>) {
 		const action = e.detail.action;
@@ -19,6 +23,23 @@
 			rateContent(id, action);
 		}
 		dispatch('close', { time: e.detail.action });
+
+		if (action === 'like') {
+			recommendVideos(
+				recommendations.map((r) => ({ id: r._id })),
+				3
+			);
+		} else if (action === 'dislike') {
+			ignoreVideos(
+				recommendations.filter((x) => x.channel === channel).map((r) => ({ id: r._id })),
+				-3
+			);
+		} else {
+			recommendVideos(
+				recommendations.map((r) => ({ id: r._id })),
+				1
+			);
+		}
 	}
 </script>
 

@@ -8,6 +8,9 @@
 	import { settings } from '../../data/settings';
 	import { Icon } from '@smui/common';
 	import ContinueWatching from './ContinueWatching.svelte';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	const { darkMode, isTraditional } = settings;
 
@@ -47,6 +50,10 @@
 				return ' ';
 			})
 			.join('');
+	}
+
+	function onClick() {
+		dispatch('click', content);
 	}
 </script>
 
@@ -91,7 +98,7 @@
 			</div>
 		</div>
 	{:else}
-		<a href={`/content/${content._id}`} sveltekit:prefetch>
+		<a href={`/content/${content._id}`} sveltekit:prefetch on:click={onClick}>
 			<div class="imageContainer">
 				<img src={content.thumb} alt={content.title} />
 				<ContinueWatching id={content._id} />

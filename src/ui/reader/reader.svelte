@@ -10,7 +10,7 @@
 		normalizeWord
 	} from '../../data/knowledge';
 	import { settings } from '../../data/settings';
-	import type { ContentItem } from '../../types/content.types';
+	import type { ContentItem, ContentItemSummary } from '../../types/content.types';
 	import type { Sentence, Token } from '../../types/parse.types';
 	import LookupWord from '../dictionary/lookupWord.svelte';
 	import Finished from './finished.svelte';
@@ -45,6 +45,7 @@
 	let newWordSet = new Set<string>();
 	let isFinished = false;
 	let container: HTMLDivElement;
+	let recommendations: ContentItemSummary[] = [];
 
 	$: {
 		maxWidth = Math.min(640, innerWidth);
@@ -119,7 +120,6 @@
 			const { scrollLeft, scrollWidth } = contentDiv;
 			const interval = scrollWidth / pages;
 			const page = Math.round(scrollLeft / interval);
-			console.log('snapToNearestPage', page, interval, page * interval, scrollLeft, scrollWidth);
 			contentDiv.scrollTo({
 				left: page * interval,
 				behavior
@@ -271,6 +271,10 @@
 		currentPage = page;
 		updateProgress();
 	}
+
+	function onRecommend(e: CustomEvent<ContentItemSummary[]>) {
+		recommendations = e.detail;
+	}
 </script>
 
 <svelte:head>
@@ -288,7 +292,7 @@
 	bind:this={container}
 >
 	<div class="leftPanel" on:click={closeDictionary}>
-		<SidePanel {content} />
+		<SidePanel {content} on:recommend={onRecommend} />
 	</div>
 	<div class="contentContainer" on:click={closeDictionary}>
 		{#if isFinished}
@@ -339,7 +343,13 @@
 					{currentPage === pages ? 'check_circle' : 'navigate_next'}
 				</IconButton>
 			</div>
-			<RatingDialog open={dialogOpen} on:close={onDialogClose} id={content._id} />
+			<RatingDialog
+				open={dialogOpen}
+				on:close={onDialogClose}
+				id={content._id}
+				{recommendations}
+				channel={content.channel}
+			/>
 		{/if}
 	</div>
 	{#if !isFinished}

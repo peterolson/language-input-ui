@@ -2,15 +2,22 @@
 	import { languageNames } from '../../types/dictionary.types';
 	import { settings } from '../../data/settings';
 
-	import type { ContentItem } from '../../types/content.types';
+	import type { ContentItem, ContentItemSummary } from '../../types/content.types';
 	import { t } from '../../i18n/i18n';
 	import ContentList from '../content/ContentList.svelte';
 	const { userLanguage } = settings;
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	export let content: ContentItem;
 	let dateFormat: Intl.DateTimeFormat;
 	$: {
 		dateFormat = new Intl.DateTimeFormat($userLanguage);
+	}
+
+	function onListLoaded(e: CustomEvent<ContentItemSummary[]>) {
+		dispatch('recommend', e.detail);
 	}
 </script>
 
@@ -38,6 +45,7 @@
 		}&difficulty=${content.difficulty}&id=${content._id}&`}
 		fullWidth
 		preventUpdate={true}
+		on:load={onListLoaded}
 	/>
 </div>
 

@@ -17,7 +17,7 @@
 	}
 </script>
 
-<Dialog bind:open fullscreen>
+<Dialog bind:open>
 	<Title
 		><div class="settingsTitle">
 			{$t('settings.title')}

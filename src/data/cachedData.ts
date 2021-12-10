@@ -10,6 +10,7 @@ export type CachedData<T> = {
 	value: T;
 	store: Writable<T>;
 	update: (value: T) => void;
+	getValue: () => Promise<T>;
 };
 
 export function cachedData<T>(defaultValue: T, storageKey: string): CachedData<T> {
@@ -25,6 +26,10 @@ export function cachedData<T>(defaultValue: T, storageKey: string): CachedData<T
 				const diff = getDiff(storageKey, prevValue, value);
 				scheduleCommit(diff);
 			}
+		},
+		getValue: async () => {
+			const value = await localforage.getItem(storageKey);
+			return (value ?? cachedData.value ?? defaultValue) as T;
 		}
 	};
 	if (browser) {
@@ -64,18 +69,31 @@ export function cachedData<T>(defaultValue: T, storageKey: string): CachedData<T
 
 let diffToCommit: Record<string, any> = {};
 let timeoutId: number;
+let isFetching = false;
 
-export function scheduleCommit(diff: Record<string, any>) {
+export async function scheduleCommit(diff: Record<string, any>) {
 	if (!isLoggedIn()) return;
+	const conflicts = hasConflict(diff);
+	if (conflicts) {
+		await commitUpdates();
+	}
 	diffToCommit = { ...diffToCommit, ...diff };
 	clearTimeout(timeoutId);
 	timeoutId = setTimeout(commitUpdates, 500) as any;
 }
 
-function commitUpdates() {
+async function commitUpdates(): Promise<void> {
+	if (isFetching) {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				commitUpdates().then(resolve);
+			}, 500);
+		});
+	}
 	const authToken = getSession().user?.authToken as string;
 	const body = JSON.stringify(diffToCommit);
-	fetch(`${endpoint}/user/data`, {
+	isFetching = true;
+	await fetch(`${endpoint}/user/data`, {
 		method: 'POST',
 		headers: {
 			authToken: authToken,
@@ -84,6 +102,7 @@ function commitUpdates() {
 		body: body
 	});
 	diffToCommit = {};
+	isFetching = false;
 }
 
 function getDiff(key: string, prevValue: any, newValue: any) {
@@ -135,4 +154,19 @@ function arraysEqual<T>(arr1: T[], arr2: T[]) {
 		if (arr1[i] !== arr2[i]) return false;
 	}
 	return true;
+}
+
+function hasConflict(diff: Record<string, any>) {
+	const keys = Object.keys(diff);
+	const prevKeys = Object.keys(diffToCommit);
+
+	// check if there is a prevKey that is a prefix of a key
+	for (const prevKey of prevKeys) {
+		for (const key of keys) {
+			if (key !== prevKey && key.startsWith(prevKey)) {
+				return true;
+			}
+		}
+	}
+	return false;
 }

@@ -1,7 +1,7 @@
 import type { Knowledge, KnowledgeScores, LanguageKnowledge } from '../types/knowledge.types';
 import { updateScore } from 'knowledge-score';
 import { LanguageCode } from '../types/dictionary.types';
-import { charInCJK } from './util';
+import { charInCJK, objectToArray } from './util';
 import type { ContentItem } from 'src/types/content.types';
 import { cachedData } from './cachedData';
 import { addToProgress, setProgress } from './progressData';
@@ -34,7 +34,7 @@ const markPoints = (points: number) => (words: string[], language: LanguageCode)
 	for (const w of ws) {
 		if (!w) continue;
 		const word = normalizeWord(w);
-		const [oldScore, previousTimestamp] = scores[word] || [0, +new Date()];
+		const [oldScore, previousTimestamp] = objectToArray(scores[word] || [0, +new Date()]);
 		const newScore = updateScore(points, oldScore, new Date(previousTimestamp));
 		const newTimestamp = +new Date();
 		scores[word] = [newScore, newTimestamp];

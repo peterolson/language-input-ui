@@ -18,7 +18,7 @@
 		const hasEncountered = new Set<string>();
 		for (let i = history.length - 1; i >= 0; i--) {
 			const item = history[i];
-			if (item.action !== action) continue;
+			if (item?.action !== action) continue;
 			if (hasEncountered.has(item.id)) {
 				continue;
 			}

@@ -8,6 +8,10 @@
 	import { getViewedContentIds, historyStore } from '../../data/history';
 	import { Icon } from '@smui/common';
 	import { browser } from '$app/env';
+	import { getRecommendationData, ignoreVideos } from '../../data/recommend';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	export let requestHandler:
 		| string
@@ -24,7 +28,7 @@
 	let container: HTMLDivElement;
 	let reachedEnd = false;
 	let isLoadingMore = false;
-	let sortBy = (browser && localStorage.getItem('contentList.sortBy')) || 'bestLevel';
+	let sortBy = (browser && localStorage.getItem('contentList.sortBy')) || 'recommended';
 	let durationFilter =
 		(browser && localStorage.getItem('contentList.durationFilter')) || '0-Infinity';
 
@@ -53,6 +57,7 @@
 			if (typeof requestHandler === 'function') {
 				list = await requestHandler(skip, limit, langs);
 			} else if (langs.length) {
+				const { recommend, ignore } = await getRecommendationData();
 				list = await fetch(
 					`${endpoint}${requestHandler}langs=${langs}&skip=${skip}&limit=${limit}`,
 					{
@@ -65,10 +70,13 @@
 							sortBy,
 							minDuration,
 							maxDuration,
-							isTraditional: $isTraditional
+							isTraditional: $isTraditional,
+							recommend,
+							ignore
 						})
 					}
 				).then((x) => x.json());
+				dispatch('load', list);
 			}
 			if (!list.length) {
 				reachedEnd = true;
@@ -130,6 +138,13 @@
 		localStorage.setItem('contentList.durationFilter', durationFilter);
 		init();
 	}
+
+	function clickItem(i: number) {
+		const ignoredContent = (
+			contentList.slice(0, i).filter((x) => !('skeleton' in x)) as ContentItemSummary[]
+		).map((x) => ({ id: x._id }));
+		ignoreVideos(ignoredContent);
+	}
 </script>
 
 <div class="container" bind:this={container} on:scroll={onScroll}>
@@ -138,7 +153,7 @@
 			<div>
 				<Icon class="material-icons">sort</Icon>
 				<select class="mdc-typography--body2" bind:value={sortBy} on:change={updateFilter}>
-					<option value="bestLevel">{$t('sort.bestLevel')}</option>
+					<option value="recommended">{$t('sort.recommended')}</option>
 					<option value="newest">{$t('sort.newest')}</option>
 					<option value="popular">{$t('sort.popular')}</option>
 				</select>
@@ -156,9 +171,9 @@
 		</div>
 	{/if}
 	{#if contentList.length}
-		{#each contentList as content}
+		{#each contentList as content, i}
 			{#key content._id}
-				<ContentCard {content} {fullWidth} />
+				<ContentCard {content} {fullWidth} on:click={() => clickItem(i)} />
 			{/key}
 		{/each}
 	{:else}
