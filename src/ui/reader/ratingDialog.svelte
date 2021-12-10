@@ -27,12 +27,12 @@
 		if (action === 'like') {
 			recommendVideos(
 				recommendations.map((r) => ({ id: r._id })),
-				3
+				2
 			);
 		} else if (action === 'dislike') {
 			ignoreVideos(
 				recommendations.filter((x) => x.channel === channel).map((r) => ({ id: r._id })),
-				-3
+				3
 			);
 		} else {
 			recommendVideos(
