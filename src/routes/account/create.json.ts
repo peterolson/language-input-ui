@@ -43,7 +43,7 @@ export const post: RequestHandler<Locals, FormData> = async (request) => {
 	return {
 		status: 303,
 		headers: {
-			'set-cookie': `login_token=${jwt}; Path=/; HttpOnly`,
+			'set-cookie': `login_token=${jwt}; Path=/; max-age=31536000; HttpOnly`,
 			Location: '/'
 		}
 	};
