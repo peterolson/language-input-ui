@@ -170,7 +170,7 @@
 
 	function markWordsOnPage(page: number) {
 		if (!contentDiv) return;
-		const left = contentDiv.offsetWidth * (page - 1);
+		const left = contentDiv.offsetLeft + contentDiv.offsetWidth * (page - 1);
 		const right = left + contentDiv.offsetWidth;
 		const visibleTokens = Array.from(contentDiv.querySelectorAll('span.word')).filter((el) => {
 			const span = el as HTMLSpanElement;
