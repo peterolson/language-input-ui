@@ -5,6 +5,8 @@ export type ParsedText = {
 
 export type TextLine = {
 	sentences: Sentence[];
+	startTokenIndex?: number;
+	endTokenIndex?: number;
 };
 
 export type Sentence = {
@@ -24,4 +26,5 @@ export type Token = {
 	start: number;
 	end: number;
 	timing?: [number, number];
+	index?: number;
 };

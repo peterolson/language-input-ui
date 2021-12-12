@@ -1,14 +1,7 @@
 <script lang="ts">
-	import IconButton from '@smui/icon-button';
 	import { viewContent } from '../../data/content';
 	import { onMount } from 'svelte';
-	import {
-		finishReading,
-		knowledgeStore,
-		markKnown,
-		markUnknown,
-		normalizeWord
-	} from '../../data/knowledge';
+	import { finishReading, markUnknown, normalizeWord } from '../../data/knowledge';
 	import { settings } from '../../data/settings';
 	import type { ContentItem, ContentItemSummary } from '../../types/content.types';
 	import type { Sentence, Token } from '../../types/parse.types';
@@ -17,27 +10,17 @@
 	import MediaView from './media/mediaView.svelte';
 	import RatingDialog from './ratingDialog.svelte';
 	import SidePanel from './sidePanel.svelte';
-	import TextLine from './textLine.svelte';
 	import { addViewToHistory } from '../../data/history';
 	import { fade } from 'svelte/transition';
-	import {
-		addViewProgress,
-		removeViewProgress,
-		ViewProgressItem,
-		viewProgressStore
-	} from '../../data/viewProgress';
-	import FeedbackButton from './feedbackButton.svelte';
+	import { removeViewProgress } from '../../data/viewProgress';
+	import PaginatedText from './paginatedText.svelte';
 
 	export let content: ContentItem;
-	const { media, parsedText, lang, timings } = content;
+	const { media, lang } = content;
 	const { userLanguage } = settings;
 
-	let contentDiv: HTMLDivElement;
-	let pages = 10;
-	let currentPage = 1;
 	let innerWidth = 640;
 	let maxWidth = 640;
-	let progressCurrentPercent = 0;
 	let displayDictionaryAtTop = true;
 	let mediaView: MediaView;
 	let currentTime: number = 0;
@@ -47,105 +30,16 @@
 	let container: HTMLDivElement;
 	let recommendations: ContentItemSummary[] = [];
 
-	$: {
-		maxWidth = Math.min(640, innerWidth);
-		if (contentDiv) {
-			contentDiv.style.width = `${maxWidth}px`;
-			contentDiv.style.columnWidth = `${maxWidth}px`;
-			pages = Math.ceil(contentDiv.scrollWidth / maxWidth);
-			snapToNearestPage();
-			updateProgress();
-		}
-	}
-
 	onMount(() => {
 		viewContent(content._id);
-		setTimeout(() => {
-			restoreViewProgress($viewProgressStore[content._id]);
-		}, 250);
 	});
 
-	let isSwiping = false;
-	let startX = 0;
-	let startScrollLeft = 0;
-	let lastX = 0;
-
-	function startSwipe(x: number) {
-		if (!contentDiv) return;
-		isSwiping = true;
-		startX = x;
-		lastX = x;
-		startScrollLeft = contentDiv.scrollLeft;
-	}
-	function swipeMove(x: number) {
-		if (!contentDiv) return;
-		if (!isSwiping) return;
-		lastX = x;
-		contentDiv.scrollTo(startScrollLeft - (x - startX), 0);
-	}
-	function swipeEnd() {
-		if (!isSwiping) return;
-		isSwiping = false;
-		if (Math.abs(lastX - startX) > 100) {
-			movePage(lastX > startX ? -1 : 1);
-		} else {
-			snapToNearestPage('smooth');
-		}
-	}
-
-	function onTouchStart(e: TouchEvent) {
-		startSwipe(e.touches[0].clientX);
-	}
-	function onMouseDown(e: MouseEvent) {
-		startSwipe(e.clientX);
-		e.preventDefault();
-	}
-	function onTouchMove(e: TouchEvent) {
-		swipeMove(e.touches[0].clientX);
-	}
-	function onMouseMove(e: MouseEvent) {
-		swipeMove(e.clientX);
-	}
-	function onTouchEnd(e: TouchEvent) {
-		swipeEnd();
-	}
-	function onMouseUp(e: MouseEvent) {
-		swipeEnd();
-	}
-
-	function snapToNearestPage(behavior: ScrollBehavior = 'auto') {
-		if (contentDiv) {
-			const { scrollLeft, scrollWidth } = contentDiv;
-			const interval = scrollWidth / pages;
-			const page = Math.round(scrollLeft / interval);
-			contentDiv.scrollTo({
-				left: page * interval,
-				behavior
-			});
-		}
-	}
-
-	function movePage(n: number) {
-		if (currentPage + n > pages) {
-			onFinish();
-			return;
-		}
-		if (1 <= currentPage + n) {
-			const page = currentPage;
-			if (n > 0) setTimeout(() => markWordsOnPage(page), 500);
-			saveViewProgress();
-			contentDiv.scrollTo({
-				left: contentDiv.clientWidth * (currentPage - 1 + n),
-				behavior: 'smooth'
-			});
-			currentPage += n;
-			updateProgress();
-		}
+	$: {
+		maxWidth = Math.min(640, innerWidth);
 	}
 
 	let dialogOpen = false;
 	function onFinish() {
-		markWordsOnPage(currentPage);
 		selectedToken = null;
 		dialogOpen = true;
 		addViewToHistory(content._id);
@@ -158,49 +52,22 @@
 		isFinished = true;
 	}
 
-	function getVisibleTokens(): HTMLSpanElement[] {
-		if (!contentDiv) return [];
-		const left = contentDiv.offsetLeft + contentDiv.scrollLeft;
-		const right = left + contentDiv.clientWidth;
-		return Array.from(contentDiv.querySelectorAll('span.word')).filter((el) => {
-			const span = el as HTMLSpanElement;
-			return span.offsetLeft >= left && span.offsetLeft + span.offsetWidth <= right;
-		}) as HTMLSpanElement[];
-	}
-
-	function markWordsOnPage(page: number) {
-		if (!contentDiv) return;
-		const left = contentDiv.offsetLeft + contentDiv.offsetWidth * (page - 1);
-		const right = left + contentDiv.offsetWidth;
-		const visibleTokens = Array.from(contentDiv.querySelectorAll('span.word')).filter((el) => {
-			const span = el as HTMLSpanElement;
-			return span.offsetLeft >= left && span.offsetLeft + span.offsetWidth <= right;
-		}) as HTMLSpanElement[];
-		const wordSet = new Set<string>();
-		visibleTokens.forEach((span) => {
-			const lemma = span.dataset.lemma;
-			const word = span.textContent;
-			if (lemma) wordSet.add(normalizeWord(lemma));
-			if (word) wordSet.add(normalizeWord(word));
-		});
-		const words = Array.from(wordSet).filter((word) => !lookedUpWords.has(word));
-		const newWords = markKnown(words, content.lang);
+	function addNewWords(newWords: string[]) {
 		newWordSet = new Set([...Array.from(newWordSet), ...newWords]);
 	}
 
-	function updateProgress() {
-		if (!contentDiv) return;
-		progressCurrentPercent = Math.round((currentPage * 100) / pages);
+	function setLookedUpWords(words: Set<string>) {
+		lookedUpWords = new Set(Array.from(words));
 	}
 
 	let selectedToken: Token | null = null;
 	let selectedSentence: Sentence;
 	let fullScreenLookup = false;
 
-	function onLookup(e: CustomEvent<{ token: Token; sentence: Sentence; target: HTMLElement }>) {
-		selectedToken = e.detail.token;
-		selectedSentence = e.detail.sentence;
-		const target = e.detail.target;
+	function onLookup(item: { token: Token; sentence: Sentence; target: HTMLElement }) {
+		selectedToken = item.token;
+		selectedSentence = item.sentence;
+		const target = item.target;
 		const position = target.offsetTop / window.innerHeight;
 		displayDictionaryAtTop = position >= 0.5;
 		if (mediaView) {
@@ -229,51 +96,12 @@
 		lookedUpWords = new Set(lookedUpWords);
 	}
 
-	function onSeek(e: CustomEvent<{ time: number }>) {
+	function onSeek(time: number) {
 		if (mediaView) {
 			mediaView.controls.clearListeners();
-			mediaView.controls.seek(e.detail.time);
+			mediaView.controls.seek(time);
 			mediaView.controls.play();
 		}
-	}
-
-	function saveViewProgress() {
-		const firstVisibleToken = getVisibleTokens()[0];
-		const index = Array.from(contentDiv.querySelectorAll('span.word')).indexOf(firstVisibleToken);
-		addViewProgress(content._id, {
-			currentTime: Math.max(0, currentTime - 10),
-			lookedUpWords: Array.from(lookedUpWords),
-			topTokenIndex: index
-		});
-	}
-
-	function restoreViewProgress(progress: ViewProgressItem) {
-		if (!progress || !contentDiv) return;
-
-		lookedUpWords = new Set(progress.lookedUpWords);
-		const tokenSpan = Array.from(contentDiv.querySelectorAll('span.word'))[
-			progress.topTokenIndex
-		] as HTMLSpanElement;
-		const { scrollWidth } = contentDiv;
-		const tokenLeft = tokenSpan.offsetLeft - contentDiv.offsetLeft;
-		const interval = scrollWidth / pages;
-		let left = 0;
-		let page = 1;
-		while (left + interval < tokenLeft) {
-			left += interval;
-			page++;
-		}
-		contentDiv.scrollLeft = left;
-		mediaView.controls.onLoad(() => {
-			const topLineButton = tokenSpan?.parentNode?.parentNode?.querySelector('button');
-			if (topLineButton) topLineButton.click();
-			else {
-				mediaView.controls.seek(progress.currentTime);
-				mediaView.controls.play();
-			}
-		});
-		currentPage = page;
-		updateProgress();
 	}
 
 	function onRecommend(e: CustomEvent<ContentItemSummary[]>) {
@@ -287,20 +115,13 @@
 
 <svelte:window bind:innerWidth />
 
-<div
-	class="container"
-	on:touchmove={onTouchMove}
-	on:mousemove={onMouseMove}
-	on:touchend={onTouchEnd}
-	on:mouseup={onMouseUp}
-	bind:this={container}
->
+<div class="container" bind:this={container}>
 	<div class="leftPanel" on:click={closeDictionary}>
 		<SidePanel {content} on:recommend={onRecommend} />
 	</div>
 	<div class="contentContainer" on:click={closeDictionary}>
 		{#if isFinished}
-			<div class="content finished" bind:this={contentDiv}>
+			<div class="finished">
 				<Finished
 					{content}
 					lookedUp={Array.from(lookedUpWords)}
@@ -311,42 +132,18 @@
 			<div style="width: {maxWidth};">
 				<MediaView {media} bind:this={mediaView} bind:currentTime />
 			</div>
-			<div
-				class="content"
-				bind:this={contentDiv}
-				on:touchstart={onTouchStart}
-				on:mousedown={onMouseDown}
-			>
-				<div style="padding:8px;">
-					{#each parsedText.lines as line, i}
-						<TextLine
-							{line}
-							on:lookup={onLookup}
-							{currentTime}
-							timing={timings[i]}
-							nextTiming={timings[i + 1]}
-							knowledge={$knowledgeStore}
-							lang={content.lang}
-							{lookedUpWords}
-							on:seek={onSeek}
-						/>
-					{/each}
-				</div>
-			</div>
-			<div class="progressContainer">
-				<FeedbackButton {content} />
-				<div class:hidden={currentPage === 1}>
-					<IconButton class="material-icons" on:click={() => movePage(-1)}>
-						navigate_before
-					</IconButton>
-				</div>
-				<div class="progressBar">
-					<div class="progressCurrent" style={`width:${progressCurrentPercent}%`} />
-				</div>
-				<IconButton class="material-icons" on:click={() => movePage(1)}>
-					{currentPage === pages ? 'check_circle' : 'navigate_next'}
-				</IconButton>
-			</div>
+			<PaginatedText
+				{content}
+				{currentTime}
+				{lookedUpWords}
+				{onSeek}
+				{onLookup}
+				{addNewWords}
+				{onFinish}
+				{mediaView}
+				{setLookedUpWords}
+			/>
+
 			<RatingDialog
 				open={dialogOpen}
 				on:close={onDialogClose}
@@ -401,46 +198,11 @@
 		flex-direction: column;
 		height: 100%;
 	}
-	.content {
-		margin: 0 auto;
-		height: 100%;
-		overflow: hidden;
-		width: 100vw;
-		max-width: 640px;
-		column-width: 100vw;
-		column-gap: 0px;
-	}
-	.content.finished {
-		column-width: unset !important;
-		column-gap: unset;
-		width: unset !important;
-		max-width: unset;
-		overflow: auto;
-	}
 
 	.dictionary {
 		flex: 1;
 		height: 100%;
 		overflow: auto;
-	}
-	.progressContainer {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		border-top: 1px solid var(--border-color);
-	}
-	.progressBar {
-		flex-grow: 1;
-		border: 1px solid var(--border-color);
-		border-radius: 8px;
-		height: 16px;
-	}
-	.progressCurrent {
-		width: 0;
-		height: 100%;
-		border-radius: inherit;
-		background-color: color-palette.$green-500;
-		transition: width 0.2s ease-in-out;
 	}
 	.hidden {
 		visibility: hidden;

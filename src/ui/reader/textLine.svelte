@@ -4,10 +4,8 @@
 	import { LanguageCode } from '../../types/dictionary.types';
 	import type { Knowledge } from '../../types/knowledge.types';
 	import type { Sentence, TextLine, Token } from '../../types/parse.types';
-	import { createEventDispatcher } from 'svelte';
 	import { charInCJK } from '../../data/util';
 	import { settings } from '../../data/settings';
-	const dispatch = createEventDispatcher();
 
 	const { isTraditional } = settings;
 
@@ -18,20 +16,18 @@
 	export let lang: LanguageCode;
 	export let knowledge: Knowledge;
 	export let lookedUpWords: Set<string>;
-
-	function lineSpacingStyle(token: Token) {
-		return `padding-bottom: ${[...token.text].filter((x) => x === '\n').length * 2}px`;
-	}
+	export let onSeek: (time: number) => void;
+	export let onLookup: (item: { token: Token; sentence: Sentence; target: HTMLElement }) => void;
 
 	function lookupWord(token: Token, sentence: Sentence, e: MouseEvent) {
 		e.preventDefault();
 		e.stopPropagation();
 		if (!token.isWord) return;
-		dispatch('lookup', { token, sentence, target: e.target });
+		onLookup({ token, sentence, target: e.target as HTMLElement });
 	}
 
 	function seekToLine() {
-		dispatch('seek', { time: timing[0] });
+		onSeek(timing[0]);
 	}
 
 	function isLemmaUnknown(
@@ -98,6 +94,8 @@
 			{#each sentence.tokens as token}
 				<span
 					data-lemma={token.lemma}
+					data-index={token.index}
+					class="token"
 					class:word={token.isWord}
 					class:nonWord={!token.isWord}
 					class:lemmaUnknown={isLemmaUnknown(knowledge, lang, token, $isTraditional)}
@@ -107,7 +105,9 @@
 					on:click={(e) => lookupWord(token, sentence, e)}
 					>{$isTraditional && token.tradText ? token.tradText : token.text}</span
 				>{token.suffix}{#if token.text.includes('\n')}
-					<div style={lineSpacingStyle(token)} />
+					{#each { length: [...token.text].filter((x) => x === '\n').length } as _}
+						<br />
+					{/each}
 				{/if}
 			{/each}
 		</span>
@@ -151,12 +151,18 @@
 	.line {
 		font-size: 115%;
 		line-height: 32px;
-		padding-top: 4px;
+		padding-top: 2px;
 		padding-bottom: 2px;
+		padding-left: 8px;
+		padding-right: 4px;
+		width: 100%;
+		box-sizing: border-box;
+		direction: ltr;
 	}
 
 	.sentence {
 		transition: background-color 0.5s ease-in-out; /* fade out time*/
+		margin-right: 2px;
 	}
 
 	.isCurrent {

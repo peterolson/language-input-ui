@@ -3,6 +3,7 @@ import { cachedData } from './cachedData';
 export type ViewProgressItem = {
 	currentTime: number;
 	topTokenIndex: number;
+	completedTokenIndex: number;
 	lookedUpWords: string[];
 };
 export type ViewProgress = {
