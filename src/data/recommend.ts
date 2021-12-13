@@ -9,10 +9,9 @@ const maxItems = 250;
 const recommendationCache = cachedData<Recommendations>({}, 'recommendations');
 
 function removeOldestRecommendations(recommendations: Recommendations) {
-	if (Object.keys(recommendations).length > maxItems) {
-		const sorted = Object.keys(recommendations).sort(
-			(a, b) => recommendations[a][1] - recommendations[b][1]
-		);
+	const keys = Object.keys(recommendations).filter((x) => recommendations[x]);
+	if (keys.length > maxItems) {
+		const sorted = keys.sort((a, b) => recommendations[a][1] - recommendations[b][1]);
 		for (let i = 0; i < sorted.length - maxItems; i++) {
 			delete recommendations[sorted[i]];
 		}
@@ -43,9 +42,9 @@ export function ignoreVideos(videos: { id: string }[], weight = 1): void {
 export async function getRecommendationData() {
 	const recommendations = await recommendationCache.getValue();
 	const recommend = Object.keys(recommendations)
-		.filter((id) => recommendations[id][0] > 0)
+		.filter((id) => recommendations[id]?.[0] > 0)
 		.sort((a, b) => recommendations[b][0] - recommendations[a][0]);
-	const ignore = Object.keys(recommendations).filter((id) => recommendations[id][0] <= 0);
+	const ignore = Object.keys(recommendations).filter((id) => recommendations[id]?.[0] <= 0);
 	return {
 		recommend,
 		ignore
