@@ -6,6 +6,7 @@ export const post: RequestHandler<Locals, FormData> = async (request) => {
 	const password = request.body.get('password');
 	const confirmPassword = request.body.get('confirmPassword');
 	const username = request.body.get('username').trim().toLowerCase();
+	const email = request.body.get('email').trim().toLowerCase();
 
 	if (password !== confirmPassword) {
 		return {
@@ -22,7 +23,7 @@ export const post: RequestHandler<Locals, FormData> = async (request) => {
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify({ username, password })
+		body: JSON.stringify({ username, password, email })
 	}).then((x) => x.json());
 
 	if (response.statusCode && response.statusCode !== 200) {

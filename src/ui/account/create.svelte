@@ -8,6 +8,7 @@
 	let username = '';
 	let password = '';
 	let confirmPassword = '';
+	let email = '';
 
 	let error = decodeURIComponent($page.query.get('error') || '');
 	if (error.includes('exists')) {
@@ -33,6 +34,12 @@
 		style="width:100%"
 	/>
 	<input type="hidden" name="confirmPassword" value={confirmPassword} />
+	<br />
+	<Textfield label={$t('user.email')} bind:value={email} type="email" style="width:100%" />
+	<input type="hidden" name="email" value={email} />
+	<div class="hint mdc-typography--caption">
+		{$t('user.emailHint')}
+	</div>
 	<br />
 	<div class="button">
 		<Button variant="unelevated" style="width:100%" disabled={!username || !password}
@@ -61,5 +68,9 @@
 	}
 	.hidden {
 		visibility: hidden;
+	}
+
+	.hint {
+		opacity: 0.7;
 	}
 </style>

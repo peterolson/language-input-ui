@@ -29,7 +29,9 @@
 	</div>
 	<div class="mdc-typography--body1">
 		{$t('user.noAccount')}<br />
-		<a href="/account/create">{$t('user.createAccount')}</a>
+		<a href="/account/create">{$t('user.createAccount')}</a><br />
+		<br />
+		<a href="/account/forgotPassword">{$t('user.forgotPassword')}</a><br />
 	</div>
 </form>
 
