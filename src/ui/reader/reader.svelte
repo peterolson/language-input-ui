@@ -113,7 +113,8 @@
 	<title>{content.channel} - {content.title}</title>
 </svelte:head>
 
-<svelte:window bind:innerWidth />
+<!-- Close dictionary when navigating to another page to avoid layout shift -->
+<svelte:window bind:innerWidth on:sveltekit:navigation-start={() => (selectedToken = null)} />
 
 <div class="container" bind:this={container}>
 	<div class="leftPanel" on:click={closeDictionary}>
