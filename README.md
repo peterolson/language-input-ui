@@ -1,26 +1,35 @@
-# SMUI SvelteKit Example
+# language-input-ui
 
-An example project implementing [Svelte Material UI](https://github.com/hperrin/svelte-material-ui) with [SvelteKit](https://kit.svelte.dev/).
+This is the frontent code for [https://www.languageinput.com/](https://www.languageinput.com/).
 
-# Get it Running
+## Installation
 
-1. Clone the repo.
-2. `npm install`
-3. `npm run dev`
-4. http://localhost:3000
+- Set up [language-input-api](https://github.com/peterolson/language-input-api) and run on your local machine.
+- Clone this repository and run `npm install`
+- Create a .env file in the root directory with the following contents:
 
-# License
+```
+# Required for creating JSON web tokens, can be any string
+JWT_SECRET=secret string goes here
 
-Copyright 2021 Hunter Perrin
+# Required for Microsoft Text-to-speech
+MICROSOFT_SPEECH_SUBSCRIPTION_KEY=
+MICROSOFT_SPEECH_ISSUE_TOKEN_ENDPOINT=
+MICROSOFT_SPEECH_REGION=
+MICROSOFT_SPEECH_ISSUE_TOKEN_HOST=
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+# Required for uploading files to an S3 bucket
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_S3_REGION=
+AWS_S3_BUCKET=
+AWS_S3_UPLOAD_ENDPOINT=
+AWS_S3_HOSTING_ENDPOINT=
 
-    http://www.apache.org/licenses/LICENSE-2.0
+# Port the server will run on
+PORT=3001
+```
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+# Development
+
+- Run `npm run dev` to start the server.
