@@ -40,6 +40,11 @@
 			</a>
 		</div>
 		<div>
+			{#if $session.user?.isAdmin}
+				<a href="/feedback" sveltekit:prefetch>
+					<IconButton class="material-icons" color="secondary">report_problem</IconButton>
+				</a>
+			{/if}
 			<a href="/add" sveltekit:prefetch>
 				<IconButton class="material-icons" color="secondary">add_box</IconButton>
 			</a>
